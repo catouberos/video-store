@@ -7,7 +7,7 @@ This project was made with the [Gradle Build Tool](https://gradle.org/), which y
 ```sh
 ./gradlew build
 ```
-...or on Windows with 
+...or on Windows with
 ```batch
 gradlew.bat build
 ```
