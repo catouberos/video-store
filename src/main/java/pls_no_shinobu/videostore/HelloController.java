@@ -4,7 +4,6 @@
   Semester: 2023A
   Assessment: Final Project
   Author: pls_no_shinobu
-  Acknowledgement: Acknowledge the resources that you use here.
 */
 package pls_no_shinobu.videostore;
 

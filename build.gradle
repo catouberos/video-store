@@ -101,7 +101,6 @@ spotless {
             '  Semester: 2023A\n' +
             '  Assessment: Final Project\n' +
             '  Author: pls_no_shinobu\n' +
-            '  Acknowledgement: Acknowledge the resources that you use here.\n' +
             '*/'
     }
 }
