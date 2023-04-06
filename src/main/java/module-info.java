@@ -3,7 +3,7 @@ module pls_no_shinobu.videostore {
     requires javafx.fxml;
 
     opens pls_no_shinobu.videostore to
-            javafx.fxml;
+        javafx.fxml;
 
     exports pls_no_shinobu.videostore;
 }
