@@ -7,7 +7,7 @@
 */
 package pls_no_shinobu.videostore.model;
 
-public class Entity {
+public abstract class Entity {
     private String id;
 
     public Entity() {
