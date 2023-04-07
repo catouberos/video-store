@@ -1,5 +1,5 @@
 # https://docs.gradle.org/current/userguide/github-actions.html
-name: Build Gradle project
+name: build
 
 on:
     push:
@@ -8,7 +8,7 @@ on:
     pull_request:
 
 jobs:
-    build-gradle-project:
+    build:
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout project sources
