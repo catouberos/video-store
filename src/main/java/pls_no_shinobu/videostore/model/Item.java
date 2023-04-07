@@ -27,7 +27,7 @@ public class Item extends Entity {
     }
 
     private String title;
-    private HashSet<String> genres;
+    private String genre;
     private RentalType rentalType;
     private LoanType loanType;
     private int stock;
@@ -37,7 +37,7 @@ public class Item extends Entity {
     public Item() {
         super();
         this.title = "";
-        this.genres = new HashSet<>();
+        this.genre = "";
         this.rentalType = RentalType.RECORD;
         this.loanType = LoanType.ONE_WEEK;
         this.stock = 0;
@@ -46,18 +46,36 @@ public class Item extends Entity {
     }
 
     public Item(
-            String id,
-            String title,
-            HashSet<String> genres,
-            RentalType rentalType,
-            LoanType loanType,
-            int stock,
-            int rentalFee,
-            RentalStatus rentalStatus)
+        String id,
+        String title,
+        String genre,
+        RentalType rentalType,
+        LoanType loanType,
+        int stock,
+        float rentalFee)
             throws IllegalArgumentException {
         setId(id);
         this.title = title;
-        this.genres.addAll(genres);
+        this.genre = genre;
+        this.rentalType = rentalType;
+        this.loanType = loanType;
+        this.stock = stock;
+        this.rentalFee = rentalFee;
+    }
+
+    public Item(
+        String id,
+        String title,
+        String genre,
+        RentalType rentalType,
+        LoanType loanType,
+        int stock,
+        float rentalFee,
+        RentalStatus rentalStatus)
+            throws IllegalArgumentException {
+        setId(id);
+        this.title = title;
+        this.genre = genre;
         this.rentalType = rentalType;
         this.loanType = loanType;
         this.stock = stock;
@@ -142,26 +160,13 @@ public class Item extends Entity {
         return true;
     }
 
-    public HashSet<String> getGenres() {
-        return genres;
+    public String getGenre() {
+        return genre;
     }
 
-    public boolean addGenre(String genre) {
-        if (genres.contains(genre)) {
-            return false;
-        }
+    public boolean setGenre(String genre) {
+        this.genre = genre;
 
-        genres.add(genre);
-
-        return true;
-    }
-
-    public boolean removeGenre(String genre) {
-        if (!genres.contains(genre)) {
-            return false;
-        }
-
-        genres.remove(genre);
         return true;
     }
 }
