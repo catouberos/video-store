@@ -7,8 +7,6 @@
 */
 package pls_no_shinobu.videostore.model;
 
-import java.util.HashSet;
-
 public class Item extends Entity {
     public enum RentalType {
         RECORD,
@@ -46,13 +44,13 @@ public class Item extends Entity {
     }
 
     public Item(
-        String id,
-        String title,
-        String genre,
-        RentalType rentalType,
-        LoanType loanType,
-        int stock,
-        float rentalFee)
+            String id,
+            String title,
+            String genre,
+            RentalType rentalType,
+            LoanType loanType,
+            int stock,
+            float rentalFee)
             throws IllegalArgumentException {
         setId(id);
         this.title = title;
@@ -64,14 +62,14 @@ public class Item extends Entity {
     }
 
     public Item(
-        String id,
-        String title,
-        String genre,
-        RentalType rentalType,
-        LoanType loanType,
-        int stock,
-        float rentalFee,
-        RentalStatus rentalStatus)
+            String id,
+            String title,
+            String genre,
+            RentalType rentalType,
+            LoanType loanType,
+            int stock,
+            float rentalFee,
+            RentalStatus rentalStatus)
             throws IllegalArgumentException {
         setId(id);
         this.title = title;

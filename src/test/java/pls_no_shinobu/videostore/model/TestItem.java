@@ -28,19 +28,19 @@ public class TestItem {
     @DisplayName("Create an item with invalid ID format should throw an error")
     void createNewInvalidItem() {
         IllegalArgumentException exception =
-            assertThrows(
-                IllegalArgumentException.class,
-                () ->
-                    item =
-                        new Item(
-                            "this is an illegal ID",
-                            "",
-                            "",
-                            Item.RentalType.RECORD,
-                            Item.LoanType.ONE_WEEK,
-                            0,
-                            0,
-                            Item.RentalStatus.AVAILABLE));
+                assertThrows(
+                        IllegalArgumentException.class,
+                        () ->
+                                item =
+                                        new Item(
+                                                "this is an illegal ID",
+                                                "",
+                                                "",
+                                                Item.RentalType.RECORD,
+                                                Item.LoanType.ONE_WEEK,
+                                                0,
+                                                0,
+                                                Item.RentalStatus.AVAILABLE));
         assertNull(exception.getMessage());
     }
 
