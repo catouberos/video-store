@@ -16,8 +16,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-
 public class TestItem {
     Item item;
 
@@ -29,22 +27,20 @@ public class TestItem {
     @Test
     @DisplayName("Create an item with invalid ID format should throw an error")
     void createNewInvalidItem() {
-        HashSet<String> genres = new HashSet<>();
-
         IllegalArgumentException exception =
-                assertThrows(
-                        IllegalArgumentException.class,
-                        () ->
-                                item =
-                                        new Item(
-                                                "this is an illegal ID",
-                                                "",
-                                                genres,
-                                                Item.RentalType.RECORD,
-                                                Item.LoanType.ONE_WEEK,
-                                                0,
-                                                0,
-                                                Item.RentalStatus.AVAILABLE));
+            assertThrows(
+                IllegalArgumentException.class,
+                () ->
+                    item =
+                        new Item(
+                            "this is an illegal ID",
+                            "",
+                            "",
+                            Item.RentalType.RECORD,
+                            Item.LoanType.ONE_WEEK,
+                            0,
+                            0,
+                            Item.RentalStatus.AVAILABLE));
         assertNull(exception.getMessage());
     }
 
@@ -53,21 +49,5 @@ public class TestItem {
     void updateNegativeStock() {
         assertFalse(item.setStock(-1));
         assertEquals(0, item.getStock());
-    }
-
-    @Test
-    @DisplayName("Add a duplicate genre")
-    void addDuplicateGenre() {
-        item.addGenre("test");
-
-        assertFalse(item.addGenre("test"));
-        assertEquals(item.getGenres().toString(), "[test]");
-    }
-
-    @Test
-    @DisplayName("Remove a not-in-array genre")
-    void removeInvalidGenre() {
-        assertFalse(item.removeGenre("mystery item"));
-        assertEquals(item.getGenres().toString(), "[]");
     }
 }
