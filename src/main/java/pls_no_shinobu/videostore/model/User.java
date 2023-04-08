@@ -24,7 +24,7 @@ public class User extends Entity {
     private UserType role;
     private String username;
     private String password;
-    private ArrayList<String> rentals;
+    private ArrayList<String> rentals = new ArrayList<>();
 
     public User() {
         super();
@@ -35,7 +35,6 @@ public class User extends Entity {
         this.role = UserType.GUEST;
         this.username = "";
         this.password = "";
-        this.rentals = new ArrayList<>();
     }
 
     public User(String id, String username, String password) throws IllegalArgumentException {
@@ -164,15 +163,18 @@ public class User extends Entity {
         return true;
     }
 
-    public boolean addRentals(String rId) {
-        // TODO: add stock check
+    public boolean addRental(String rId) {
+        // TODO: add stock check and stock management
 
         this.rentals.add(rId);
+
+        increateRentalCount();
 
         return true;
     }
 
-    public boolean removeRentals(String rId) {
+    public boolean removeRental(String rId) {
+        // TODO: stock management
         if (!this.rentals.contains(rId)) return false;
 
         this.rentals.remove(rId);
