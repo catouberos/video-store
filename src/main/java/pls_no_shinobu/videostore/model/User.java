@@ -1,3 +1,10 @@
+/*
+  RMIT University Vietnam
+  Course: INTE2512 Object-Oriented Programming
+  Semester: 2023A
+  Assessment: Final Project
+  Author: pls_no_shinobu
+*/
 package pls_no_shinobu.videostore.model;
 
 import java.util.ArrayList;
@@ -8,6 +15,7 @@ public class User extends Entity {
         REGULAR,
         VIP
     }
+
     private String name;
     private String userAddress;
     private String userPhone;
@@ -24,7 +32,13 @@ public class User extends Entity {
         this.role = AccountType.GUEST;
     }
 
-    public User(String id, String userName, String userPassword, String userAddress, String userPhone, String name) {
+    public User(
+            String id,
+            String userName,
+            String userPassword,
+            String userAddress,
+            String userPhone,
+            String name) {
         this(id, userName, userPassword);
         this.userAddress = userAddress;
         this.userPhone = userPhone;
@@ -83,5 +97,4 @@ public class User extends Entity {
     public ArrayList<Item> getRentedItems() {
         return rentedItems;
     }
-
 }
