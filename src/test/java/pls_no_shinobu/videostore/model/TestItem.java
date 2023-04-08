@@ -25,7 +25,7 @@ public class TestItem {
     }
 
     @Test
-    @DisplayName("Create an item with invalid ID format should throw an error")
+    @DisplayName("Create an item with invalid ID format")
     void createNewInvalidItem() {
         IllegalArgumentException exception =
                 assertThrows(
