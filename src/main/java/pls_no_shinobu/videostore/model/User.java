@@ -38,7 +38,7 @@ public class User extends Entity {
         this.rentals = new ArrayList<>();
     }
 
-    public User(String id, String username, String password) {
+    public User(String id, String username, String password) throws IllegalArgumentException {
         setId(id);
         setUsername(username);
         setPassword(password);
@@ -138,7 +138,7 @@ public class User extends Entity {
     public void setUsername(String username) throws IllegalArgumentException {
         if (username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
 
-        if (username.contains("\\s"))
+        if (username.contains(" "))
             throw new IllegalArgumentException("Username cannot contain spaces");
 
         this.username = username;
@@ -149,7 +149,7 @@ public class User extends Entity {
     }
 
     protected void setPassword(String password) throws IllegalArgumentException {
-        if (username.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
+        if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
 
         this.password = password;
     }
