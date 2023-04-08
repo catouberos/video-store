@@ -30,7 +30,6 @@ public class User extends Entity {
         this.userPhone = userPhone;
         this.name = name;
         this.role = AccountType.GUEST;
-        this.rolePoint = rolePoint;
     }
 
     public String getUserName() {
@@ -84,4 +83,5 @@ public class User extends Entity {
     public ArrayList<Item> getRentedItems() {
         return rentedItems;
     }
+
 }
