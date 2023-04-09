@@ -181,4 +181,51 @@ public class User extends Entity {
 
         return true;
     }
+
+    public void updatePassword(String newPassword) throws IllegalArgumentException {
+        if (newPassword.equals(this.password))
+            throw new IllegalArgumentException(
+                    "New password can't be your current password, please try again");
+
+        if (newPassword.isEmpty())
+            throw new IllegalArgumentException("New password can't be empty, please try again");
+
+        this.password = newPassword;
+    }
+
+    public void updatePhone(String newPhone) throws IllegalArgumentException {
+        if (newPhone.equals(this.phone))
+            throw new IllegalArgumentException(
+                    "New phone number can't be your current number, please try again");
+
+        if (newPhone.isEmpty())
+            throw new IllegalArgumentException("New phone number can't be empty, please try again");
+
+        if (newPhone.matches("\\d{3}-\\d{3}-\\d{4}"))
+            throw new IllegalArgumentException(
+                    "Format for phone number is XXX-XXX-XXXX, please try again");
+
+        this.phone = newPhone;
+    }
+
+    public void updateAddress(String newAddress) throws IllegalArgumentException {
+        if (newAddress.equals(this.address))
+            throw new IllegalArgumentException("Please enter a new address");
+
+        if (newAddress.isEmpty())
+            throw new IllegalArgumentException("New address can't be empty, please try again");
+
+        this.address = newAddress;
+    }
+
+    public void updateName(String newName) throws IllegalArgumentException {
+        if (newName.equals(this.name))
+            throw new IllegalArgumentException(
+                    "New name can't be your current name, please try again");
+
+        if (name.isEmpty())
+            throw new IllegalArgumentException("New name can't be empty, please try again");
+
+        this.name = newName;
+    }
 }
