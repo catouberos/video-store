@@ -178,4 +178,29 @@ public class User extends Entity {
 
         return true;
     }
+
+    private boolean isRented(Item item) {
+        for (Item i : rentals) if (i.equals(item.getId())) return true;
+
+        return false;
+    }
+
+    private boolean canRent(Item item) throws IllegalArgumentException {
+        if (isRented(item))
+            throw new IllegalArgumentException("This item is already rented by this account");
+
+        if (!item.isInStock()) throw new IllegalArgumentException("This item is out-of-stock");
+
+        if (this.getRole().equals(UserType.REGULAR) || this.getRole().equals(UserType.VIP)) {
+            return true;
+        }
+
+        if (this.rentals.size() >= 2)
+            throw new IllegalArgumentException("You can't rent more than 2 items at a time");
+
+        if (!item.getLoanType().equals(Item.LoanType.TWO_DAY))
+            throw new IllegalArgumentException(" You can't rent this item for 2 days");
+
+        return true;
+    }
 }
