@@ -24,7 +24,7 @@ public class User extends Entity {
     private UserType role;
     private String username;
     private String password;
-    private ArrayList<String> rentals = new ArrayList<>();
+    private ArrayList<Item> rentals = new ArrayList<>();
 
     public User() {
         super();
@@ -49,20 +49,20 @@ public class User extends Entity {
             String address,
             String phone,
             int rentalCount,
-            UserType userType,
+            UserType role,
             String username,
             String password,
-            ArrayList<String> rentals)
+            ArrayList<Item> rentals)
             throws IllegalArgumentException {
         setId(id);
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.rentalCount = rentalCount;
-        this.role = userType;
+        setName(name);
+        setAddress(address);
+        setPhone(phone);
+        setRentalCount(rentalCount);
+        setRole(role);
         setUsername(username);
         setPassword(password);
-        this.rentals = rentals;
+        setRentals(rentals);
     }
 
     @Override
@@ -78,40 +78,43 @@ public class User extends Entity {
         return name;
     }
 
-    public boolean setName(String name) {
-        this.name = name;
+    public void setName(String name) throws IllegalArgumentException {
+        if (getName().contains(name)) throw new IllegalArgumentException("Name is unchanged");
 
-        return true;
+        this.name = name;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public boolean setAddress(String address) {
-        this.address = address;
+    public void setAddress(String address) throws IllegalArgumentException {
+        if (getAddress().contains(address))
+            throw new IllegalArgumentException("Address is unchanged");
 
-        return true;
+        this.address = address;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public boolean setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone(String phone) throws IllegalArgumentException {
+        if (getPhone().contains(phone))
+            throw new IllegalArgumentException("Phone number is unchanged");
 
-        return true;
+        this.phone = phone;
     }
 
     public int getRentalCount() {
         return rentalCount;
     }
 
-    public boolean setRentalCount(int rentalCount) {
-        this.rentalCount = rentalCount;
+    public void setRentalCount(int rentalCount) {
+        if (getRentalCount() < 0)
+            throw new IllegalArgumentException("Rental count cannot be negative");
 
-        return true;
+        this.rentalCount = rentalCount;
     }
 
     public int increateRentalCount() {
@@ -124,10 +127,8 @@ public class User extends Entity {
         return role;
     }
 
-    public boolean setRole(UserType role) {
+    public void setRole(UserType role) {
         this.role = role;
-
-        return true;
     }
 
     public String getUsername() {
@@ -153,31 +154,27 @@ public class User extends Entity {
         this.password = password;
     }
 
-    public ArrayList<String> getRentals() {
+    public ArrayList<Item> getRentals() {
         return rentals;
     }
 
-    public boolean setRentals(ArrayList<String> rentals) {
+    public void setRentals(ArrayList<Item> rentals) {
         this.rentals = rentals;
-
-        return true;
     }
 
-    public boolean addRental(String rId) {
+    public void addRental(Item item) {
         // TODO: add stock check and stock management
 
-        this.rentals.add(rId);
+        this.rentals.add(item);
 
         increateRentalCount();
-
-        return true;
     }
 
-    public boolean removeRental(String rId) {
+    public boolean removeRental(Item item) {
         // TODO: stock management
-        if (!this.rentals.contains(rId)) return false;
+        if (!this.rentals.contains(item)) return false;
 
-        this.rentals.remove(rId);
+        this.rentals.remove(item);
 
         return true;
     }

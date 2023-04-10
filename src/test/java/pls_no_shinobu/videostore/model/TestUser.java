@@ -82,11 +82,21 @@ public class TestUser {
     @DisplayName("rentalCount behavior with addRental()")
     void rentalCountCheckWithAddRental() {
         user = new User("C001", "user", "password");
+        Item item =
+                new Item(
+                        "I001-2001",
+                        "",
+                        "",
+                        Item.RentalType.RECORD,
+                        Item.LoanType.ONE_WEEK,
+                        0,
+                        0,
+                        Item.RentalStatus.AVAILABLE);
 
-        user.addRental("I001-2001");
+        user.addRental(item);
 
         assertEquals(1, user.getRentalCount());
-        assertTrue(user.getRentals().get(0).contains("I001-2001"));
+        assertTrue(user.getRentals().get(0).getId().contains(item.getId()));
     }
 
     // TODO: addRentals() tests
