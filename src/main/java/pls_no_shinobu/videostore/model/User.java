@@ -53,7 +53,8 @@ public class User extends Entity {
             String username,
             String password,
             ArrayList<String> rentals)
-            throws IllegalArgumentException {
+            throws IllegalArgumentException
+    {
         setId(id);
         this.name = name;
         this.address = address;
@@ -166,12 +167,14 @@ public class User extends Entity {
     public boolean addRental(String rId) {
         // TODO: add stock check and stock management
 
-        this.rentals.add(rId);
+            this.rentals.add(rId);
 
-        increateRentalCount();
+            increateRentalCount();
 
-        return true;
-    }
+            return true;
+        }
+
+
 
     public boolean removeRental(String rId) {
         // TODO: stock management
@@ -181,4 +184,29 @@ public class User extends Entity {
 
         return true;
     }
+
+    private boolean isRented(Item item) {
+        for (String i : rentals)
+            if (i.equals(item.getId())) return true;
+
+        return false;
+    }
+
+    private boolean canRent(Item item) throws IllegalArgumentException {
+        if (isRented(item)) throw new IllegalArgumentException("This item is already rented by this account");
+
+        if (!item.isInStock()) throw new IllegalArgumentException("This item is out-of-stock");
+
+        if (this.getRole().equals(UserType.REGULAR) || this.getRole().equals(UserType.VIP)){
+            return true;
+        }
+
+        if (this.rentals.size() >= 2) throw new IllegalArgumentException("You can't rent more than 2 items at a time");
+
+
+        if (!item.getLoanType().equals(Item.LoanType.TWO_DAY)) throw new IllegalArgumentException(" You can't rent this item for 2 days");
+
+        return true;
+    }
+
 }

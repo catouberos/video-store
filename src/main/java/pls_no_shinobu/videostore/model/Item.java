@@ -133,7 +133,12 @@ public class Item extends Entity {
 
         return true;
     }
-
+    public boolean isInStock(){
+        if (this.stock > 0){
+            return true;
+        }
+        return false;
+    }
     public float getRentalFee() {
         return rentalFee;
     }
