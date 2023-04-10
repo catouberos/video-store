@@ -34,7 +34,7 @@ public final class PasswordHasher {
     public String hash(String password) {
         return hash(password.toCharArray());
     }
-    
+
     public String hash(char[] password) {
         // generate new salt
         byte[] salt = new byte[16];
