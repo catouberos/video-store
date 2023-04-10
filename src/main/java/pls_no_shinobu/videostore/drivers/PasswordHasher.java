@@ -12,18 +12,13 @@ import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
 import java.util.Arrays;
-import java.util.Base64;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.HexFormat;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 public final class PasswordHasher {
     public static final int COST_POW = 10;
-
-    // password hashed pattern: digit-cost-pow$32-letter-hashed
-    private static final Pattern pattern = Pattern.compile("(\\d\\d?)\\$(.{43})");
 
     private final SecureRandom random;
 
@@ -49,8 +44,7 @@ public final class PasswordHasher {
         System.arraycopy(dk, 0, hash, salt.length, dk.length);
 
         // save saved hash (as byte) and encode it to a string
-        Base64.Encoder enc = Base64.getUrlEncoder().withoutPadding();
-        return COST_POW + "$" + enc.encodeToString(hash);
+        return COST_POW + "$" + HexFormat.of().formatHex(hash);
     }
 
     public boolean check(String password, String token) {
@@ -58,14 +52,11 @@ public final class PasswordHasher {
     }
 
     public boolean check(char[] password, String token) {
-        // match the token using compiled pattern
-        Matcher match = pattern.matcher(token);
-
-        if (!match.matches()) throw new IllegalArgumentException("Token is invalid");
+        String[] parts = token.split("\\$");
 
         // get arguments from match
-        int iterations = Integer.parseInt(match.group(1));
-        byte[] hash = Base64.getUrlDecoder().decode(match.group(2));
+        int iterations = Integer.parseInt(parts[0]);
+        byte[] hash = HexFormat.of().parseHex(parts[1]);
         byte[] salt = Arrays.copyOfRange(hash, 0, 16);
 
         // generate the hashed password using provided infomation
@@ -88,8 +79,8 @@ public final class PasswordHasher {
         KeySpec spec = new PBEKeySpec(password, salt, iterations, 128);
 
         try {
-            SecretKeyFactory f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
-            return f.generateSecret(spec).getEncoded();
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            return factory.generateSecret(spec).getEncoded();
         } catch (NoSuchAlgorithmException e) {
             throw new IllegalStateException("Missing algorithm PBKDF2WithHmacSHA1", e);
         } catch (InvalidKeySpecException e) {
