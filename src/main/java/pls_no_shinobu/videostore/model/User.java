@@ -7,6 +7,8 @@
 */
 package pls_no_shinobu.videostore.model;
 
+import pls_no_shinobu.videostore.drivers.PasswordHasher;
+
 import java.util.ArrayList;
 
 public class User extends Entity {
@@ -144,14 +146,18 @@ public class User extends Entity {
         this.username = username;
     }
 
-    protected String getPassword() {
-        return password;
+    protected boolean checkPassword(String password) {
+        PasswordHasher p = new PasswordHasher();
+
+        return p.check(password, this.password);
     }
 
     protected void setPassword(String password) throws IllegalArgumentException {
         if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
 
-        this.password = password;
+        PasswordHasher p = new PasswordHasher();
+
+        this.password = p.hash(password);
     }
 
     public ArrayList<Item> getRentals() {
