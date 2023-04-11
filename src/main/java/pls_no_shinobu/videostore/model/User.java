@@ -8,7 +8,6 @@
 package pls_no_shinobu.videostore.model;
 
 import pls_no_shinobu.videostore.errors.OutOfStockException;
-import pls_no_shinobu.videostore.errors.RentLimitException;
 import pls_no_shinobu.videostore.utils.PasswordUtils;
 
 import java.util.ArrayList;
