@@ -39,8 +39,7 @@ public class TestItem {
                                                 Item.RentalType.RECORD,
                                                 Item.LoanType.ONE_WEEK,
                                                 0,
-                                                0,
-                                                Item.RentalStatus.AVAILABLE));
+                                                0));
         assertNull(exception.getMessage());
     }
 

@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pls_no_shinobu.videostore.errors.OutOfStockException;
+import pls_no_shinobu.videostore.errors.RentLimitException;
 
 public class TestUser {
     User user;
@@ -89,14 +91,17 @@ public class TestUser {
                         "",
                         Item.RentalType.RECORD,
                         Item.LoanType.ONE_WEEK,
-                        0,
-                        0,
-                        Item.RentalStatus.AVAILABLE);
+                        10,
+                        0);
 
-        user.addRental(item);
+        try {
+            user.addRental(item);
+        } catch (OutOfStockException | RentLimitException e) {
+            System.out.print("Item is out of stock: " + e);
+        }
 
         assertEquals(1, user.getRentalCount());
-        assertTrue(user.getRentals().get(0).getId().contains(item.getId()));
+        assertTrue(user.getRentals().get(0).getItem().getId().contains(item.getId()));
     }
 
     // TODO: addRentals() tests
