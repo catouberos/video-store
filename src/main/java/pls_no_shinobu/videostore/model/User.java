@@ -8,6 +8,7 @@
 package pls_no_shinobu.videostore.model;
 
 import pls_no_shinobu.videostore.errors.OutOfStockException;
+import pls_no_shinobu.videostore.errors.RentLimitException;
 import pls_no_shinobu.videostore.utils.PasswordUtils;
 
 import java.util.ArrayList;
@@ -21,9 +22,7 @@ import java.util.ArrayList;
  */
 public class User extends Entity {
 
-    /**
-     * Enum for user role (user type)
-     */
+    /** Enum for user role (user type) */
     public enum UserType {
         GUEST,
         REGULAR,
@@ -63,7 +62,8 @@ public class User extends Entity {
     }
 
     /**
-     * Constructor for a full-blown user, normally to initiate the user when loading from persistant data, such as a file
+     * Constructor for a full-blown user, normally to initiate the user when loading from persistant
+     * data, such as a file
      *
      * @author Do Khoa Nguyen
      */
@@ -112,7 +112,8 @@ public class User extends Entity {
     }
 
     /**
-     * Method for setting {@link User} name, with checks to ensure the name is different before changes
+     * Method for setting {@link User} name, with checks to ensure the name is different before
+     * changes
      *
      * @author Tran The Quang Minh
      */
@@ -131,9 +132,9 @@ public class User extends Entity {
         return address;
     }
 
-
     /**
-     * Method for setting {@link User} address, with checks to ensure the address is different before changes
+     * Method for setting {@link User} address, with checks to ensure the address is different
+     * before changes
      *
      * @author Tran The Quang Minh
      */
@@ -154,7 +155,8 @@ public class User extends Entity {
     }
 
     /**
-     * Method for setting {@link User} phone number, with checks to ensure the phone number is different before changes
+     * Method for setting {@link User} phone number, with checks to ensure the phone number is
+     * different before changes
      *
      * @author Tran The Quang Minh
      */
@@ -175,7 +177,8 @@ public class User extends Entity {
     }
 
     /**
-     * Method for setting {@link User} rental count, with checks to ensure the rental count is positive. Normally use for loading/initiating the object
+     * Method for setting {@link User} rental count, with checks to ensure the rental count is
+     * positive. Normally use for loading/initiating the object
      *
      * @author Do Khoa Nguyen
      */
@@ -205,7 +208,6 @@ public class User extends Entity {
     public UserType getRole() {
         return role;
     }
-
 
     /**
      * Method for setting {@link User} role
@@ -240,7 +242,8 @@ public class User extends Entity {
     }
 
     /**
-     * Method for setting {@link User} password, which pass in a raw password into a utils and store it hashed using PBKDF2
+     * Method for setting {@link User} password, which pass in a raw password into a utils and store
+     * it hashed using PBKDF2
      *
      * @param password a raw string password to be hash and save
      * @see PasswordUtils
@@ -288,7 +291,8 @@ public class User extends Entity {
     }
 
     /**
-     * Method to get {@link User} rentals, which will return an {@link ArrayList} of {@link Transaction}
+     * Method to get {@link User} rentals, which will return an {@link ArrayList} of {@link
+     * Transaction}
      *
      * @author Do Khoa Nguyen
      */

@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import pls_no_shinobu.videostore.errors.OutOfStockException;
 import pls_no_shinobu.videostore.errors.RentLimitException;
 
@@ -86,13 +87,7 @@ public class TestUser {
         user = new User("C001", "user", "password");
         Item item =
                 new Item(
-                        "I001-2001",
-                        "",
-                        "",
-                        Item.RentalType.RECORD,
-                        Item.LoanType.ONE_WEEK,
-                        10,
-                        0);
+                        "I001-2001", "", "", Item.RentalType.RECORD, Item.LoanType.ONE_WEEK, 10, 0);
 
         try {
             user.addRental(item);
