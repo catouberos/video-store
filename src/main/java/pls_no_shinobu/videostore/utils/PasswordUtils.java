@@ -5,7 +5,7 @@
   Assessment: Final Project
   Author: pls_no_shinobu
 */
-package pls_no_shinobu.videostore.drivers;
+package pls_no_shinobu.videostore.utils;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -17,12 +17,12 @@ import java.util.HexFormat;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public final class PasswordHasher {
+public final class PasswordUtils {
     public static final int COST_POW = 10;
 
     private final SecureRandom random;
 
-    public PasswordHasher() {
+    public PasswordUtils() {
         this.random = new SecureRandom();
     }
 

@@ -5,7 +5,7 @@
   Assessment: Final Project
   Author: pls_no_shinobu
 */
-package pls_no_shinobu.videostore.drivers;
+package pls_no_shinobu.videostore.utils;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TestPasswordHasher {
-    PasswordHasher p = new PasswordHasher();
+public class TestPasswordUtils {
+    PasswordUtils p = new PasswordUtils();
 
     @Test
     @DisplayName("Create a new password hash and authenticate with the same password")

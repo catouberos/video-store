@@ -7,7 +7,7 @@
 */
 package pls_no_shinobu.videostore.model;
 
-import pls_no_shinobu.videostore.drivers.PasswordHasher;
+import pls_no_shinobu.videostore.utils.PasswordUtils;
 
 import java.util.ArrayList;
 
@@ -147,7 +147,7 @@ public class User extends Entity {
     }
 
     protected boolean checkPassword(String password) {
-        PasswordHasher p = new PasswordHasher();
+        PasswordUtils p = new PasswordUtils();
 
         return p.check(password, this.password);
     }
@@ -155,7 +155,7 @@ public class User extends Entity {
     protected void setPassword(String password) throws IllegalArgumentException {
         if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
 
-        PasswordHasher p = new PasswordHasher();
+        PasswordUtils p = new PasswordUtils();
 
         this.password = p.hash(password);
     }
