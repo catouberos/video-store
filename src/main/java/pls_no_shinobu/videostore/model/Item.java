@@ -7,6 +7,8 @@
 */
 package pls_no_shinobu.videostore.model;
 
+import pls_no_shinobu.videostore.errors.OutOfStockException;
+
 public class Item extends Entity {
     public enum RentalType {
         RECORD,
@@ -19,18 +21,12 @@ public class Item extends Entity {
         ONE_WEEK
     }
 
-    public enum RentalStatus {
-        BORROWED,
-        AVAILABLE
-    }
-
     private String title;
     private String genre;
     private RentalType rentalType;
     private LoanType loanType;
     private int stock;
     private float rentalFee;
-    private RentalStatus rentalStatus;
 
     public Item() {
         super();
@@ -40,7 +36,6 @@ public class Item extends Entity {
         this.loanType = LoanType.ONE_WEEK;
         this.stock = 0;
         this.rentalFee = 0;
-        this.rentalStatus = RentalStatus.AVAILABLE;
     }
 
     public Item(
@@ -59,26 +54,6 @@ public class Item extends Entity {
         this.loanType = loanType;
         this.stock = stock;
         this.rentalFee = rentalFee;
-    }
-
-    public Item(
-            String id,
-            String title,
-            String genre,
-            RentalType rentalType,
-            LoanType loanType,
-            int stock,
-            float rentalFee,
-            RentalStatus rentalStatus)
-            throws IllegalArgumentException {
-        setId(id);
-        this.title = title;
-        this.genre = genre;
-        this.rentalType = rentalType;
-        this.loanType = loanType;
-        this.stock = stock;
-        this.rentalFee = rentalFee;
-        this.rentalStatus = rentalStatus;
     }
 
     public void setId(String id) throws IllegalArgumentException {
@@ -124,14 +99,25 @@ public class Item extends Entity {
     }
 
     public boolean setStock(int stock) {
-        // Stock must be larger than 0
-        if (stock < 0) {
-            return false;
-        }
+        if (stock < 0) return false;
 
         this.stock = stock;
 
         return true;
+    }
+
+    public boolean inStock() {
+        return stock > 0;
+    }
+
+    public void increaseStock() {
+        stock++;
+    }
+
+    public void decreaseStock() throws OutOfStockException {
+        if (!inStock()) throw new OutOfStockException("Item is out of stock");
+
+        stock--;
     }
 
     public float getRentalFee() {
@@ -144,16 +130,6 @@ public class Item extends Entity {
         }
 
         this.rentalFee = rentalFee;
-
-        return true;
-    }
-
-    public RentalStatus getRentalStatus() {
-        return rentalStatus;
-    }
-
-    public boolean setRentalStatus(RentalStatus rentalStatus) {
-        this.rentalStatus = rentalStatus;
 
         return true;
     }
