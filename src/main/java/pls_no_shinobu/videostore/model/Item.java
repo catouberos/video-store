@@ -28,14 +28,12 @@ public class Item extends Entity {
     private int stock;
     private float rentalFee;
 
-    public Item() {
-        super();
-        this.title = "";
-        this.genre = "";
-        this.rentalType = RentalType.RECORD;
-        this.loanType = LoanType.ONE_WEEK;
-        this.stock = 0;
-        this.rentalFee = 0;
+    public Item(
+        String id,
+        String title)
+            throws IllegalArgumentException {
+        setId(id);
+        this.title = title;
     }
 
     public Item(
