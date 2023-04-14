@@ -19,11 +19,6 @@ import org.junit.jupiter.api.Test;
 public class TestItem {
     Item item;
 
-    @BeforeEach
-    void setUp() {
-        item = new Item();
-    }
-
     @Test
     @DisplayName("Create an item with invalid ID format")
     void createNewInvalidItem() {
@@ -46,6 +41,8 @@ public class TestItem {
     @Test
     @DisplayName("Update an item stock with negative value")
     void updateNegativeStock() {
+        item = new Item("I001-2001", "Medal of Honour");
+
         assertFalse(item.setStock(-1));
         assertEquals(0, item.getStock());
     }

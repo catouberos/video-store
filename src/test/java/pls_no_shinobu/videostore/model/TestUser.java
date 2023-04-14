@@ -21,11 +21,6 @@ import pls_no_shinobu.videostore.errors.RentLimitException;
 public class TestUser {
     User user;
 
-    @BeforeEach
-    void setUp() {
-        user = new User();
-    }
-
     @Test
     @DisplayName("Create an user with invalid ID format")
     void createNewInvalidIDUser() {
