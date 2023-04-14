@@ -19,9 +19,11 @@ import java.util.ArrayList;
  * @author Do Khoa Nguyen
  */
 public abstract class Manager<T extends Entity> {
-    private final ArrayList<T> entities = new ArrayList<>();
+    private final ArrayList<T> entities;
 
-    public Manager() {}
+    public Manager() {
+        this.entities = new ArrayList<>();
+    }
 
     /**
      * Method for getting {@link Entity} in manager

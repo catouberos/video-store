@@ -12,17 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class TestItem {
     Item item;
-
-    @BeforeEach
-    void setUp() {
-        item = new Item();
-    }
 
     @Test
     @DisplayName("Create an item with invalid ID format")
@@ -46,6 +40,8 @@ public class TestItem {
     @Test
     @DisplayName("Update an item stock with negative value")
     void updateNegativeStock() {
+        item = new Item("I001-2001", "Medal of Honour");
+
         assertFalse(item.setStock(-1));
         assertEquals(0, item.getStock());
     }
