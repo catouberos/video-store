@@ -28,10 +28,7 @@ public class Item extends Entity {
     private int stock;
     private float rentalFee;
 
-    public Item(
-        String id,
-        String title)
-            throws IllegalArgumentException {
+    public Item(String id, String title) throws IllegalArgumentException {
         setId(id);
         this.title = title;
     }
