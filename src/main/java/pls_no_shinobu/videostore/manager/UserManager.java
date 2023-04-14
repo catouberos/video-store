@@ -14,15 +14,45 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * UserManager is used to manage multiple User, in which we can create, delete or to provide
+ * Class for manage multiple {@link User}, in which we can create, delete or to provide
  * informations.
  *
  * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
  */
 public class UserManager extends Manager<User> {
-    public UserManager() {}
+    /**
+     * Constructor for initialize a {@link UserManager}
+     *
+     * @author Do Khoa Nguyen
+     */
+    public UserManager() {
+        super();
+    }
 
+    /**
+     * Constructor for initialize a {@link UserManager}, while adding {@link User} into the class
+     *
+     * @author Do Khoa Nguyen
+     */
+    public UserManager(ArrayList<User> users) {
+        super();
+        for (User user : users) {
+            try {
+                add(user);
+            } catch (DuplicateException e) {
+                // TODO: log system
+                System.out.println(
+                        "Cannot add user " + user.getId() + "/" + user.getName() + "to manager");
+            }
+        }
+    }
+
+    /**
+     * Method for adding {@link User} into {@link UserManager}
+     *
+     * @author Do Khoa Nguyen
+     */
     @Override
     public void add(User user) throws DuplicateException {
         if (!checkUsername(user))
