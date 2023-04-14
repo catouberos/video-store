@@ -19,7 +19,9 @@ import pls_no_shinobu.videostore.errors.DuplicateException;
 import pls_no_shinobu.videostore.errors.NotFoundException;
 import pls_no_shinobu.videostore.model.User;
 
-public class UserManagerTest {
+import java.util.ArrayList;
+
+public class TestUserManager {
     UserManager manager;
 
     @BeforeEach
@@ -112,5 +114,20 @@ public class UserManagerTest {
         assertEquals(2, manager.getEntities().toArray().length);
 
         assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    @Test
+    @DisplayName("Create a manager from ArrayList")
+    void createManagerFromArrayList() {
+        User user1 = new User("C001", "username", "password");
+        User user2 = new User("C001", "username2", "password");
+        ArrayList<User> users = new ArrayList<>();
+
+        users.add(user1);
+        users.add(user2);
+
+        manager = new UserManager(users);
+
+        assertEquals(1, manager.getEntities().toArray().length);
     }
 }
