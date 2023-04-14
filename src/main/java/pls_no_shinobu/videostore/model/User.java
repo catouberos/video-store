@@ -38,16 +38,7 @@ public class User extends Entity {
     private String username;
     private String password;
     private int point;
-    private ArrayList<Transaction> rentals = new ArrayList<>();
-
-    User() {
-        super();
-        this.name = "";
-        this.address = "";
-        this.phone = "";
-        this.rentalCount = 0;
-        this.role = UserType.GUEST;
-    }
+    private ArrayList<Transaction> rentals;
 
     /**
      * Constructor for a bare-minimum user, which includes an username and password
@@ -59,6 +50,7 @@ public class User extends Entity {
         setId(id);
         setUsername(username);
         setPassword(password);
+        this.rentals = new ArrayList<>();
     }
 
     /**
@@ -335,7 +327,7 @@ public class User extends Entity {
         // If success, create a new transaction
         Transaction transaction = new Transaction(this, item);
 
-        this.rentals.add(transaction);
+        rentals.add(transaction);
 
         increateRentalCount();
 
