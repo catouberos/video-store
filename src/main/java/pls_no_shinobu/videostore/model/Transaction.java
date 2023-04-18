@@ -111,16 +111,14 @@ public class Transaction extends Entity {
                 + getUser().getUsername()
                 + "\n"
                 + "- Item: "
-               + getItem().getTitle()
-               + "\n"
-               + "- Created: "
-               + getCreatedTimestamp().toString()
+                + getItem().getTitle()
+                + "\n"
+                + "- Created: "
+                + getCreatedTimestamp().toString()
                 + "\n"
                 + "- Status: "
-               + (isResolved() ? "Resolved"
-                                 + "\n"
-                                 + "- Resolved: "
-                                 + getResolvedTimestamp().toString()
-               : "Pending");
+                + (isResolved()
+                        ? "Resolved" + "\n" + "- Resolved: " + getResolvedTimestamp().toString()
+                        : "Pending");
     }
 }
