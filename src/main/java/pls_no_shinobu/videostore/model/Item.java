@@ -250,9 +250,11 @@ public class Item extends Entity {
      *
      * @author Do Khoa Nguyen
      */
-    public boolean setGenre(String genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
+    }
 
-        return true;
+    public int getYear() {
+        return Integer.parseInt(getId().split("-")[1]);
     }
 }

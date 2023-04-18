@@ -19,11 +19,10 @@ import java.util.stream.Collectors;
  * Class for manage multiple {@link User}, in which we can create, delete or to provide
  * informations.
  *
- * @see pls_no_shinobu.videostore.manager.AbstractManager
  * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
  */
-public class UserManager extends AbstractManager<User> implements Manager {
+public class UserManager extends Manager<User> {
     /**
      * Constructor for initialize a {@link UserManager}
      *
@@ -97,7 +96,6 @@ public class UserManager extends AbstractManager<User> implements Manager {
      * @return a correct format ID {@code C\d{3}}
      * @author Do Khoa Nguyen
      */
-    @Override
     public String getUnusedID() throws ManagerLimitException {
         // this algorithm can be further optimize
 
