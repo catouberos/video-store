@@ -96,7 +96,6 @@ public class UserManager extends Manager<User> {
      * @return a correct format ID {@code C\d{3}}
      * @author Do Khoa Nguyen
      */
-    @Override
     public String getUnusedID() throws ManagerLimitException {
         // this algorithm can be further optimize
 
