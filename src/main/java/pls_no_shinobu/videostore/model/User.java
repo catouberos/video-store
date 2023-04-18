@@ -41,7 +41,7 @@ public class User extends Entity {
     private ArrayList<Transaction> rentals;
 
     /**
-     * Constructor for a bare-minimum user, which includes an username and password
+     * Constructor for a bare-minimum user, which includes an id, username and password
      *
      * @author Do Khoa Nguyen
      */
