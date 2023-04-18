@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 /**
  * Class for manage multiple {@link Transaction}, in which we can create, delete or to provide
- * informations.
- * <br/>
- * This manager doesn't implements {@link Manager} due to its nature of using {@link java.util.UUID} instead of {@link Integer}-formatted iD
+ * informations. <br>
+ * This manager doesn't implements {@link Manager} due to its nature of using {@link java.util.UUID}
+ * instead of {@link Integer}-formatted iD
  *
  * @see pls_no_shinobu.videostore.manager.AbstractManager
  * @author Do Khoa Nguyen
@@ -32,7 +32,8 @@ public class TransactionManager extends AbstractManager<Transaction> {
     }
 
     /**
-     * Constructor for initialize a {@link TransactionManager}, while adding {@link Transaction} into the class
+     * Constructor for initialize a {@link TransactionManager}, while adding {@link Transaction}
+     * into the class
      *
      * @author Do Khoa Nguyen
      */
@@ -42,8 +43,7 @@ public class TransactionManager extends AbstractManager<Transaction> {
                 add(transaction);
             } catch (DuplicateException e) {
                 // TODO: log system
-                System.out.println(
-                    "Cannot add transaction " + transaction.getId() + " to manager");
+                System.out.println("Cannot add transaction " + transaction.getId() + " to manager");
             }
         }
     }
