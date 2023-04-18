@@ -8,19 +8,22 @@
 package pls_no_shinobu.videostore.manager;
 
 import pls_no_shinobu.videostore.errors.DuplicateException;
+import pls_no_shinobu.videostore.errors.ManagerLimitException;
 import pls_no_shinobu.videostore.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Class for manage multiple {@link User}, in which we can create, delete or to provide
  * informations.
  *
+ * @see pls_no_shinobu.videostore.manager.AbstractManager
  * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
  */
-public class UserManager extends Manager<User> {
+public class UserManager extends AbstractManager<User> implements Manager {
     /**
      * Constructor for initialize a {@link UserManager}
      *
@@ -78,6 +81,7 @@ public class UserManager extends Manager<User> {
      * Method for checking if a username is taken
      *
      * @return true if the username is available, false if not
+     * @author Do Khoa Nguyen
      */
     public boolean checkUsername(User entity) {
         for (User user : getEntities()) {
@@ -85,5 +89,29 @@ public class UserManager extends Manager<User> {
         }
 
         return true;
+    }
+
+    /**
+     * Method to get an unused user ID (if possible)
+     *
+     * @return a correct format ID {@code C\d{3}}
+     * @author Do Khoa Nguyen
+     */
+    @Override
+    public String getUnusedID() throws ManagerLimitException {
+        // this algorithm can be further optimize
+
+        // throw exception immediately if the manager size is 1000 (id from C000 - C999)
+        if (getEntities().size() == 1000) throw new ManagerLimitException("The manager is full");
+
+        // get all ID
+        List<String> usedID = getEntities().stream().map(User::getId).toList();
+
+        // find unused id, ascendingly
+        for (int i = 0; i <= 999; i++) {
+            if (!usedID.contains(String.format("C%03d", i))) return String.format("C%03d", i);
+        }
+
+        return null;
     }
 }

@@ -130,4 +130,27 @@ public class TestUserManager {
 
         assertEquals(1, manager.getEntities().toArray().length);
     }
+
+    @Test
+    @DisplayName("Find an unused ID and create user")
+    void findFreeIDAndCreateUser() {
+        User admin = new User("C000", "admin", "password");
+        User user1 = new User("C001", "username", "password");
+        ArrayList<User> users = new ArrayList<>();
+
+        users.add(admin);
+        users.add(user1);
+
+        manager = new UserManager(users);
+
+        try {
+            User user2 = new User(manager.getUnusedID(), "username2", "password");
+
+            manager.add(user2);
+        } catch (Exception e) {
+            System.out.println("Something went wrong" + e.getMessage());
+        }
+
+        assertEquals(3, manager.getEntities().toArray().length);
+    }
 }

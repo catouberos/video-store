@@ -7,10 +7,8 @@
 */
 package pls_no_shinobu.videostore.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,15 +32,25 @@ public class TestItem {
                                                 Item.LoanType.ONE_WEEK,
                                                 0,
                                                 0));
-        assertNull(exception.getMessage());
+
+        String expectedMessage = "Invalid item ID format";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
     @DisplayName("Update an item stock with negative value")
     void updateNegativeStock() {
-        item = new Item("I001-2001", "Medal of Honour");
+        item = new Item("I001-20", "Medal of Honour");
 
-        assertFalse(item.setStock(-1));
-        assertEquals(0, item.getStock());
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> item.setStock(-1));
+        System.out.print(exception.getMessage());
+
+        String expectedMessage = "Stock cannot be negative";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 }

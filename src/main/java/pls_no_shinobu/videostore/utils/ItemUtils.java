@@ -9,7 +9,13 @@ package pls_no_shinobu.videostore.utils;
 
 import pls_no_shinobu.videostore.model.Item;
 
-public class ItemUtils implements CoreUtils<Item> {
+/**
+ * Utilities for parsing, and serialize Item object into CSV-compatible file
+ *
+ * @see CSVUtils
+ * @author Do Khoa Nguyen
+ */
+public class ItemUtils implements CSVUtils<Item> {
     @Override
     public Item parse(String str) {
         try {
@@ -33,8 +39,15 @@ public class ItemUtils implements CoreUtils<Item> {
 
     @Override
     public String serialize(Item item) {
-        // TODO: serialize
-        return null;
+        return String.format(
+                "%s,%s,%s,%s,%d,%f,%s",
+                item.getId(),
+                item.getTitle(),
+                item.getRentalType().toString(),
+                item.getLoanType().toString(),
+                item.getStock(),
+                item.getRentalFee(),
+                item.getGenre());
     }
 
     public Item.RentalType parseRentalType(String str) {

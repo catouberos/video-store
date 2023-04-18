@@ -9,7 +9,7 @@ package pls_no_shinobu.videostore.utils;
 
 import pls_no_shinobu.videostore.model.Item;
 
-public interface CoreUtils<T> {
+public interface CSVUtils<T> {
     T parse(String str);
 
     String serialize(Item item);
