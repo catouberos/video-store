@@ -108,18 +108,19 @@ public class Transaction extends Entity {
     public String toString() {
         return "Transaction:\n"
                 + "- User: "
-                + getUser().getName()
+                + getUser().getUsername()
                 + "\n"
                 + "- Item: "
-                + getItem().getTitle()
+               + getItem().getTitle()
+               + "\n"
+               + "- Created: "
+               + getCreatedTimestamp().toString()
                 + "\n"
                 + "- Status: "
-                + (isResolved() ? "Resolved" : "Pending")
-                + "\n"
-                + "- Created: "
-                + getCreatedTimestamp().toString()
-                + "\n"
-                + "- Resolved: "
-                + getResolvedTimestamp().toString();
+               + (isResolved() ? "Resolved"
+                                 + "\n"
+                                 + "- Resolved: "
+                                 + getResolvedTimestamp().toString()
+               : "Pending");
     }
 }
