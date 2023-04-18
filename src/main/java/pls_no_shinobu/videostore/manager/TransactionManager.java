@@ -14,14 +14,12 @@ import java.util.ArrayList;
 
 /**
  * Class for manage multiple {@link Transaction}, in which we can create, delete or to provide
- * informations. <br>
- * This manager doesn't implements {@link Manager} due to its nature of using {@link java.util.UUID}
- * instead of {@link Integer}-formatted iD
+ * informations.
  *
- * @see pls_no_shinobu.videostore.manager.AbstractManager
+ * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
  */
-public class TransactionManager extends AbstractManager<Transaction> {
+public class TransactionManager extends Manager<Transaction> {
     /**
      * Constructor for initialize a {@link TransactionManager}
      *
