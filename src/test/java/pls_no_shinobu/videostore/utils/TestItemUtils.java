@@ -9,6 +9,7 @@ package pls_no_shinobu.videostore.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -129,5 +130,25 @@ public class TestItemUtils {
         Item testItem = utils.parse(invalidNegativeStockString);
 
         assertNull(testItem);
+    }
+
+    @Test
+    @DisplayName("Serialize an item")
+    void serializeItem() {
+        Item item =
+                new Item(
+                        "I001-2001",
+                        "Medal of Honour",
+                        null,
+                        Item.RentalType.GAME,
+                        Item.LoanType.ONE_WEEK,
+                        3,
+                        3.99f);
+
+        String serializedString = utils.serialize(item);
+
+        String expectedString = "I001-2001,Medal of Honour,GAME,1-week,3,3.99";
+
+        assertTrue(expectedString.equals(serializedString));
     }
 }
