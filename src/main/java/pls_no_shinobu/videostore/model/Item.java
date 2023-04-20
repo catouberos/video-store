@@ -27,7 +27,15 @@ public class Item extends Entity {
     /** Enum for loan type */
     public enum LoanType {
         TWO_DAY,
-        ONE_WEEK
+        ONE_WEEK;
+
+        @Override
+        public String toString() {
+            if (this == TWO_DAY) return "2-day";
+            if (this == ONE_WEEK) return "1-week";
+
+            throw new IllegalArgumentException();
+        }
     }
 
     private String title;
