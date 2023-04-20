@@ -9,6 +9,7 @@ package pls_no_shinobu.videostore.manager;
 
 import pls_no_shinobu.videostore.errors.DuplicateException;
 import pls_no_shinobu.videostore.errors.ManagerLimitException;
+import pls_no_shinobu.videostore.model.Entity;
 import pls_no_shinobu.videostore.model.User;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class UserManager extends Manager<User> {
     /**
      * Method for getting {@link User} in manager with filter for {@link User.UserType}
      *
-     * @return {@link ArrayList} of type Entity
+     * @return {@link ArrayList} of type {@link Entity}
      * @author Do Khoa Nguyen
      */
     public ArrayList<User> getEntities(User.UserType type) {
