@@ -9,13 +9,14 @@ package pls_no_shinobu.videostore.model;
 
 import pls_no_shinobu.videostore.errors.OutOfStockException;
 import pls_no_shinobu.videostore.errors.RentLimitException;
+import pls_no_shinobu.videostore.manager.TransactionManager;
 import pls_no_shinobu.videostore.utils.PasswordUtils;
 
 import java.util.ArrayList;
 
 /**
  * Class for building a user object, that will include basic informations, auth informations and
- * rental informations (storing as {@link Transaction})
+ * rental informations (storing as {@link Item})
  *
  * @author Do Khoa Nguyen, Tran The Quang Minh
  * @see pls_no_shinobu.videostore.model.Entity
@@ -38,7 +39,7 @@ public class User extends Entity {
     private String username;
     private String password;
     private int point;
-    private ArrayList<Transaction> rentals;
+    private ArrayList<Item> rentals;
 
     /**
      * Constructor for a bare-minimum user, which includes an id, username and password
@@ -68,7 +69,7 @@ public class User extends Entity {
             UserType role,
             String username,
             String password,
-            ArrayList<Transaction> rentals)
+            ArrayList<Item> rentals)
             throws IllegalArgumentException {
         super();
         setId(id);
@@ -283,12 +284,11 @@ public class User extends Entity {
     }
 
     /**
-     * Method to get {@link User} rentals, which will return an {@link ArrayList} of {@link
-     * Transaction}
+     * Method to get {@link User} rentals, which will return an {@link ArrayList} of {@link Item}
      *
      * @author Do Khoa Nguyen
      */
-    public ArrayList<Transaction> getRentals() {
+    public ArrayList<Item> getRentals() {
         return rentals;
     }
 
@@ -297,17 +297,21 @@ public class User extends Entity {
      *
      * @author Do Khoa Nguyen
      */
-    public void setRentals(ArrayList<Transaction> rentals) {
+    public void setRentals(ArrayList<Item> rentals) {
         this.rentals = rentals;
     }
 
     /**
      * Method to let a user rent an {@link Item}, which will performs checks on Guest user, that is:
+     * <br>
      *
      * <ul>
      *   <li>Can only rent maximum 2 items at a time.
      *   <li>Cannot rent a TWO_DAY item
      * </ul>
+     *
+     * <br>
+     * Also, user cannot rent two item of the same type.
      *
      * @return {@link Transaction} a successful transaction object
      * @author Do Khoa Nguyen
@@ -321,13 +325,16 @@ public class User extends Entity {
                 throw new IllegalArgumentException("Guest user cannot rent two-day item");
         }
 
+        if (rentals.contains(item))
+            throw new IllegalArgumentException("User cannot borrow two item of the same type");
+
         // Decrease item stock
         item.decreaseStock();
 
         // If success, create a new transaction
         Transaction transaction = new Transaction(this, item);
 
-        rentals.add(transaction);
+        rentals.add(item);
 
         increateRentalCount();
 
@@ -336,23 +343,23 @@ public class User extends Entity {
 
     /**
      * Method to remove a user rental - in case, "return the rental", which will resolve the {@link
-     * Transaction} and performs any standing checks on the user
+     * Item} and performs any standing checks on the user
      *
      * @author Do Khoa Nguyen
      * @see #checkStanding()
      */
-    public void removeRental(Transaction transaction) throws IllegalArgumentException {
-        if (!this.rentals.contains(transaction))
-            throw new IllegalArgumentException("Transaction not available");
+    public void removeRental(Item item, TransactionManager transactionManager)
+            throws IllegalArgumentException {
+        if (!this.rentals.contains(item)) throw new IllegalArgumentException("Item not available");
 
-        transaction.getItem().increaseStock();
-        transaction.setResolved();
+        item.increaseStock();
+        transactionManager.find(this, item).setResolved();
         increateRentalCount();
 
         // Check on user standing every successful transaction
         checkStanding();
 
-        this.rentals.remove(transaction);
+        this.rentals.remove(item);
     }
 
     /**
