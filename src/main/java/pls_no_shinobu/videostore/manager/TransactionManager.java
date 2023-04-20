@@ -8,7 +8,9 @@
 package pls_no_shinobu.videostore.manager;
 
 import pls_no_shinobu.videostore.errors.DuplicateException;
+import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.Transaction;
+import pls_no_shinobu.videostore.model.User;
 
 import java.util.ArrayList;
 
@@ -44,5 +46,19 @@ public class TransactionManager extends Manager<Transaction> {
                 System.out.println("Cannot add transaction " + transaction.getId() + " to manager");
             }
         }
+    }
+
+    /**
+     * Method for finding a transaction with specific {@link User} and {@link Item}
+     *
+     * @author Do Khoa Nguyen
+     */
+    public Transaction find(User user, Item item) {
+        for (Transaction transaction : getEntities()) {
+            if (transaction.getItem().equals(item) && transaction.getUser().equals(user))
+                return transaction;
+        }
+
+        return null;
     }
 }
