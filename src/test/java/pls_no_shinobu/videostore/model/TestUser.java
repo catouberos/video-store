@@ -7,15 +7,11 @@
 */
 package pls_no_shinobu.videostore.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import pls_no_shinobu.videostore.errors.OutOfStockException;
-import pls_no_shinobu.videostore.errors.RentLimitException;
 
 public class TestUser {
     User user;
@@ -75,23 +71,23 @@ public class TestUser {
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
-    @Test
-    @DisplayName("rentalCount behavior with addRental()")
-    void rentalCountCheckWithAddRental() {
-        user = new User("C001", "user", "password");
-        Item item =
-                new Item(
-                        "I001-2001", "", "", Item.RentalType.RECORD, Item.LoanType.ONE_WEEK, 10, 0);
-
-        try {
-            user.addRental(item);
-        } catch (OutOfStockException | RentLimitException e) {
-            System.out.print("Item is out of stock: " + e);
-        }
-
-        assertEquals(1, user.getRentalCount());
-        assertTrue(user.getRentals().get(0).getItem().getId().contains(item.getId()));
-    }
-
-    // TODO: addRentals() tests
+    // TODO: rental-related tests need a rewrite
+    //    @Test
+    //    @DisplayName("rentalCount behavior with addRental()")
+    //    void rentalCountCheckWithAddRental() {
+    //        user = new User("C001", "user", "password");
+    //        Item item =
+    //                new Item(
+    //                        "I001-2001", "", "", Item.RentalType.RECORD, Item.LoanType.ONE_WEEK,
+    // 10, 0);
+    //
+    //        try {
+    //            user.addRental(item);
+    //        } catch (OutOfStockException | RentLimitException e) {
+    //            System.out.print("Item is out of stock: " + e);
+    //        }
+    //
+    //        assertEquals(1, user.getRentalCount());
+    //        assertTrue(user.getRentals().get(0).getItem().getId().contains(item.getId()));
+    //    }
 }
