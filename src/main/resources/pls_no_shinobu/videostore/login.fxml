@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <center>
+        <AnchorPane prefHeight="426.0" prefWidth="626.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="500.0" layoutY="119.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="79.0" text="LOGIN" textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="24.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="356.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/user.png" />
+                    </image>
+                </ImageView>
+                <TextField layoutX="435.0" layoutY="207.0" prefHeight="56.0" prefWidth="275.0" promptText="Email: " style="-fx-background-color: GREY;" />
+                <Button layoutX="435.0" layoutY="378.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="92.0" style="-fx-background-color: cornflowerblue;" text="Login" textFill="WHITE" />
+            <Button layoutX="527.0" layoutY="378.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: transparent;" text="Don't have an account? Sign up" textFill="#faf8f8" />
+            <TextField layoutX="435.0" layoutY="294.0" prefHeight="56.0" prefWidth="275.0" promptText="Password:" style="-fx-background-color: GREY;" />
+            <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="354.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lock.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </center>
+   <top>
+      <AnchorPane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+                <ImageView fitHeight="55.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/logo.jpg" />
+                    </image></ImageView>
+                <Label layoutX="71.0" layoutY="-2.0" prefHeight="58.0" prefWidth="163.0" style="-fx-background-color: transparent; -fx-text-fill: WHITE; -fx-font-size: 25;" text="VIDEO STORE" textFill="#faf8f8">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="15.0" />
+                    </font>
+                </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="127.0" prefWidth="602.0" BorderPane.alignment="CENTER">
+         <children>
+                <Separator layoutX="332.0" layoutY="6.0" prefHeight="15.0" prefWidth="391.0" />
+                <Label layoutX="298.0" layoutY="34.0" prefHeight="20.0" prefWidth="537.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#f2ecec">
+                    <font>
+                        <Font name="Microsoft Sans Serif" size="16.0" />
+                    </font>
+                </Label>
+         </children>
+      </AnchorPane>
+   </bottom>
+</BorderPane>
