@@ -7,30 +7,22 @@
 */
 package pls_no_shinobu.videostore.utils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import pls_no_shinobu.videostore.model.Item;
 
-public class TestItemUtils {
-    ItemUtils utils;
+import static org.junit.jupiter.api.Assertions.*;
 
-    @BeforeEach
-    void setUp() {
-        utils = new ItemUtils();
-    }
+public class TestItemUtils {
+    Item testItem;
 
     @Test
     @DisplayName("Parse a valid string")
     void parseValidString() {
         final String validString = "I001-2001, Medal of Honour, Game, 1-week,3,3.99";
 
-        Item testItem = utils.parse(validString);
+        testItem = ItemUtils.parse(validString);
 
         assertEquals("I001-2001", testItem.getId());
         assertEquals("Medal of Honour", testItem.getTitle());
@@ -46,7 +38,7 @@ public class TestItemUtils {
         final String validStringWithGenre =
                 "I001-2001,    Medal of Honour    , Game, 1-week, 3, 3.99, Action";
 
-        Item testItem = utils.parse(validStringWithGenre);
+        testItem = ItemUtils.parse(validStringWithGenre);
 
         assertEquals("I001-2001", testItem.getId());
         assertEquals("Medal of Honour", testItem.getTitle());
@@ -67,9 +59,9 @@ public class TestItemUtils {
         final String enumRentalTypeGame =
                 "I001-2001,    Medal of Honour    , game, 1-week, 3, 3.99, Action";
 
-        Item testRecord = utils.parse(enumRentalTypeRecord);
-        Item testDVD = utils.parse(enumRentalTypeDVD);
-        Item testGame = utils.parse(enumRentalTypeGame);
+        Item testRecord = ItemUtils.parse(enumRentalTypeRecord);
+        Item testDVD = ItemUtils.parse(enumRentalTypeDVD);
+        Item testGame = ItemUtils.parse(enumRentalTypeGame);
 
         assertEquals(Item.RentalType.RECORD, testRecord.getRentalType());
         assertEquals(Item.RentalType.DVD, testDVD.getRentalType());
@@ -84,8 +76,8 @@ public class TestItemUtils {
         final String enumLoanTypeTwoDay =
                 "I001-2001,    Medal of Honour    , Record, 2-DaY, 3, 3.99, Action";
 
-        Item testOneWeek = utils.parse(enumLoanTypeOneWeek);
-        Item testTwoDay = utils.parse(enumLoanTypeTwoDay);
+        Item testOneWeek = ItemUtils.parse(enumLoanTypeOneWeek);
+        Item testTwoDay = ItemUtils.parse(enumLoanTypeTwoDay);
 
         assertEquals(Item.LoanType.ONE_WEEK, testOneWeek.getLoanType());
         assertEquals(Item.LoanType.TWO_DAY, testTwoDay.getLoanType());
@@ -96,9 +88,15 @@ public class TestItemUtils {
     void parseInvalidIdString() {
         final String invalidIdString = "whatisthisID,Medal of Honour,Game,1-week,3,3.99";
 
-        Item testItem = utils.parse(invalidIdString);
+        IllegalArgumentException exception =
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> testItem = ItemUtils.parse(invalidIdString));
 
-        assertNull(testItem);
+        String expectedMessage = "Invalid string to parse";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
@@ -106,9 +104,15 @@ public class TestItemUtils {
     void parseInvalidLoanTypeString() {
         final String invalidLoanTypeString = "whatisthisID,Medal of Honour,Game,100-week,3,3.99";
 
-        Item testItem = utils.parse(invalidLoanTypeString);
+        IllegalArgumentException exception =
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> testItem = ItemUtils.parse(invalidLoanTypeString));
 
-        assertNull(testItem);
+        String expectedMessage = "Invalid string to parse";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
@@ -116,9 +120,15 @@ public class TestItemUtils {
     void parseInvalidRentalTypeString() {
         final String invalidRentalTypeString = "whatisthisID,Medal of Honour,Gamers,1-week,3,3.99";
 
-        Item testItem = utils.parse(invalidRentalTypeString);
+        IllegalArgumentException exception =
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> testItem = ItemUtils.parse(invalidRentalTypeString));
 
-        assertNull(testItem);
+        String expectedMessage = "Invalid string to parse";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
@@ -127,9 +137,15 @@ public class TestItemUtils {
         final String invalidNegativeStockString =
                 "whatisthisID,Medal of Honour,Game,1-week,-1,3.99";
 
-        Item testItem = utils.parse(invalidNegativeStockString);
+        IllegalArgumentException exception =
+            assertThrows(
+                IllegalArgumentException.class,
+                () -> testItem = ItemUtils.parse(invalidNegativeStockString));
 
-        assertNull(testItem);
+        String expectedMessage = "Invalid string to parse";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(expectedMessage.contains(actualMessage));
     }
 
     @Test
@@ -145,10 +161,10 @@ public class TestItemUtils {
                         3,
                         3.99f);
 
-        String serializedString = utils.serialize(item);
+        String serializedString = ItemUtils.serialize(item);
 
         String expectedString = "I001-2001,Medal of Honour,GAME,1-week,3,3.99";
 
-        assertTrue(expectedString.equals(serializedString));
+        assertEquals(expectedString, serializedString);
     }
 }
