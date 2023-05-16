@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 /**
  * Class for manage multiple {@link Transaction}, in which we can create, delete or to provide
- * informations.
+ * information.
  *
  * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
