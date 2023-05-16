@@ -1,0 +1,17 @@
+.input {
+    -fx-text-fill: #fafafa;
+    -fx-background-color: #404040;
+    -fx-background-radius: 6px;
+}
+
+.button {
+    -fx-background-radius: 6px;
+}
+
+.button.primary {
+    -fx-background-color: #a855f7;
+}
+
+.button.primary:hover {
+    -fx-background-color: #9333ea;
+}
