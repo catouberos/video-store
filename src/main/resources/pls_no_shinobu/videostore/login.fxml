@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
     <center>
         <AnchorPane prefHeight="426.0" prefWidth="626.0" BorderPane.alignment="CENTER">
             <children>
@@ -21,7 +21,7 @@
                 </ImageView>
                 <TextField layoutX="435.0" layoutY="207.0" prefHeight="56.0" prefWidth="275.0" promptText="Email: " style="-fx-background-color: GREY;" />
                 <Button layoutX="435.0" layoutY="378.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="42.0" prefWidth="92.0" style="-fx-background-color: cornflowerblue;" text="Login" textFill="WHITE" />
-            <Button layoutX="527.0" layoutY="378.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: transparent;" text="Don't have an account? Sign up" textFill="#faf8f8" />
+            <Button fx:id="askSignUp" layoutX="527.0" layoutY="378.0" mnemonicParsing="false" onAction="#onAskSignUpButtonClick" prefHeight="42.0" prefWidth="204.0" style="-fx-background-color: transparent;" text="Don't have an account? Sign up" textFill="#faf8f8" />
             <TextField layoutX="435.0" layoutY="294.0" prefHeight="56.0" prefWidth="275.0" promptText="Password:" style="-fx-background-color: GREY;" />
             <ImageView fitHeight="56.0" fitWidth="55.0" layoutX="354.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
                <image>

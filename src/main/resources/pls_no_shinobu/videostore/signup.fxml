@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
     <center>
         <AnchorPane prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
@@ -27,7 +27,7 @@
                   <Image url="@images/lock.png" />
                </image>
             </ImageView>
-            <Button layoutX="564.0" layoutY="419.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Already have an account? Log in" textFill="#faf8f8" />
+            <Button fx:id="askLogIn" layoutX="564.0" layoutY="419.0" mnemonicParsing="false" onAction="#onAskLogInButtonClick" style="-fx-background-color: transparent;" text="Already have an account? Log in" textFill="#faf8f8" />
             <TextField layoutX="437.0" layoutY="169.0" prefHeight="46.0" prefWidth="282.0" promptText="Username:" style="-fx-background-color: GREY;" />
             <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="376.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
                <image>
