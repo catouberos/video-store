@@ -36,7 +36,7 @@ public final class PasswordUtils {
         random.nextBytes(salt);
 
         // encrypt password using itself and salt, with the cost of 2^COST_POW
-        byte[] dk = encrpytPBKDF2(password, salt, 1 << COST_POW);
+        byte[] dk = encryptPBKDF2(password, salt, 1 << COST_POW);
 
         // finalize the saved hash
         byte[] hash = new byte[salt.length + dk.length];
@@ -60,7 +60,7 @@ public final class PasswordUtils {
         byte[] salt = Arrays.copyOfRange(hash, 0, 16);
 
         // generate the hashed password using provided infomation
-        byte[] check = encrpytPBKDF2(password, salt, 1 << iterations);
+        byte[] check = encryptPBKDF2(password, salt, 1 << iterations);
         int zero = 0;
 
         // algorithm: on every byte on hashed password, check if:
@@ -74,7 +74,7 @@ public final class PasswordUtils {
         return zero == 0;
     }
 
-    private static byte[] encrpytPBKDF2(char[] password, byte[] salt, int iterations) {
+    private static byte[] encryptPBKDF2(char[] password, byte[] salt, int iterations) {
         // key length in bit, 128/8 = 16
         KeySpec spec = new PBEKeySpec(password, salt, iterations, 128);
 
