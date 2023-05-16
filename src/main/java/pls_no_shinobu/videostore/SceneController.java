@@ -1,22 +1,25 @@
+/*
+  RMIT University Vietnam
+  Course: INTE2512 Object-Oriented Programming
+  Semester: 2023A
+  Assessment: Final Project
+  Author: pls_no_shinobu
+*/
 package pls_no_shinobu.videostore;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class SceneController {
-    @FXML
-    private Button askSignUp;
+    @FXML private Button askSignUp;
 
-    @FXML
-    private Button askLogIn;
+    @FXML private Button askLogIn;
 
     @FXML
     public void switchScene(Button button, String fxmlFileName) throws IOException {
@@ -30,7 +33,7 @@ public class SceneController {
 
     @FXML
     public void onAskLogInButtonClick() throws IOException {
-        switchScene(askLogIn, "login.fxml");
+        switchScene(askLogIn, "signin.fxml");
     }
 
     @FXML

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text fill="#fafafa" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in to Video Store">
+            <font>
+                <Font size="36.0"/>
+            </font>
+        </Text>
+        <GridPane maxWidth="200.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0"/>
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="429.9026641845703" minWidth="10.0"
+                                   prefWidth="421.4613265991211"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <SVGPath content="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+                         fill="#fafafa" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+                <SVGPath
+                    content="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
+                    fill="#fafafa" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+                <TextField promptText="Username" styleClass="input" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets/>
+                    </GridPane.margin>
+                </TextField>
+                <PasswordField promptText="Password" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            </children>
+        </GridPane>
+        <Button mnemonicParsing="false" text="Sign in" textFill="#fafafa">
+            <styleClass>
+                <String fx:value="button"/>
+                <String fx:value="primary"/>
+            </styleClass>
+        </Button>
+        <Label prefHeight="20.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war"
+               textFill="#a3a3a3">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="48.0" left="48.0" right="48.0" top="48.0"/>
+    </padding>
+</VBox>
