@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class SceneController {
     @FXML private Button askSignUp;
@@ -24,8 +25,13 @@ public class SceneController {
     @FXML
     public void switchScene(Button button, String fxmlFileName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
-        Parent root = loader.load();
-        Scene scene = new Scene(root,1000,700);
+
+        Scene scene = new Scene(loader.load(), 1000, 700);
+
+        URL stylesheet = HelloApplication.class.getResource("css/main.css");
+
+        if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
+
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
