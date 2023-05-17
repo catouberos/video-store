@@ -25,7 +25,7 @@ public class SceneController {
     public void switchScene(Button button, String fxmlFileName) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFileName));
         Parent root = loader.load();
-        Scene scene = new Scene(root, 1000,700);
+        Scene scene = new Scene(root,1000,700);
         Stage stage = (Stage) button.getScene().getWindow();
         stage.setScene(scene);
         stage.show();
