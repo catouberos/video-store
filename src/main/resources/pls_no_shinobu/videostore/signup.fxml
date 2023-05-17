@@ -1,68 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #454545;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
-    <center>
-        <AnchorPane prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
+    <children>
+        <Text fill="#fafafa" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+        <GridPane maxWidth="200.0" prefWidth="200.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="429.9026641845703" minWidth="10.0" prefWidth="421.4613265991211" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
             <children>
-                <Label layoutX="500.0" layoutY="82.0" prefHeight="51.0" prefWidth="105.0" text="SIGN-UP" textFill="WHITE">
-                    <font>
-                        <Font name="Microsoft Sans Serif" size="24.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="374.0" layoutY="228.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/mail.png" />
-                    </image>
-                </ImageView>
-                <TextField layoutX="437.0" layoutY="225.0" prefHeight="46.0" prefWidth="282.0" promptText="Email: " style="-fx-background-color: GREY;" />
-                <TextField layoutX="437.0" layoutY="281.0" prefHeight="46.0" prefWidth="282.0" promptText="Password: " style="-fx-background-color: GREY;" />
-                <Button layoutX="436.0" layoutY="412.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="128.0" style="-fx-background-color: cornflowerblue;" text="Create account" textFill="WHITE" />
-            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="376.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/lock.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="askLogIn" layoutX="564.0" layoutY="419.0" mnemonicParsing="false" onAction="#onAskLogInButtonClick" style="-fx-background-color: transparent;" text="Already have an account? Log in" textFill="#faf8f8" />
-            <TextField layoutX="437.0" layoutY="169.0" prefHeight="46.0" prefWidth="282.0" promptText="Username:" style="-fx-background-color: GREY;" />
-            <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="376.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/user.png" />
-               </image>
-            </ImageView>
-            <TextField layoutX="437.0" layoutY="336.0" prefHeight="46.0" prefWidth="282.0" promptText="Re-enter Password: " style="-fx-background-color: GREY;" />
+                <SVGPath content="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="#fafafa" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <SVGPath content="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" fill="#fafafa" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                <TextField promptText="Username" styleClass="input" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </TextField>
+                <PasswordField promptText="Password:" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <SVGPath content="m0 0h8v6h-8zm.75 .75v4.5h6.5v-4.5zM0 0l4 3 4-3v1l-4 3-4-3z" fill="#f7f3f3" scaleX="2.0" scaleY="2.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </SVGPath>
+            <TextField promptText="Email:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField layoutX="40.0" layoutY="73.0" promptText="Re-enter Password:" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             </children>
-        </AnchorPane>
-    </center>
-   <top>
-      <AnchorPane prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-                <ImageView fitHeight="55.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/logo.jpg" />
-                    </image></ImageView>
-                <Label layoutX="71.0" layoutY="-2.0" prefHeight="58.0" prefWidth="163.0" style="-fx-background-color: transparent; -fx-text-fill: WHITE; -fx-font-size: 25;" text="VIDEO STORE" textFill="#faf8f8">
-                    <font>
-                        <Font name="Microsoft Sans Serif" size="15.0" />
-                    </font>
-                </Label>
-         </children>
-      </AnchorPane>
-   </top>
-   <bottom>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-                <Separator layoutX="364.0" layoutY="51.0" prefHeight="15.0" prefWidth="391.0" />
-                <Label layoutX="335.0" layoutY="80.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#f2ecec">
-                    <font>
-                        <Font name="Microsoft Sans Serif" size="16.0" />
-                    </font>
-                </Label>
-         </children>
-      </AnchorPane>
-   </bottom>
-</BorderPane>
+        </GridPane>
+        <Button mnemonicParsing="false" text="Sign up" textFill="#fafafa">
+            <styleClass>
+                <String fx:value="button" />
+                <String fx:value="primary" />
+            </styleClass>
+        </Button>
+      <Button fx:id="askLogIn" mnemonicParsing="false" onAction="#onAskLogInButtonClick" style="-fx-background-color: TRANSPARENT;" text="Already have an account? Sign in" textFill="#fafafa" />
+        <Label prefHeight="20.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#a3a3a3">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="48.0" left="48.0" right="48.0" top="48.0" />
+    </padding>
+</VBox>
