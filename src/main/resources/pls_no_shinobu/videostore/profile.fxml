@@ -89,7 +89,7 @@
                     <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" scaleX="2.0" scaleY="2.0" />
                 </graphic></Button>
         </children></Pane>
-    <Label fx:id="optionLabel" layoutX="199.0" layoutY="73.0" styleClass="myLabelInAccountScene" text="Your Profile" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
+    <Label fx:id="optionLabel" layoutX="199.0" layoutY="73.0" text="Your Profile" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
         <font>
             <Font size="34.0" />
         </font>
@@ -118,7 +118,7 @@
             </graphic>
          </Label>
          <Separator layoutY="130.0" prefHeight="3.0" prefWidth="657.0" style="-fx-background-color: BLACK;" />
-         <TextField layoutX="399.0" layoutY="165.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter your new phone number" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
+         <TextField layoutX="399.0" layoutY="165.0" prefHeight="40.0" prefWidth="266.0" promptText="Enter your new phone number" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
             <font>
                <Font size="18.0" />
             </font>
