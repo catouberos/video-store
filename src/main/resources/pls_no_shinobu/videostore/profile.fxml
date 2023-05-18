@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -8,123 +7,98 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane  prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: CORAL; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
-    <VBox layoutX="6.0" prefWidth="250.0" style="-fx-background-color: #393E41;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <ImageView fitHeight="103.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@images/logo.png" />
-            <VBox.margin>
-                <Insets left="80.0" />
-            </VBox.margin>
-        </ImageView>
-        <ImageView fitHeight="72.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: CORAL; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
+    <VBox layoutX="6.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@images/Dashboard_transparent.png" />
+                <Image url="@logo/logoTrans.png" />
             </image>
         </ImageView>
         <Separator prefWidth="200.0" />
-        <Button fx:id="AllItem" mnemonicParsing="false" onAction="#onAllItemButtonClick" prefHeight="50.0" prefWidth="250.0" text="  All Item">
-            <font>
-                <Font size="18.0" />
-            </font>
-            <VBox.margin>
-                <Insets top="10.0" />
-            </VBox.margin>
-            <styleClass>
-                <String fx:value="buttonAccount" />
-                <String fx:value="button1" />
-            </styleClass>
-            <graphic>
-                <SVGPath content="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="WHITE" scaleX="1.5" scaleY="1.5" />
-            </graphic>
-        </Button>
-        <Button fx:id="RentedItem" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#onRentedItemButtonClick" prefHeight="50.0" prefWidth="250.0" text="  Rented Item">
-            <font>
-                <Font size="18.0" />
-            </font>
-            <styleClass>
-                <String fx:value="buttonAccount" />
-                <String fx:value="button1" />
-            </styleClass>
-            <VBox.margin>
-                <Insets top="10.0" />
-            </VBox.margin>
-            <graphic>
-                <SVGPath content="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" fill="WHITE" scaleX="1.5" scaleY="1.5" />
-            </graphic>
-        </Button>
-        <Pane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+        <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="233.0">
+            <children>
+                <ImageView fitHeight="40.0" fitWidth="182.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@logo/dashBoard.png" />
+                    </image>
+                    <HBox.margin>
+                        <Insets bottom="2.0" top="2.0" />
+                    </HBox.margin>
+                </ImageView>
+            </children>
+        </HBox>
         <Separator prefWidth="200.0" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="  Account Profile">
+        <Button fx:id="AllItem" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onAllItemButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="All Items">
             <font>
-                <Font size="18.0" />
+                <Font name="Arial Bold" size="18.0" />
             </font>
-            <styleClass>
-                <String fx:value="buttonAccount" />
-                <String fx:value="button1" />
-            </styleClass>
             <graphic>
-                <SVGPath content="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#fcfbfb" scaleX="1.5" scaleY="1.5" />
+                <SVGPath content="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
             </graphic>
         </Button>
-        <Button fx:id="logout" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="50.0" prefWidth="265.0" text="  Log out" VBox.vgrow="ALWAYS">
+        <Button fx:id="RentedItem" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onRentedItemButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Rented Item">
             <font>
-                <Font size="18.0" />
+                <Font name="Arial Bold" size="18.0" />
             </font>
-            <VBox.margin>
-                <Insets bottom="10.0" />
-            </VBox.margin>
-            <styleClass>
-                <String fx:value="buttonAccount" />
-                <String fx:value="button1" />
-            </styleClass>
             <graphic>
-                <SVGPath content="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#faf8f8" scaleX="1.5" scaleY="1.5" />
+                <SVGPath content="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" fill="#ceccce" scaleX="1.8" scaleY="1.8" />
+            </graphic>
+        </Button>
+        <Button fx:id="profile1" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onProfile1ButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="My Profile">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+            <graphic>
+                <SVGPath content="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
+            </graphic>
+        </Button>
+        <Pane prefHeight="114.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+        <Separator prefWidth="200.0" />
+        <Button fx:id="logout" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out">
+            <font>
+                <Font name="Arial Bold" size="18.0" />
+            </font>
+            <graphic>
+                <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
             </graphic>
         </Button>
     </VBox>
-    <Pane  layoutX="262.0" layoutY="10.0" prefHeight="100.0" style="-fx-background-color: #D3D0CB;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Pane layoutX="262.0" layoutY="10.0" prefHeight="100.0" style="-fx-background-color: #D3D0CB;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <Button layoutX="526.0" layoutY="21.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="100.0" style="-fx-background-color: TRANSPARENT;" styleClass="button-svg" text="   Your Cart">
                 <graphic>
-                    <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" scaleX="2.0" scaleY="2.0" />
-                </graphic></Button>
+                    <SVGPath content="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z" scaleX="2.0" scaleY="2.0" />
+                </graphic>
+            <font>
+               <Font name="Arial" size="12.0" />
+            </font></Button>
         </children></Pane>
-    <Label  layoutX="199.0" layoutY="73.0" text="Your Profile" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
+    <Label layoutX="199.0" layoutY="73.0" text="Your Profile" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
         <font>
-            <Font size="34.0" />
+            <Font name="Arial Black" size="20.0" />
         </font>
     </Label>
    <Pane layoutX="255.0" layoutY="105.0" prefHeight="494.0" prefWidth="657.0">
       <children>
-         <TextField layoutX="399.0" layoutY="63.0" prefHeight="35.0" prefWidth="250.0" promptText="Enter your new username" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
+         <Label layoutX="8.0" layoutY="63.0" prefHeight="35.0" prefWidth="392.0" text="Username:">
             <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
-         <Label layoutX="8.0" layoutY="63.0" prefHeight="35.0" prefWidth="392.0" style="-fx-border-color: BLACK;" text="Username:">
-            <font>
-               <Font size="20.0" />
+               <Font name="Arial" size="20.0" />
             </font>
             <graphic>
                <SVGPath content="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
             </graphic>
          </Label>
-         <Label layoutX="8.0" layoutY="165.0" prefHeight="35.0" prefWidth="392.0" style="-fx-border-color: BLACK;" text="Phone number:">
+         <Label layoutX="8.0" layoutY="165.0" prefHeight="35.0" prefWidth="392.0" text="Phone number:">
             <font>
-               <Font size="20.0" />
+               <Font name="Arial" size="20.0" />
             </font>
             <graphic>
                <SVGPath content="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
             </graphic>
          </Label>
          <Separator layoutY="130.0" prefHeight="3.0" prefWidth="657.0" style="-fx-background-color: BLACK;" />
-         <TextField layoutX="399.0" layoutY="165.0" prefHeight="40.0" prefWidth="266.0" promptText="Enter your new phone number" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
          <Separator layoutY="230.0" prefHeight="3.0" prefWidth="657.0" style="-fx-background-color: BLACK;" />
-         <Label layoutX="8.0" layoutY="265.0" prefHeight="35.0" prefWidth="392.0" style="-fx-border-color: BLACK;" text="Email:">
+         <Label layoutX="8.0" layoutY="265.0" prefHeight="35.0" prefWidth="392.0" text="Email:">
             <font>
                <Font size="20.0" />
             </font>
@@ -132,13 +106,8 @@
                <SVGPath content="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722ZM0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
             </graphic>
          </Label>
-         <TextField layoutX="399.0" layoutY="265.0" prefHeight="35.0" prefWidth="258.0" promptText="Enter your new email" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
          <Separator layoutY="330.0" prefHeight="3.0" prefWidth="649.0" style="-fx-background-color: BLACK;" />
-         <Label layoutX="8.0" layoutY="365.0" prefHeight="35.0" prefWidth="392.0" style="-fx-border-color: BLACK;" text="Address:">
+         <Label layoutX="8.0" layoutY="365.0" prefHeight="35.0" prefWidth="392.0" text="Address:">
             <font>
                <Font size="20.0" />
             </font>
@@ -146,11 +115,6 @@
                <SVGPath content="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5ZM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5 5 5Z" />
             </graphic>
          </Label>
-         <TextField layoutX="399.0" layoutY="365.0" prefHeight="35.0" prefWidth="258.0" promptText="Enter your new address" style="-fx-background-color: TRANSPARENT;" styleClass="text-field">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </TextField>
       </children>
    </Pane>
 </AnchorPane>
