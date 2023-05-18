@@ -89,7 +89,6 @@
 }
 .table-row-cell:selected .text {
     -fx-fill : white ;
-
 }
 /*IGNORE THESE FOR NOW
 /* scroll bar starts here
