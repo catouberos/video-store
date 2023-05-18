@@ -49,7 +49,7 @@
                   <Insets />
                </VBox.margin>
             </Separator>
-            <Button fx:id="accountButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" text="Accounts" textAlignment="JUSTIFY">
+            <Button fx:id="accountButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Accounts" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -63,7 +63,7 @@
                   <SVGPath content="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#ceccce" scaleX="2.2" scaleY="2.2" />
                </graphic>
             </Button>
-            <Button fx:id="stockButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" text="In Stock" textAlignment="JUSTIFY">
+            <Button fx:id="stockButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="In Stock" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="rentalButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" text="Rentals" textAlignment="JUSTIFY">
+            <Button fx:id="rentalButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Rentals" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -88,10 +88,11 @@
                   <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
                </graphic>
             </Button>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="logoutButton" graphicTextGap="30.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" style="-fx-text-alignment: center;" styleClass="barButton" text="Log out" textAlignment="JUSTIFY">
+            <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/menuBar.css" />
+            <Separator prefWidth="200.0" />
+            <Button fx:id="logoutButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="Arial Bold" size="18.0" />
                </font>
                <opaqueInsets>
                   <Insets />
@@ -100,7 +101,7 @@
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#ceccce" scaleX="2.2" scaleY="2.2" />
+                  <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
                </graphic>
             </Button>
          </children>

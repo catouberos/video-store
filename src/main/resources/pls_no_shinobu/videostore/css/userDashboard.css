@@ -1,34 +1,34 @@
-.button1
-{
-    -fx-background-color : #393E41;
-    -fx-text-fill : #D3D0CB;
-    -fx-alignment: center-left;
-    -fx-padding: 15px;
-}
-.button1:hover
-{
-    -fx-background-color : #1E2019 ;
-}
-.button1:pressed
-{
-    -fx-background-color : #587B7F ;
-}
+/*.button1*/
+/*{*/
+/*    -fx-background-color : #393E41;*/
+/*    -fx-text-fill : #D3D0CB;*/
+/*    -fx-alignment: center-left;*/
+/*    -fx-padding: 15px;*/
+/*}*/
+/*.button1:hover*/
+/*{*/
+/*    -fx-background-color : #1E2019 ;*/
+/*}*/
+/*.button1:pressed*/
+/*{*/
+/*    -fx-background-color : #587B7F ;*/
+/*}*/
 
-.button2
-{
-    -fx-background-color : #E2C044;
-    -fx-text-fill : #1E2019;
-    -fx-alignment: center-left;
-    -fx-padding: 15px;
-}
-.button2:hover
-{
-    -fx-background-color : #7c6824 ;
-}
-.button2:pressed
-{
-    -fx-background-color : #587B7F ;
-}
+/*.button2*/
+/*{*/
+/*    -fx-background-color : #E2C044;*/
+/*    -fx-text-fill : #1E2019;*/
+/*    -fx-alignment: center-left;*/
+/*    -fx-padding: 15px;*/
+/*}*/
+/*.button2:hover*/
+/*{*/
+/*    -fx-background-color : #7c6824 ;*/
+/*}*/
+/*.button2:pressed*/
+/*{*/
+/*    -fx-background-color : #587B7F ;*/
+/*}*/
 
 .pane1 {
     -fx-background-color: #393E41;
@@ -116,10 +116,9 @@
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
 */
-}
-.button3:hover
-{
-    -fx-background-color : #f2f1f0 ;
-}
+/*.button3:hover*/
+/*{*/
+/*    -fx-background-color : #f2f1f0 ;*/
+/*}*/
 
 
