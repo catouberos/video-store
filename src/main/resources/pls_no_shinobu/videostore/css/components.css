@@ -1,8 +1,3 @@
-.input {
-    -fx-text-fill: -fx-neutral-100;
-    -fx-background-color: -fx-neutral-700;
-    -fx-background-radius: 6px;
-}
 
 .button {
     -fx-background-radius: 6px;
@@ -14,5 +9,11 @@
 
 .button.primary:hover {
     -fx-background-color: -fx-primary-darker;
+}
+
+.input {
+    -fx-text-fill: -fx-neutral-100;
+    -fx-background-color: -fx-neutral-700;
+    -fx-background-radius: 6px;
 }
 
