@@ -22,7 +22,7 @@
             </image>
         </ImageView>
         <Separator prefWidth="200.0" />
-        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="  All Item">
+        <Button fx:id="AllItem" mnemonicParsing="false" onAction="#onAllItemButtonClick" prefHeight="50.0" prefWidth="250.0" text="  All Item">
             <font>
                 <Font size="18.0" />
             </font>
@@ -37,7 +37,7 @@
                 <SVGPath content="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" fill="WHITE" scaleX="1.5" scaleY="1.5" />
             </graphic>
         </Button>
-        <Button fx:id="RentedItem" layoutX="10.0" layoutY="220.0" mnemonicParsing="false" onAction="#onRentedItemButtonClick" prefHeight="50.0" prefWidth="250.0" text="  Rented Item">
+        <Button layoutX="10.0" layoutY="220.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" text="  Rented Item">
             <font>
                 <Font size="18.0" />
             </font>
@@ -105,7 +105,6 @@
                 <TableColumn prefWidth="117.0" text="rental type" />
                 <TableColumn prefWidth="31.0" text="loan type" />
                 <TableColumn prefWidth="126.0" text="fees" />
-                <TableColumn prefWidth="22.0" text="in stock" />
                 <TableColumn prefWidth="75.0" text="action" />
             </columns>
         </TableView>
@@ -138,7 +137,7 @@
                     <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" scaleX="2.0" scaleY="2.0" />
                 </graphic></Button>
         </children></Pane>
-    <Label layoutX="199.0" layoutY="73.0" styleClass="myLabelInAccountScene" text="All Item" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
+    <Label  layoutX="199.0" layoutY="73.0" styleClass="myLabelInAccountScene" text="Rented Item" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="40.0">
         <font>
             <Font size="24.0" />
         </font>
