@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="150.0" prefWidth="400.0" style="-fx-background-color: #454545;">
+         <children>
+            <Label graphicTextGap="20.0" text="EDIT PROFILE" textFill="#ceccce">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <graphic>
+                  <SVGPath content="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
+               </graphic>
+            </Label>
+         </children>
+      </StackPane>
+      <GridPane prefHeight="450.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.66668701171875" minWidth="10.0" prefWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.66665649414062" minWidth="10.0" prefWidth="102.00002034505208" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="155.33331298828122" minWidth="10.0" prefWidth="155.33331298828122" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="60.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Customer ID: " GridPane.columnIndex="1">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Name: " GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Account ID: " GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Phone: " GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Address: " GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Account Type: " GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Point: " GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <TextField alignment="CENTER" disable="true" prefHeight="25.0" prefWidth="133.0" GridPane.columnIndex="2" />
+            <TextField alignment="CENTER" disable="true" prefHeight="25.0" prefWidth="133.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField prefHeight="25.0" prefWidth="133.0" promptText="Name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField prefHeight="25.0" prefWidth="133.0" promptText="Phone" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextField prefHeight="25.0" prefWidth="133.0" promptText="Point" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <ComboBox prefWidth="150.0" promptText="Type" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Address" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="70.0" GridPane.columnSpan="4" GridPane.rowIndex="7">
+               <children>
+                  <Button graphicTextGap="5.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Cancel">
+                     <graphic>
+                        <SVGPath content="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" fill="#525252" />
+                     </graphic>
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button graphicTextGap="5.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="90.0" text="Save">
+                     <graphic>
+                        <SVGPath content="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293V1.5z" fill="#525252" />
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="15.0" />
+         </padding>
+      </GridPane>
+   </children>
+</VBox>
