@@ -13,13 +13,17 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("signin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        URL stylesheet = HelloApplication.class.getResource("css/main.css");
+
+        if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
+
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
