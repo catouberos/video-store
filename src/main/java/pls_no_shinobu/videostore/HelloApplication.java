@@ -18,14 +18,13 @@ import java.net.URL;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("userdashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("userDashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
         URL stylesheet = HelloApplication.class.getResource("css/main.css");
 
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
 
-        stage.setResizable(false);
-        stage.setTitle("Video-store");
+        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

@@ -1,47 +1,41 @@
-.button1
-{
-    -fx-background-color : #393E41;
-    -fx-text-fill : #D3D0CB;
+.button1 {
+    -fx-background-color: #393e41;
+    -fx-text-fill: #d3d0cb;
     -fx-alignment: center-left;
     -fx-padding: 15px;
 }
-.button1:hover
-{
-    -fx-background-color : #1E2019 ;
+.button1:hover {
+    -fx-background-color: #1e2019;
 }
-.button1:pressed
-{
-    -fx-background-color : #587B7F ;
+.button1:pressed {
+    -fx-background-color: #587b7f;
 }
 
-.button2
-{
-    -fx-background-color : #E2C044;
-    -fx-text-fill : #1E2019;
+.button2 {
+    -fx-background-color: #e2c044;
+    -fx-text-fill: #1e2019;
     -fx-alignment: center-left;
     -fx-padding: 15px;
 }
-.button2:hover
-{
-    -fx-background-color : #7c6824 ;
+.button2:hover {
+    -fx-background-color: #7c6824;
 }
-.button2:pressed
-{
-    -fx-background-color : #587B7F ;
+.button2:pressed {
+    -fx-background-color: #587b7f;
 }
 
 .pane1 {
-    -fx-background-color: #393E41;
+    -fx-background-color: #393e41;
 }
 
 .pane2 {
-    -fx-background-color: #393E41;
+    -fx-background-color: #393e41;
 }
 
 .sidebar {
-    -fx-background-color: #393E41;
+    -fx-background-color: #393e41;
     -fx-background-radius: 0;
-    -fx-border-color: #2D75E8;
+    -fx-border-color: #2d75e8;
     -fx-border-radius: 0;
     -fx-border-width: 0;
     -fx-padding: 0;
@@ -57,7 +51,7 @@
 .background {
     -fx-background-color: #3c3f41;
     -fx-background-radius: 0;
-    -fx-border-color: #2D75E8;
+    -fx-border-color: #2d75e8;
     -fx-border-radius: 0;
     -fx-border-width: 0;
     -fx-padding: 0;
@@ -67,59 +61,53 @@
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-cell-size : 20;
-    -fx-background-color:   #393E41;
-    -fx-border-color: #393E41;
+    -fx-cell-size: 20;
+    -fx-background-color: #393e41;
+    -fx-border-color: #393e41;
 }
-.table-view .column-header .label{
-
+.table-view .column-header .label {
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
 }
-.table-view .cell{
+.table-view .cell {
     -fx-cell-size: 30;
     -fx-alignment: center-left;
-    -fx-border-color: #1E2019;
+    -fx-border-color: #1e2019;
     -fx-text-fill: #000000;
 }
 
 .table-row-cell:selected {
-    -fx-background-color:  rgb(127, 172, 243);
+    -fx-background-color: rgb(127, 172, 243);
 }
 .table-row-cell:selected .text {
-    -fx-fill : white ;
-
+    -fx-fill: white;
 }
 /* scroll bar starts here */
 
 /* The increment and decrement button CSS class of scrollbar */
-.table-view .increment-button ,.table-view .decrement-button {
-    -fx-background-color:transparent;
+.table-view .increment-button,
+.table-view .decrement-button {
+    -fx-background-color: transparent;
     -fx-background-radius: 2em;
-
 }
 
 /* The main scrollbar **track** CSS class  */
 .table-view .scroll-bar:horizontal .track,
-.table-view .scroll-bar:vertical .track{
+.table-view .scroll-bar:vertical .track {
     -fx-background-color: transparent;
-    -fx-border-color:derive(  #2D75E8,80%);
+    -fx-border-color: derive(#2d75e8, 80%);
     -fx-background-radius: 2em;
-    -fx-border-radius:2em;
+    -fx-border-radius: 2em;
 }
 
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb,
 .table-view .scroll-bar:vertical .thumb {
-    -fx-background-color:derive( #2D75E8,90%);
+    -fx-background-color: derive(#2d75e8, 90%);
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
-
 }
-.button3:hover
-{
-    -fx-background-color : #f2f1f0 ;
+.button3:hover {
+    -fx-background-color: #f2f1f0;
 }
-
-
