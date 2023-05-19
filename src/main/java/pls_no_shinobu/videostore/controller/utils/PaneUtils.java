@@ -7,6 +7,7 @@
 */
 package pls_no_shinobu.videostore.controller.utils;
 
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -17,7 +18,10 @@ public class PaneUtils {
      * @author Do Khoa Nguyen
      */
     public static void setPane(StackPane stackPane, Pane pane) {
-        stackPane.getChildren().clear();
-        stackPane.getChildren().add(pane);
+        // hide every node in stackPane
+        for (Node node : stackPane.getChildren()) node.setVisible(false);
+
+        // then, shows only the specified one
+        pane.setVisible(true);
     }
 }
