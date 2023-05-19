@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
@@ -25,23 +26,26 @@ public class AdminDashboardController {
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
 
-    @FXML private GridPane accountPane;
-    @FXML private GridPane stockPane;
-    @FXML private GridPane rentalPane;
+    @FXML
+    private VBox accountContainer;
+    @FXML
+    private VBox stockContainer;
+    @FXML
+    private VBox rentalContainer;
 
     @FXML
     protected void onAccountButtonClick() {
-        PaneUtils.setPane(stackPane, accountPane);
+        PaneUtils.setPane(stackPane, accountContainer);
     }
 
     @FXML
     protected void onStockButtonClick() {
-        PaneUtils.setPane(stackPane, stockPane);
+        PaneUtils.setPane(stackPane, stockContainer);
     }
 
     @FXML
     protected void onRentalButtonClick() {
-        PaneUtils.setPane(stackPane, rentalPane);
+        PaneUtils.setPane(stackPane, rentalContainer);
     }
 
     @FXML
