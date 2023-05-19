@@ -17,8 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Class for manage multiple {@link User}, in which we can create, delete or to provide
- * information.
+ * Class for manage multiple {@link User}, in which we can create, delete or to provide information.
  *
  * @see pls_no_shinobu.videostore.manager.Manager
  * @author Do Khoa Nguyen
