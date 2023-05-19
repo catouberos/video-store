@@ -24,6 +24,7 @@ public class HelloApplication extends Application {
 
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
 
+        stage.setResizable(false);
         stage.setTitle("Video-store");
         stage.setScene(scene);
         stage.show();
