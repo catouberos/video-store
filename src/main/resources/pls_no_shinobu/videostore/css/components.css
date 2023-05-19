@@ -15,3 +15,28 @@
 .button.primary:hover {
     -fx-background-color: -fx-primary-darker;
 }
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size: 20;
+    -fx-background-color: #393e41;
+    -fx-border-color: #393e41;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+.table-view .cell {
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-border-color: #1e2019;
+    -fx-text-fill: #000000;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(127, 172, 243);
+}
+.table-row-cell:selected .text {
+    -fx-fill: white;
+}

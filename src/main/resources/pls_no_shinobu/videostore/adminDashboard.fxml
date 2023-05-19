@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="controlPanel" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #e3874f; -fx-border-width: 5;" styleClass="#" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="controlPanel" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #e3874f; -fx-border-width: 5;" styleClass="#" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
    <children>
       <VBox fx:id="menuBar" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -49,7 +35,7 @@
                   <Insets />
                </VBox.margin>
             </Separator>
-            <Button fx:id="accountButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Accounts" textAlignment="JUSTIFY">
+            <Button fx:id="accountButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onAccountButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Accounts" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -63,7 +49,7 @@
                   <SVGPath content="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#ceccce" scaleX="2.2" scaleY="2.2" />
                </graphic>
             </Button>
-            <Button fx:id="stockButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="In Stock" textAlignment="JUSTIFY">
+            <Button fx:id="stockButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onStockButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="In Stock" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -77,7 +63,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="rentalButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Rentals" textAlignment="JUSTIFY">
+            <Button fx:id="rentalButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onRentalButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Rentals" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -90,7 +76,7 @@
             </Button>
             <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/menuBar.css" />
             <Separator prefWidth="200.0" />
-            <Button fx:id="logoutButton" graphicTextGap="35.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
+            <Button fx:id="logout" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -115,9 +101,118 @@
             </Label>
          </children>
       </Pane>
-      <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="115.0">
+      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="115.0">
          <children>
-            <GridPane fx:id="customerPane">
+            <GridPane fx:id="stockPane" visible="false">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" spacing="10.0" GridPane.columnSpan="3">
+                     <children>
+                        <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.7" scaleY="1.7" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="itemSearchField" prefHeight="31.0" prefWidth="145.0" promptText="Search" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="itemSortBox" prefHeight="18.0" prefWidth="92.0" promptText="Sort" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                        <Button fx:id="itemSearchButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="itemAddButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+                  <TableView GridPane.columnSpan="3" GridPane.rowIndex="1">
+                     <columns>
+                        <TableColumn fx:id="itemID" prefWidth="87.0" text="ID" />
+                        <TableColumn fx:id="itemTitle" prefWidth="87.0" text="Title" />
+                        <TableColumn fx:id="itemGenre" prefWidth="87.0" text="Genre" />
+                        <TableColumn fx:id="itemType" prefWidth="87.0" text="Type" />
+                        <TableColumn fx:id="itemLoanType" prefWidth="87.0" text="Loan Type" />
+                        <TableColumn fx:id="itemStock" prefWidth="87.0" text="Stock " />
+                        <TableColumn fx:id="itemEdit" prefWidth="87.0" text="Edit" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </GridPane>
+            <GridPane fx:id="rentalPane">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="ALWAYS" />
+               </rowConstraints>
+               <children>
+                  <TableView GridPane.columnSpan="3" GridPane.rowIndex="1">
+                     <columns>
+                        <TableColumn fx:id="rentalAccountID" prefWidth="87.0" text="Account ID" />
+                        <TableColumn fx:id="rentalName" prefWidth="87.0" text="Name" />
+                        <TableColumn fx:id="rentalItemID" prefWidth="87.0" text="Item ID" />
+                        <TableColumn fx:id="rentalTitle" prefWidth="87.0" text="Title" />
+                        <TableColumn fx:id="rentalStatus" prefWidth="87.0" text="Status" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <HBox alignment="CENTER" spacing="10.0" GridPane.columnSpan="3">
+                     <children>
+                        <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.7" scaleY="1.7" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="cusSearchField1" prefHeight="31.0" prefWidth="145.0" promptText="Search" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ComboBox fx:id="cusSortBox1" prefHeight="18.0" prefWidth="92.0" promptText="Sort" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ComboBox>
+                        <ComboBox fx:id="cusTypeBox1" prefHeight="18.0" prefWidth="92.0" promptText="Type" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="cusSearchButton1" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="cusAddButton1" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </GridPane>
+            <GridPane fx:id="accountPane">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -166,86 +261,6 @@
                         <TableColumn fx:id="cusPassword" prefWidth="87.0" text="Password" />
                         <TableColumn fx:id="cusPoint" prefWidth="87.0" text="Point" />
                         <TableColumn fx:id="cusEdit" prefWidth="87.0" text="Edit" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </GridPane>
-            <GridPane fx:id="rentalPane">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="ALWAYS" />
-               </rowConstraints>
-               <children>
-                  <TableView GridPane.columnSpan="3" GridPane.rowIndex="1">
-                     <columns>
-                        <TableColumn fx:id="rentalAccountID" prefWidth="87.0" text="Account ID" />
-                        <TableColumn fx:id="rentalName" prefWidth="87.0" text="Name" />
-                        <TableColumn fx:id="rentalItemID" prefWidth="87.0" text="Item ID" />
-                        <TableColumn fx:id="rentalTitle" prefWidth="87.0" text="Title" />
-                        <TableColumn fx:id="rentalStatus" prefWidth="87.0" text="Status" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-               </children>
-            </GridPane>
-            <GridPane fx:id="stockPane">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="ALWAYS" />
-               </rowConstraints>
-               <children>
-                  <HBox alignment="CENTER" spacing="10.0" GridPane.columnSpan="3">
-                     <children>
-                        <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.7" scaleY="1.7" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="itemSearchField" prefHeight="31.0" prefWidth="145.0" promptText="Search" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ComboBox fx:id="itemSortBox" prefHeight="18.0" prefWidth="92.0" promptText="Sort" HBox.hgrow="ALWAYS">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </ComboBox>
-                        <Button fx:id="itemSearchButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                           <graphic>
-                              <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="itemAddButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                           <graphic>
-                              <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                           </graphic>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
-                     </padding>
-                  </HBox>
-                  <TableView GridPane.columnSpan="3" GridPane.rowIndex="1">
-                     <columns>
-                        <TableColumn fx:id="itemID" prefWidth="87.0" text="ID" />
-                        <TableColumn fx:id="itemTitle" prefWidth="87.0" text="Title" />
-                        <TableColumn fx:id="itemGenre" prefWidth="87.0" text="Genre" />
-                        <TableColumn fx:id="itemType" prefWidth="87.0" text="Type" />
-                        <TableColumn fx:id="itemLoanType" prefWidth="87.0" text="Loan Type" />
-                        <TableColumn fx:id="itemStock" prefWidth="87.0" text="Stock " />
-                        <TableColumn fx:id="itemEdit" prefWidth="87.0" text="Edit" />
                      </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

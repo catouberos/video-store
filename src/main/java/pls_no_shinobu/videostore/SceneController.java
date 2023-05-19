@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,17 +22,10 @@ import java.net.URL;
 import java.util.Optional;
 
 public class SceneController {
+    //For sign in, sign up, log out operations
     @FXML private Button askSignUp;
 
     @FXML private Button askLogIn;
-
-    @FXML private Button RentedItem;
-
-    @FXML private Button AllItem;
-
-    @FXML private Button profile1;
-
-    @FXML private Button profile2;
 
     @FXML private Button logout;
 
@@ -60,26 +55,6 @@ public class SceneController {
     }
 
     @FXML
-    public void onRentedItemButtonClick() throws IOException {
-        switchScene(RentedItem, "renteditem.fxml");
-    }
-
-    @FXML
-    public void onAllItemButtonClick() throws IOException {
-        switchScene(AllItem, "userdashboard.fxml");
-    }
-
-    @FXML
-    public void onProfile1ButtonClick() throws IOException {
-        switchScene(profile1, "profile.fxml");
-    }
-
-    @FXML
-    public void onProfile2ButtonClick() throws IOException {
-        switchScene(profile2, "profile.fxml");
-    }
-
-    @FXML
     public void onLogoutButtonClick() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Logout Confirmation");
@@ -90,5 +65,61 @@ public class SceneController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             switchScene(logout, "signin.fxml");
         }
+    }
+
+    //For dashboard usage operations
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private GridPane ItemPane;
+    @FXML
+    private GridPane rentedPane;
+    @FXML
+    private GridPane profilePane;
+    @FXML
+    private GridPane cartPane;
+    @FXML
+    private GridPane accountPane;
+    @FXML
+    private GridPane rentalPane;
+    @FXML
+    private GridPane stockPane;
+
+    public void showGridPane(GridPane gridPane) {
+            stackPane.getChildren().clear();
+            stackPane.getChildren().add(gridPane);
+    }
+        //User dashboard
+    @FXML
+    public void onRentedItemButtonClick() {
+        showGridPane(rentedPane);
+    }
+    @FXML
+    public void onAllItemButtonClick() {
+        showGridPane(ItemPane);
+    }
+    @FXML
+    public void onProfileButtonClick() {
+        profilePane.setVisible(true);
+        showGridPane(profilePane);
+    }
+    @FXML
+    public void onCartButtonClick() {
+        cartPane.setVisible(true);
+        showGridPane(cartPane);
+    }
+        //Admin dashboard
+    @FXML
+    public void onAccountButtonClick() {
+        showGridPane(accountPane);
+    }
+    @FXML
+    public void onStockButtonClick() {
+        stockPane.setVisible(true);
+        showGridPane(stockPane);
+    }
+    @FXML
+    public void onRentalButtonClick() {
+        showGridPane(rentalPane);
     }
 }
