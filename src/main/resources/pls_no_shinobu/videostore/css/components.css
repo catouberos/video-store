@@ -1,20 +1,4 @@
-.input {
-    -fx-text-fill: -fx-neutral-100;
-    -fx-background-color: -fx-neutral-700;
-    -fx-background-radius: 6px;
-}
 
-.button {
-    -fx-background-radius: 6px;
-}
-
-.button.primary {
-    -fx-background-color: -fx-primary;
-}
-
-.button.primary:hover {
-    -fx-background-color: -fx-primary-darker;
-}
 
 .table-view .column-header,
 .table-view .column-header-background .filler {
@@ -35,7 +19,7 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: rgb(127, 172, 243);
+    -fx-background-color: -fx-primary;
 }
 .table-row-cell:selected .text {
     -fx-fill: white;

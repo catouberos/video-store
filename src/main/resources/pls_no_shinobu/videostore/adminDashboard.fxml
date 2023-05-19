@@ -1,55 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="controlPanel" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #e3874f; -fx-border-width: 5;" styleClass="#" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.AdminDashboardController">
+<AnchorPane fx:id="controlPanel" minHeight="500.0" styleClass="#" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.AdminDashboardController">
    <children>
-      <VBox fx:id="menuBar" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-             <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@img/logoTrans.png" />
-             </ImageView>
-            <Separator prefWidth="200.0" />
-            <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="233.0">
+            <VBox fx:id="menuBar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="sidebar--container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="51.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@logo/controlPanel.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
+                   <ImageView fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                       <Image url="@img/logoTrans.png" />
+                   </ImageView>
+                  <Button fx:id="accountButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onAccountButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Accounts" textFill="#fafafa">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <SVGPath content="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#fafafa" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="stockButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onStockButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Items" textAlignment="JUSTIFY" textFill="#fafafa">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <SVGPath content="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z" fill="#fafafa" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="rentalButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onRentalButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Rentals" textAlignment="JUSTIFY" textFill="#fafafa">
+                     <font>
+                        <Font name="Arial Bold" size="18.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <graphic>
+                        <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="#fafafa" />
+                     </graphic>
+                  </Button>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Separator>
-            <Button fx:id="accountButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onAccountButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Accounts" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <SVGPath content="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" fill="#ceccce" scaleX="2.2" scaleY="2.2" />
-               </graphic>
-            </Button>
-            <Button fx:id="stockButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onStockButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="In Stock" textAlignment="JUSTIFY">
+            </VBox>
+            <Button fx:id="logoutButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="40.0" prefWidth="200.0" styleClass="sidebar--button" text="Log out" textAlignment="JUSTIFY" textFill="#fafafa" AnchorPane.bottomAnchor="0.0">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -57,53 +78,23 @@
                   <Insets />
                </opaqueInsets>
                <graphic>
-                  <SVGPath content="M15.528 2.973a.75.75 0 0 1 .472.696v8.662a.75.75 0 0 1-.472.696l-7.25 2.9a.75.75 0 0 1-.557 0l-7.25-2.9A.75.75 0 0 1 0 12.331V3.669a.75.75 0 0 1 .471-.696L7.443.184l.01-.003.268-.108a.75.75 0 0 1 .558 0l.269.108.01.003 6.97 2.789ZM10.404 2 4.25 4.461 1.846 3.5 1 3.839v.4l6.5 2.6v7.922l.5.2.5-.2V6.84l6.5-2.6v-.4l-.846-.339L8 5.961 5.596 5l6.154-2.461L10.404 2Z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
-               </graphic>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="rentalButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onRentalButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Rentals" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <graphic>
-                  <SVGPath content="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
-               </graphic>
-            </Button>
-            <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/menuBar.css" />
-            <Separator prefWidth="200.0" />
-            <Button fx:id="logoutButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <graphic>
-                  <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#ceccce" scaleX="2.0" scaleY="2.0" />
+                  <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#fafafa" />
                </graphic>
             </Button>
          </children>
-      </VBox>
-      <Pane fx:id="titlePane" layoutX="259.0" layoutY="10.0" prefHeight="100.0" prefWidth="482.0" style="-fx-background-color: #D3D0CB;" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      </AnchorPane>
+      <Pane fx:id="titlePane" layoutX="259.0" layoutY="10.0" prefHeight="100.0" styleClass="header--container" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="14.0" layoutY="50.0" text="&quot;Edit Menu Title&quot;">
+            <Label layoutX="20.0" layoutY="60.0" styleClass="header--title" text="&quot;Edit Menu Title&quot;">
                <font>
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="115.0">
+      <StackPane fx:id="stackPane" minWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
-            <GridPane fx:id="stockPane">
+            <GridPane fx:id="stockPane" visible="false">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -158,7 +149,7 @@
                   </TableView>
                </children>
             </GridPane>
-            <GridPane fx:id="rentalPane">
+            <GridPane fx:id="rentalPane" visible="false">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -269,6 +260,9 @@
                </children>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+         </padding>
       </StackPane>
    </children>
 </AnchorPane>
