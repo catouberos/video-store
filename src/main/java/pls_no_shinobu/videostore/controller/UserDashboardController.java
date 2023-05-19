@@ -26,8 +26,7 @@ public class UserDashboardController {
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
 
-    @FXML
-    private VBox itemContainer;
+    @FXML private VBox itemContainer;
     @FXML private VBox cartContainer;
     @FXML private GridPane profileContainer;
     @FXML private VBox rentedContainer;
