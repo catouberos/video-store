@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
@@ -24,29 +25,31 @@ import java.util.Optional;
 public class UserDashboardController {
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
-    @FXML private GridPane itemPane;
-    @FXML private GridPane cartPane;
-    @FXML private GridPane profilePane;
-    @FXML private GridPane rentedPane;
+
+    @FXML
+    private VBox itemContainer;
+    @FXML private VBox cartContainer;
+    @FXML private GridPane profileContainer;
+    @FXML private VBox rentedContainer;
 
     @FXML
     protected void onAllItemButtonClick() {
-        PaneUtils.setPane(stackPane, itemPane);
+        PaneUtils.setPane(stackPane, itemContainer);
     }
 
     @FXML
     protected void onRentedItemButtonClick() {
-        PaneUtils.setPane(stackPane, rentedPane);
+        PaneUtils.setPane(stackPane, rentedContainer);
     }
 
     @FXML
     protected void onProfileButtonClick() {
-        PaneUtils.setPane(stackPane, profilePane);
+        PaneUtils.setPane(stackPane, profileContainer);
     }
 
     @FXML
     protected void onCartButtonClick() {
-        PaneUtils.setPane(stackPane, cartPane);
+        PaneUtils.setPane(stackPane, cartContainer);
     }
 
     @FXML
