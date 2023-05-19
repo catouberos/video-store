@@ -13,13 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 
 public class SceneController {
     @FXML private Button askSignUp;
@@ -32,7 +30,7 @@ public class SceneController {
 
     @FXML private Button profile1;
 
-    @FXML private  Button profile2;
+    @FXML private Button profile2;
 
     @FXML private Button logout;
 
@@ -60,6 +58,7 @@ public class SceneController {
     public void onAskSignUpButtonClick() throws IOException {
         switchScene(askSignUp, "signup.fxml");
     }
+
     @FXML
     public void onRentedItemButtonClick() throws IOException {
         switchScene(RentedItem, "renteditem.fxml");
@@ -79,6 +78,7 @@ public class SceneController {
     public void onProfile2ButtonClick() throws IOException {
         switchScene(profile2, "profile.fxml");
     }
+
     @FXML
     public void onLogoutButtonClick() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -88,7 +88,7 @@ public class SceneController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            switchScene(logout, "signin.fxml") ;
+            switchScene(logout, "signin.fxml");
         }
     }
 }
