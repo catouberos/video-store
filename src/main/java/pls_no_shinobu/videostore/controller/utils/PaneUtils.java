@@ -17,11 +17,11 @@ public class PaneUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public static void setPane(StackPane stackPane, Pane pane) {
+    public static void setPane(StackPane stackPane, Node content) {
         // hide every node in stackPane
         for (Node node : stackPane.getChildren()) node.setVisible(false);
 
         // then, shows only the specified one
-        pane.setVisible(true);
+        content.setVisible(true);
     }
 }
