@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
+<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.SignUpController">
     <children>
         <Text fill="#fafafa" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up to Video Store">
             <font>
@@ -55,7 +55,7 @@
             <SVGPath content="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill="#fafafa" />
          </graphic>
         </Button>
-      <Button fx:id="askLogIn" mnemonicParsing="false" onAction="#onAskLogInButtonClick" style="-fx-background-color: TRANSPARENT;" text="Already have an account? Sign in" textFill="#fafafa" />
+      <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButtonClick" style="-fx-background-color: TRANSPARENT;" text="Already have an account? Sign in" textFill="#fafafa" />
         <Label prefHeight="20.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#a3a3a3">
             <font>
                 <Font size="14.0" />

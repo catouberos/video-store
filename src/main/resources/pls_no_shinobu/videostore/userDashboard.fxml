@@ -7,11 +7,11 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: CORAL; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: CORAL; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UserDashboardController">
     <VBox layoutX="6.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@logo/logoTrans.png" />
+            <Image url="@img/logoTrans.png" />
          </image>
       </ImageView>
       <Separator prefWidth="200.0" />
@@ -54,7 +54,7 @@
       </Button>
         <Pane prefHeight="114.0" prefWidth="250.0" VBox.vgrow="ALWAYS" />
       <Separator prefWidth="200.0" />
-      <Button fx:id="logout" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out">
+      <Button fx:id="logoutButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="50.0" prefWidth="250.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -162,7 +162,7 @@
                </HBox>
             </children>
          </GridPane>
-         <GridPane fx:id="ItemPane">
+         <GridPane fx:id="itemPane">
             <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -211,7 +211,7 @@
                </HBox>
             </children>
          </GridPane>
-          <GridPane fx:id="profilePane" layoutX="255.0" layoutY="105.0" visible="false">
+          <GridPane fx:id="profilePane" layoutX="255.0" layoutY="105.0">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="29.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="733.6" minWidth="10.0" prefWidth="728.6" />
@@ -265,7 +265,7 @@
                   </Pane>
               </children>
           </GridPane>
-          <GridPane fx:id="cartPane" visible="false">
+          <GridPane fx:id="cartPane">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

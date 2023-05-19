@@ -7,12 +7,12 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="controlPanel" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #e3874f; -fx-border-width: 5;" styleClass="#" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.SceneController">
+<AnchorPane fx:id="controlPanel" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #e3874f; -fx-border-width: 5;" styleClass="#" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.AdminDashboardController">
    <children>
       <VBox fx:id="menuBar" layoutX="10.0" layoutY="10.0" prefHeight="600.0" prefWidth="250.0" style="-fx-background-color: #454545;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
              <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@logo/logoTrans.png" />
+                 <Image url="@img/logoTrans.png" />
              </ImageView>
             <Separator prefWidth="200.0" />
             <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="233.0">
@@ -76,7 +76,7 @@
             </Button>
             <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/menuBar.css" />
             <Separator prefWidth="200.0" />
-            <Button fx:id="logout" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
+            <Button fx:id="logoutButton" graphicTextGap="35.0" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="65.0" prefWidth="268.0" styleClass="barButton" stylesheets="@css/menuBar.css" text="Log out" textAlignment="JUSTIFY">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -103,7 +103,7 @@
       </Pane>
       <StackPane fx:id="stackPane" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="115.0">
          <children>
-            <GridPane fx:id="stockPane" visible="false">
+            <GridPane fx:id="stockPane">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
