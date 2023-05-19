@@ -257,7 +257,7 @@ public class User extends Entity {
      * @see PasswordUtils
      * @author Do Khoa Nguyen
      */
-    protected boolean checkPassword(String password) {
+    public boolean checkPassword(String password) {
         PasswordUtils p = new PasswordUtils();
 
         return p.check(password, this.password);
