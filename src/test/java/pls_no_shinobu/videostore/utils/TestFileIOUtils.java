@@ -20,10 +20,17 @@ import pls_no_shinobu.videostore.model.Item;
 import java.util.ArrayList;
 
 public class TestFileIOUtils {
+    FileIOUtils utils;
+
+    @BeforeEach
+    void setup() {
+        utils = new FileIOUtils();
+    }
+
     @Test
     @DisplayName("Parse a file")
     void parseValidString() {
-        ArrayList<Item> items = FileIOUtils.parseItem();
+        ArrayList<Item> items = utils.parseItem();
 
         assertNull(items.get(0).getGenre());
         assertTrue(items.get(1).getTitle().equals("White Castle"));

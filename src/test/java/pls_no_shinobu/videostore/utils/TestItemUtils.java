@@ -18,13 +18,19 @@ import org.junit.jupiter.api.Test;
 import pls_no_shinobu.videostore.model.Item;
 
 public class TestItemUtils {
+    ItemUtils utils;
+
+    @BeforeEach
+    void setUp() {
+        utils = new ItemUtils();
+    }
 
     @Test
     @DisplayName("Parse a valid string")
     void parseValidString() {
         final String validString = "I001-2001, Medal of Honour, Game, 1-week,3,3.99";
 
-        Item testItem = ItemUtils.parse(validString);
+        Item testItem = utils.parse(validString);
 
         assertEquals("I001-2001", testItem.getId());
         assertEquals("Medal of Honour", testItem.getTitle());
@@ -40,7 +46,7 @@ public class TestItemUtils {
         final String validStringWithGenre =
                 "I001-2001,    Medal of Honour    , Game, 1-week, 3, 3.99, Action";
 
-        Item testItem = ItemUtils.parse(validStringWithGenre);
+        Item testItem = utils.parse(validStringWithGenre);
 
         assertEquals("I001-2001", testItem.getId());
         assertEquals("Medal of Honour", testItem.getTitle());
@@ -61,9 +67,9 @@ public class TestItemUtils {
         final String enumRentalTypeGame =
                 "I001-2001,    Medal of Honour    , game, 1-week, 3, 3.99, Action";
 
-        Item testRecord = ItemUtils.parse(enumRentalTypeRecord);
-        Item testDVD = ItemUtils.parse(enumRentalTypeDVD);
-        Item testGame = ItemUtils.parse(enumRentalTypeGame);
+        Item testRecord = utils.parse(enumRentalTypeRecord);
+        Item testDVD = utils.parse(enumRentalTypeDVD);
+        Item testGame = utils.parse(enumRentalTypeGame);
 
         assertEquals(Item.RentalType.RECORD, testRecord.getRentalType());
         assertEquals(Item.RentalType.DVD, testDVD.getRentalType());
@@ -78,8 +84,8 @@ public class TestItemUtils {
         final String enumLoanTypeTwoDay =
                 "I001-2001,    Medal of Honour    , Record, 2-DaY, 3, 3.99, Action";
 
-        Item testOneWeek = ItemUtils.parse(enumLoanTypeOneWeek);
-        Item testTwoDay = ItemUtils.parse(enumLoanTypeTwoDay);
+        Item testOneWeek = utils.parse(enumLoanTypeOneWeek);
+        Item testTwoDay = utils.parse(enumLoanTypeTwoDay);
 
         assertEquals(Item.LoanType.ONE_WEEK, testOneWeek.getLoanType());
         assertEquals(Item.LoanType.TWO_DAY, testTwoDay.getLoanType());
@@ -90,7 +96,7 @@ public class TestItemUtils {
     void parseInvalidIdString() {
         final String invalidIdString = "whatisthisID,Medal of Honour,Game,1-week,3,3.99";
 
-        Item testItem = ItemUtils.parse(invalidIdString);
+        Item testItem = utils.parse(invalidIdString);
 
         assertNull(testItem);
     }
@@ -100,7 +106,7 @@ public class TestItemUtils {
     void parseInvalidLoanTypeString() {
         final String invalidLoanTypeString = "whatisthisID,Medal of Honour,Game,100-week,3,3.99";
 
-        Item testItem = ItemUtils.parse(invalidLoanTypeString);
+        Item testItem = utils.parse(invalidLoanTypeString);
 
         assertNull(testItem);
     }
@@ -110,7 +116,7 @@ public class TestItemUtils {
     void parseInvalidRentalTypeString() {
         final String invalidRentalTypeString = "whatisthisID,Medal of Honour,Gamers,1-week,3,3.99";
 
-        Item testItem = ItemUtils.parse(invalidRentalTypeString);
+        Item testItem = utils.parse(invalidRentalTypeString);
 
         assertNull(testItem);
     }
@@ -121,7 +127,7 @@ public class TestItemUtils {
         final String invalidNegativeStockString =
                 "whatisthisID,Medal of Honour,Game,1-week,-1,3.99";
 
-        Item testItem = ItemUtils.parse(invalidNegativeStockString);
+        Item testItem = utils.parse(invalidNegativeStockString);
 
         assertNull(testItem);
     }
@@ -139,7 +145,7 @@ public class TestItemUtils {
                         3,
                         3.99f);
 
-        String serializedString = ItemUtils.serialize(item);
+        String serializedString = utils.serialize(item);
 
         String expectedString = "I001-2001,Medal of Honour,GAME,1-week,3,3.99";
 
