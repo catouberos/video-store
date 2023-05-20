@@ -1,0 +1,5 @@
+.input {
+    -fx-text-fill: -fx-neutral-100;
+    -fx-background-color: -fx-neutral-700;
+    -fx-background-radius: 6px;
+}

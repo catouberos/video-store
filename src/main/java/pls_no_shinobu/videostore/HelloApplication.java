@@ -13,14 +13,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+                new FXMLLoader(HelloApplication.class.getResource("adminDashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+
+        URL stylesheet = HelloApplication.class.getResource("css/main.css");
+        if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
+
+        stage.setTitle("Shinobu Video Store");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.setScene(scene);
         stage.show();
     }

@@ -1,0 +1,17 @@
+.sidebar--container {
+    -fx-background-color: -fx-neutral-800;
+}
+
+.sidebar--button {
+    -fx-background-color: -fx-neutral-800;
+    -fx-background-radius: 0;
+    -fx-text-fill: -fx-neutral-50;
+}
+
+.sidebar--button:hover {
+    -fx-background-color : -fx-neutral-900;
+}
+
+.sidebar--button:pressed {
+    -fx-background-color : -fx-primary;
+}

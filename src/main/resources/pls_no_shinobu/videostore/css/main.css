@@ -1,0 +1,7 @@
+@import url("colors.css");
+
+/* Components */
+@import url("components/button.css");
+@import url("components/sidebar.css");
+@import url("components/input.css");
+@import url("components/header.css");

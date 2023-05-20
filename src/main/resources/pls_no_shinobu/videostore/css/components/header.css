@@ -1,0 +1,7 @@
+.header--container {
+    -fx-background-color: -fx-neutral-300;
+}
+
+.header--title {
+    -fx-text-fill: -fx-neutral-900;
+}

@@ -1,0 +1,11 @@
+.button {
+    -fx-background-radius: 6px;
+}
+
+.button.primary {
+    -fx-background-color: -fx-primary;
+}
+
+.button.primary:hover {
+    -fx-background-color: -fx-primary-darker;
+}

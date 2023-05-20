@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.SignUpController">
+    <children>
+        <Text fill="#fafafa" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up to Video Store">
+            <font>
+                <Font size="36.0" />
+            </font>
+        </Text>
+        <GridPane maxWidth="200.0" prefWidth="200.0">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="30.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="420.0" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <SVGPath content="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="#fafafa" />
+                <SVGPath content="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" fill="#fafafa" GridPane.rowIndex="2" />
+                <TextField promptText="Username" styleClass="input" GridPane.columnIndex="1">
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                </TextField>
+                <PasswordField promptText="Password" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField promptText="Email" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <PasswordField layoutX="40.0" layoutY="73.0" promptText="Re-enter Password" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <SVGPath content="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" fill="#fafafa" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+        <Button contentDisplay="RIGHT" graphicTextGap="6.0" mnemonicParsing="false" text="Sign up" textFill="#fafafa">
+            <styleClass>
+                <String fx:value="button" />
+                <String fx:value="primary" />
+            </styleClass>
+         <graphic>
+            <SVGPath content="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill="#fafafa" />
+         </graphic>
+        </Button>
+      <Button fx:id="signInButton" mnemonicParsing="false" onAction="#onSignInButtonClick" style="-fx-background-color: TRANSPARENT;" text="Already have an account? Sign in" textFill="#fafafa" />
+        <Label prefHeight="20.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#a3a3a3">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Label>
+    </children>
+    <padding>
+        <Insets bottom="48.0" left="48.0" right="48.0" top="48.0" />
+    </padding>
+</VBox>
