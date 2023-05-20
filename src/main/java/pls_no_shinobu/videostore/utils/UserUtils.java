@@ -9,6 +9,8 @@ package pls_no_shinobu.videostore.utils;
 
 import pls_no_shinobu.videostore.model.User;
 
+// TODO: major feature missing, as there are no way for reading Rentals from a two-line string.
+
 /**
  * Utilities for parsing, and serialize {@link User} object into CSV-compatible file
  *
