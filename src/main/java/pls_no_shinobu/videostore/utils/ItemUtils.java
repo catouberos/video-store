@@ -10,18 +10,18 @@ package pls_no_shinobu.videostore.utils;
 import pls_no_shinobu.videostore.model.Item;
 
 /**
- * Utilities for parsing, and serialize Item object into CSV-compatible file
+ * Utilities for parsing, and serialize {@link Item} object into CSV-compatible file
  *
  * @author Do Khoa Nguyen
  */
-public class ItemUtils {
+public class ItemUtils implements ObjectUtils<Item> {
     /**
      * Method to parse an {@link Item} from CSV-like file. <br>
      * File format: {@code id,title,rentType,loanType,stock,rentalFee[,genre]}
      *
      * @author Do Khoa Nguyen
      */
-    public static Item parse(String str) {
+    public Item parse(String str) {
         try {
             String[] tokens = str.split("\\s*,\\s*");
 
@@ -46,7 +46,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public static String serialize(Item item) {
+    public String serialize(Item item) {
         if (item.getGenre() == null)
             return String.format(
                     "%s,%s,%s,%s,%d,%.2f",
