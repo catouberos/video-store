@@ -19,7 +19,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("adminDashboard.fxml"));
+                new FXMLLoader(HelloApplication.class.getResource("userDashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
 
         URL stylesheet = HelloApplication.class.getResource("css/main.css");
