@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileIOUtils {
-    public static ArrayList<Item> parseItem() {
+    public ArrayList<Item> parseItem() {
+        ItemUtils utils = new ItemUtils();
         ArrayList<Item> items = new ArrayList<>();
 
         try {
@@ -27,7 +28,7 @@ public class FileIOUtils {
                 String line = scanner.nextLine();
 
                 if (!line.startsWith("#")) {
-                    Item item = ItemUtils.parse(line);
+                    Item item = utils.parse(line);
 
                     items.add(item);
                 }
@@ -39,7 +40,7 @@ public class FileIOUtils {
         return items;
     }
 
-    public static ArrayList<User> parseUser() {
+    public ArrayList<User> parseUser() {
         return null;
     }
 }
