@@ -55,6 +55,32 @@ public class User extends Entity {
     }
 
     /**
+     * Constructor for a minimum user, which includes an id, username and password and minimal info
+     *
+     * @author Do Khoa Nguyen
+     */
+    public User(
+            String id,
+            String name,
+            String address,
+            String phone,
+            int rentalCount,
+            UserType role,
+            String username,
+            String password) throws IllegalArgumentException {
+        super();
+        setId(id);
+        setName(name);
+        setAddress(address);
+        setPhone(phone);
+        setRentalCount(rentalCount);
+        setRole(role);
+        setUsername(username);
+        setPassword(password);
+        this.rentals = new ArrayList<>();
+    }
+
+    /**
      * Constructor for a full-blown user, normally to initiate the user when loading from persistant
      * data, such as a file
      *
@@ -232,6 +258,15 @@ public class User extends Entity {
             throw new IllegalArgumentException("Username cannot contain spaces");
 
         this.username = username;
+    }
+
+    /**
+     * Method to get {@link User} hashed password
+     *
+     * @author Do Khoa Nguyen
+     */
+    public String getPassword() {
+        return password;
     }
 
     /**
