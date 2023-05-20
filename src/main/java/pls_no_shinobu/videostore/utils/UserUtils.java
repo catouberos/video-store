@@ -1,9 +1,13 @@
+/*
+  RMIT University Vietnam
+  Course: INTE2512 Object-Oriented Programming
+  Semester: 2023A
+  Assessment: Final Project
+  Author: pls_no_shinobu
+*/
 package pls_no_shinobu.videostore.utils;
 
-import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.User;
-
-import java.util.ArrayList;
 
 /**
  * Utilities for parsing, and serialize {@link User} object into CSV-compatible file
@@ -29,14 +33,14 @@ public class UserUtils implements ObjectUtils<User> {
             User.UserType role = parseUserType(tokens[5]);
             String username = tokens[6];
             String password = tokens[7];
-            
+
             return new User(id, name, address, phone, rentalCount, role, username, password);
         } catch (Exception e) {
             // TODO: handle exception
             return null;
         }
     }
-    
+
     /**
      * Method to serialize an {@link User} to CSV-compatible file. <br>
      * File format: {@code id,name,address,phone,no_of_rental,type,username,password}
@@ -55,7 +59,7 @@ public class UserUtils implements ObjectUtils<User> {
                 user.getUsername(),
                 user.getPassword());
     }
-    
+
     public static User.UserType parseUserType(String str) {
         if (str.equalsIgnoreCase("guest")) return User.UserType.GUEST;
         if (str.equalsIgnoreCase("regular")) return User.UserType.REGULAR;

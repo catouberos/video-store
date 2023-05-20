@@ -67,7 +67,8 @@ public class User extends Entity {
             int rentalCount,
             UserType role,
             String username,
-            String password) throws IllegalArgumentException {
+            String password)
+            throws IllegalArgumentException {
         super();
         setId(id);
         setName(name);
