@@ -21,7 +21,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public Item parse(String str) {
+    public static Item parse(String str) {
         try {
             String[] tokens = str.split("\\s*,\\s*");
 
@@ -46,7 +46,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public String serialize(Item item) {
+    public static String serialize(Item item) {
         if (item.getGenre() == null)
             return String.format(
                     "%s,%s,%s,%s,%d,%.2f",
@@ -73,7 +73,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public Item.RentalType parseRentalType(String str) throws IllegalArgumentException {
+    public static Item.RentalType parseRentalType(String str) throws IllegalArgumentException {
         if (str.equalsIgnoreCase("game")) return Item.RentalType.GAME;
         if (str.equalsIgnoreCase("record")) return Item.RentalType.RECORD;
         if (str.equalsIgnoreCase("dvd")) return Item.RentalType.DVD;
@@ -86,7 +86,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public Item.LoanType parseLoanType(String str) throws IllegalArgumentException {
+    public static Item.LoanType parseLoanType(String str) throws IllegalArgumentException {
         if (str.equalsIgnoreCase("2-day")) return Item.LoanType.TWO_DAY;
         if (str.equalsIgnoreCase("1-week")) return Item.LoanType.ONE_WEEK;
 
