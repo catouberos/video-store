@@ -7,10 +7,10 @@
 */
 package pls_no_shinobu.videostore.utils;
 
-import pls_no_shinobu.videostore.model.Item;
+import pls_no_shinobu.videostore.model.Entity;
 
-public interface CSVUtils<T> {
+public interface ObjectUtils<T extends Entity> {
     T parse(String str);
 
-    String serialize(Item item);
+    String serialize(T obj);
 }

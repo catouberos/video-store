@@ -10,11 +10,11 @@ package pls_no_shinobu.videostore.utils;
 import pls_no_shinobu.videostore.model.Item;
 
 /**
- * Utilities for parsing, and serialize Item object into CSV-compatible file
+ * Utilities for parsing, and serialize {@link Item} object into CSV-compatible file
  *
  * @author Do Khoa Nguyen
  */
-public class ItemUtils {
+public class ItemUtils implements ObjectUtils<Item> {
     /**
      * Method to parse an {@link Item} from CSV-like file. <br>
      * File format: {@code id,title,rentType,loanType,stock,rentalFee[,genre]}
@@ -73,7 +73,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public Item.RentalType parseRentalType(String str) throws IllegalArgumentException {
+    public static Item.RentalType parseRentalType(String str) throws IllegalArgumentException {
         if (str.equalsIgnoreCase("game")) return Item.RentalType.GAME;
         if (str.equalsIgnoreCase("record")) return Item.RentalType.RECORD;
         if (str.equalsIgnoreCase("dvd")) return Item.RentalType.DVD;
@@ -86,7 +86,7 @@ public class ItemUtils {
      *
      * @author Do Khoa Nguyen
      */
-    public Item.LoanType parseLoanType(String str) throws IllegalArgumentException {
+    public static Item.LoanType parseLoanType(String str) throws IllegalArgumentException {
         if (str.equalsIgnoreCase("2-day")) return Item.LoanType.TWO_DAY;
         if (str.equalsIgnoreCase("1-week")) return Item.LoanType.ONE_WEEK;
 
