@@ -262,6 +262,11 @@ public class Item extends Entity {
         this.genre = genre;
     }
 
+    /**
+     * Method for getting year from {@link Item} ID
+     *
+     * @author Do Khoa Nguyen
+     */
     public int getYear() {
         return Integer.parseInt(getId().split("-")[1]);
     }
