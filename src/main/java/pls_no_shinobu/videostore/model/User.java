@@ -138,7 +138,8 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setName(String name) throws IllegalArgumentException {
-        if (getName() != null && getName().contains(name)) throw new IllegalArgumentException("Name is unchanged");
+        if (getName() != null && getName().contains(name))
+            throw new IllegalArgumentException("Name is unchanged");
 
         this.name = name;
     }
