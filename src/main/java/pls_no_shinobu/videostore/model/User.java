@@ -51,6 +51,8 @@ public class User extends Entity {
         setId(id);
         setUsername(username);
         setPassword(password);
+        setRentalCount(0);
+        setRole(UserType.GUEST);
         this.rentals = new ArrayList<>();
     }
 
@@ -272,19 +274,16 @@ public class User extends Entity {
     }
 
     /**
-     * Method for setting {@link User} password, which pass in a raw password into a utils and store
-     * it hashed using PBKDF2
+     * Method for setting {@link User} password, which pass in a *hashed* password
      *
-     * @param password a raw string password to be hash and save
+     * @param password a *hashed* password
      * @see PasswordUtils
      * @author Do Khoa Nguyen
      */
     public void setPassword(String password) throws IllegalArgumentException {
         if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
 
-        PasswordUtils p = new PasswordUtils();
-
-        this.password = p.hash(password);
+        this.password = password;
     }
 
     /**
