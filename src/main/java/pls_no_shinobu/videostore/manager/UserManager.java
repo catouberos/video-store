@@ -85,7 +85,7 @@ public class UserManager extends Manager<User> {
      */
     public boolean checkUsername(User entity) {
         for (User user : getEntities()) {
-            if (user.getUsername().contains(entity.getUsername())) return false;
+            if (user.getUsername().equals(entity.getUsername())) return false;
         }
 
         return true;
