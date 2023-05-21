@@ -34,7 +34,7 @@ public class SignInController {
             CSVDatabase database = CSVDatabase.getInstance();
             Session session = Session.getInstance();
 
-            User user = database.getUsers().get(usernameField.getText());
+            User user = database.getUsers().getByUsername(usernameField.getText());
 
             session.login(user, passwordField.getText());
 

@@ -120,7 +120,7 @@ public class UserManager extends Manager<User> {
      * @param username an {@link User}'s username
      * @author Do Khoa Nguyen
      */
-    public User get(String username) throws NotFoundException {
+    public User getByUsername(String username) throws NotFoundException {
         for (User entity : getEntities()) {
             if (entity.getUsername().equals(username)) return entity;
         }
