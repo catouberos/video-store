@@ -12,22 +12,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import pls_no_shinobu.videostore.core.CSVDatabase;
+import pls_no_shinobu.videostore.core.Session;
+
 import java.io.IOException;
 import java.net.URL;
 
-public class HelloApplication extends Application {
+public class VideoStoreApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("userDashboard.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 700);
+        CSVDatabase database = CSVDatabase.getInstance();
+        Session session = Session.getInstance();
 
-        URL stylesheet = HelloApplication.class.getResource("css/main.css");
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(VideoStoreApplication.class.getResource("signin.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+
+        URL stylesheet = VideoStoreApplication.class.getResource("css/main.css");
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
 
         stage.setTitle("Shinobu Video Store");
-        stage.setMinWidth(800);
-        stage.setMinHeight(600);
+        stage.setMinWidth(600);
+        stage.setMinHeight(400);
         stage.setScene(scene);
         stage.show();
     }

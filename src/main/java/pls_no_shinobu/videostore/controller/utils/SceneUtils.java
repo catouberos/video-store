@@ -11,7 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import pls_no_shinobu.videostore.HelloApplication;
+import pls_no_shinobu.videostore.VideoStoreApplication;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,10 +31,10 @@ public class SceneUtils {
      * @throws IOException in case that the fxml file doesn't exist
      */
     public static void switchScene(Stage stage, String fxmlFileName) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource(fxmlFileName));
-        Scene scene = new Scene(loader.load(), 1000, 700);
+        FXMLLoader loader = new FXMLLoader(VideoStoreApplication.class.getResource(fxmlFileName));
+        Scene scene = new Scene(loader.load(), 800, 600);
 
-        URL stylesheet = HelloApplication.class.getResource("css/main.css");
+        URL stylesheet = VideoStoreApplication.class.getResource("css/main.css");
 
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
 

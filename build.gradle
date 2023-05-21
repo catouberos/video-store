@@ -27,7 +27,7 @@ tasks.withType(JavaCompile) {
 
 application {
     mainModule = 'pls_no_shinobu.videostore'
-    mainClass = 'pls_no_shinobu.videostore.HelloApplication'
+    mainClass = 'pls_no_shinobu.videostore.VideoStoreApplication'
 }
 
 javafx {
