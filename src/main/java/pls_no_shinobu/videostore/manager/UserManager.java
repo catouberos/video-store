@@ -9,6 +9,7 @@ package pls_no_shinobu.videostore.manager;
 
 import pls_no_shinobu.videostore.errors.DuplicateException;
 import pls_no_shinobu.videostore.errors.ManagerLimitException;
+import pls_no_shinobu.videostore.errors.NotFoundException;
 import pls_no_shinobu.videostore.model.Entity;
 import pls_no_shinobu.videostore.model.User;
 
@@ -111,5 +112,19 @@ public class UserManager extends Manager<User> {
         }
 
         return null;
+    }
+
+    /**
+     * Method for getting a specific {@link User} from manager with username
+     *
+     * @param username an {@link User}'s username
+     * @author Do Khoa Nguyen
+     */
+    public User get(String username) throws NotFoundException {
+        for (User entity : getEntities()) {
+            if (entity.getUsername().equals(username)) return entity;
+        }
+
+        throw new NotFoundException("Entity not found");
     }
 }
