@@ -7,31 +7,48 @@
 */
 package pls_no_shinobu.videostore.core;
 
+import pls_no_shinobu.videostore.errors.IncorrectLoginInfo;
 import pls_no_shinobu.videostore.model.User;
 
-public class Session {
+import java.io.FileNotFoundException;
+
+public final class Session {
+    private static Session INSTANCE;
+
     User currentUser;
     boolean authenticated;
 
-    public Session(User user) {
-        currentUser = user;
+    public Session() {
+        currentUser = null;
         authenticated = false;
     }
 
-    public boolean login(String password) {
-        if (currentUser.checkPassword(password)) {
+    public static Session getInstance() throws NullPointerException, FileNotFoundException {
+        if (INSTANCE == null) {
+            INSTANCE = new Session();
+        }
+
+        return INSTANCE;
+    }
+
+    public boolean login(User user, String password) throws IncorrectLoginInfo {
+        if (currentUser == null && user.checkPassword(password)) {
+            currentUser = user;
             authenticated = true;
             return true;
         }
-        ;
 
-        // something went wrong
-        return false;
+        throw new IncorrectLoginInfo("Incorrect login info");
     }
 
     public boolean logout() {
+        currentUser = null;
         authenticated = false;
 
         return true;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
     }
 }
