@@ -51,6 +51,19 @@ public class ItemManager extends Manager<Item> {
     }
 
     /**
+     * Method to get an {@link Item} from manager by ID
+     *
+     * @author Do Khoa Nguyen
+     */
+    public Item getEntity(String id) {
+        for (Item item : getEntities()) {
+            if (item.getId().equals(id)) return item;
+        }
+
+        return null;
+    }
+
+    /**
      * Method to get {@link Item} from manager based on year
      *
      * @author Do Khoa Nguyen
