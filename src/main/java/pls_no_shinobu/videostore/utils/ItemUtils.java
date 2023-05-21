@@ -14,7 +14,7 @@ import pls_no_shinobu.videostore.model.Item;
  *
  * @author Do Khoa Nguyen
  */
-public class ItemUtils implements ObjectUtils<Item> {
+public class ItemUtils {
     /**
      * Method to parse an {@link Item} from CSV-like file. <br>
      * File format: {@code id,title,rentType,loanType,stock,rentalFee[,genre]}
