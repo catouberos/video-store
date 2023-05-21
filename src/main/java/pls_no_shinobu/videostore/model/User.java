@@ -278,7 +278,7 @@ public class User extends Entity {
      * @see PasswordUtils
      * @author Do Khoa Nguyen
      */
-    protected void setPassword(String password) throws IllegalArgumentException {
+    public void setPassword(String password) throws IllegalArgumentException {
         if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
 
         PasswordUtils p = new PasswordUtils();
@@ -293,7 +293,7 @@ public class User extends Entity {
      * @see PasswordUtils
      * @author Do Khoa Nguyen
      */
-    protected boolean checkPassword(String password) {
+    public boolean checkPassword(String password) {
         PasswordUtils p = new PasswordUtils();
 
         return p.check(password, this.password);
