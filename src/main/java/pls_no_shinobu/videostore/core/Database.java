@@ -11,7 +11,7 @@ import pls_no_shinobu.videostore.manager.ItemManager;
 import pls_no_shinobu.videostore.manager.TransactionManager;
 import pls_no_shinobu.videostore.manager.UserManager;
 
-import java.net.URL;
+import java.io.FileNotFoundException;
 
 /**
  * Database interface is used to implement CRUD operations onto any database that the application
@@ -20,17 +20,24 @@ import java.net.URL;
  * @author Do Khoa Nguyen
  */
 public interface Database {
-    // create
-    void setItems(URL file);
+    // create from persistent storage
+    void createItems() throws NullPointerException, FileNotFoundException;
 
-    void setUsers(URL file);
+    void createUsers() throws NullPointerException, FileNotFoundException;
 
-    void setInteractions(URL file);
+    void createTransactions() throws NullPointerException, FileNotFoundException;
 
-    // read
+    // get from creation
     ItemManager getItems();
 
     UserManager getUsers();
 
     TransactionManager getTransactions();
+
+    // update to persistent storage
+    void updateItems();
+
+    void updateUsers();
+
+    void updateTransactions();
 }
