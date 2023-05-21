@@ -138,7 +138,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setName(String name) throws IllegalArgumentException {
-        if (getName().contains(name)) throw new IllegalArgumentException("Name is unchanged");
+        if (getName() != null && getName().contains(name)) throw new IllegalArgumentException("Name is unchanged");
 
         this.name = name;
     }
@@ -159,7 +159,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setAddress(String address) throws IllegalArgumentException {
-        if (getAddress().contains(address))
+        if (getAddress() != null && getAddress().contains(address))
             throw new IllegalArgumentException("Address is unchanged");
 
         this.address = address;
@@ -181,7 +181,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setPhone(String phone) throws IllegalArgumentException {
-        if (getPhone().contains(phone))
+        if (getPhone() != null && getPhone().contains(phone))
             throw new IllegalArgumentException("Phone number is unchanged");
 
         this.phone = phone;
