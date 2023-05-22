@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UpdateItemController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.AddItemController">
    <children>
       <GridPane vgap="12.0">
          <columnConstraints>
@@ -30,7 +30,12 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="72.0" prefWidth="134.0" text="ID">
+            <Label prefHeight="72.0" prefWidth="134.0" text="Year">
+               <font>
+                  <Font name="Arial" size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="72.0" prefWidth="134.0" text="Title" GridPane.rowIndex="1">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
@@ -40,7 +45,7 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <Label prefHeight="72.0" prefWidth="134.0" text="Title" GridPane.rowIndex="1">
+            <Label prefHeight="72.0" prefWidth="134.0" text="Type" GridPane.rowIndex="3">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
@@ -55,17 +60,12 @@
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <Label prefHeight="72.0" prefWidth="134.0" text="Type" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial" size="15.0" />
-               </font>
-            </Label>
             <Label prefHeight="72.0" prefWidth="134.0" text="Fee" GridPane.rowIndex="6">
                <font>
                   <Font name="Arial" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="idField" disable="true" promptText="ID" GridPane.columnIndex="1" />
+            <TextField fx:id="yearField" promptText="Year" GridPane.columnIndex="1" />
             <TextField fx:id="titleField" promptText="Title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="feeField" promptText="Fee" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <ComboBox fx:id="typeComboBox" maxWidth="1.7976931348623157E308" promptText="Type" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -92,15 +92,9 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="6.0">
                <children>
                   <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="Delete">
-                     <styleClass>
-                        <String fx:value="button" />
-                        <String fx:value="error" />
-                     </styleClass>
-                  </Button>
                </children>
             </HBox>
-            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <Button fx:id="addButton" defaultButton="true" mnemonicParsing="false" onAction="#onAddButtonClick" text="Add" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <styleClass>
                   <String fx:value="button" />
                   <String fx:value="primary" />

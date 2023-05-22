@@ -10,13 +10,17 @@ package pls_no_shinobu.videostore.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
+import pls_no_shinobu.videostore.VideoStoreApplication;
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
 import pls_no_shinobu.videostore.core.CSVDatabase;
@@ -62,6 +66,70 @@ public class AdminDashboardController {
         TableColumn<User, String> phoneColumn = new TableColumn<>("Phone");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
+        TableColumn<User, String> actionColumn = new TableColumn<>("Action");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        Callback<TableColumn<User, String>, TableCell<User, String>> cellFactory =
+                new Callback<>() {
+                    @Override
+                    public TableCell call(final TableColumn<User, String> param) {
+                        final TableCell<User, String> cell =
+                                new TableCell<>() {
+
+                                    final Button btn = new Button("Edit");
+
+                                    @Override
+                                    public void updateItem(String item, boolean empty) {
+                                        super.updateItem(item, empty);
+                                        if (empty) {
+                                            setGraphic(null);
+                                            setText(null);
+                                        } else {
+                                            btn.setOnAction(
+                                                    event -> {
+                                                        User cUser =
+                                                                getTableView()
+                                                                        .getItems()
+                                                                        .get(getIndex());
+
+                                                        try {
+                                                            FXMLLoader loader =
+                                                                    new FXMLLoader(
+                                                                            VideoStoreApplication
+                                                                                    .class
+                                                                                    .getResource(
+                                                                                            "updateUser.fxml"));
+
+                                                            Scene scene = new Scene(loader.load());
+
+                                                            UpdateUserController controller =
+                                                                    loader.getController();
+                                                            controller.setUser(cUser);
+
+                                                            Stage stage = new Stage();
+                                                            stage.setTitle(
+                                                                    "Update "
+                                                                            + cUser.getUsername());
+                                                            stage.setScene(scene);
+                                                            stage.show();
+                                                        } catch (IOException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            e.getMessage());
+                                                            alert.showAndWait();
+                                                        }
+                                                    });
+                                            setGraphic(btn);
+                                            setText(null);
+                                        }
+                                    }
+                                };
+                        return cell;
+                    }
+                };
+
+        actionColumn.setCellFactory(cellFactory);
         ObservableList<User> data =
                 FXCollections.observableArrayList(database.getUsers().getEntities());
 
@@ -76,7 +144,8 @@ public class AdminDashboardController {
                         nameColumn,
                         roleColumn,
                         addressColumn,
-                        phoneColumn);
+                        phoneColumn,
+                        actionColumn);
     }
 
     private void initializeStockTable() throws IOException {
@@ -101,6 +170,70 @@ public class AdminDashboardController {
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
+        TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
+                new Callback<>() {
+                    @Override
+                    public TableCell call(final TableColumn<Item, String> param) {
+                        final TableCell<Item, String> cell =
+                                new TableCell<Item, String>() {
+
+                                    final Button btn = new Button("Edit");
+
+                                    @Override
+                                    public void updateItem(String item, boolean empty) {
+                                        super.updateItem(item, empty);
+                                        if (empty) {
+                                            setGraphic(null);
+                                            setText(null);
+                                        } else {
+                                            btn.setOnAction(
+                                                    event -> {
+                                                        Item cItem =
+                                                                getTableView()
+                                                                        .getItems()
+                                                                        .get(getIndex());
+
+                                                        try {
+                                                            FXMLLoader loader =
+                                                                    new FXMLLoader(
+                                                                            VideoStoreApplication
+                                                                                    .class
+                                                                                    .getResource(
+                                                                                            "updateItem.fxml"));
+
+                                                            Scene scene = new Scene(loader.load());
+
+                                                            UpdateItemController controller =
+                                                                    loader.getController();
+                                                            controller.setItem(cItem);
+
+                                                            Stage stage = new Stage();
+                                                            stage.setTitle(
+                                                                    "Update " + cItem.getTitle());
+                                                            stage.setScene(scene);
+                                                            stage.show();
+                                                        } catch (IOException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            e.getMessage());
+                                                            alert.showAndWait();
+                                                        }
+                                                    });
+                                            setGraphic(btn);
+                                            setText(null);
+                                        }
+                                    }
+                                };
+                        return cell;
+                    }
+                };
+
+        actionColumn.setCellFactory(cellFactory);
+
         ObservableList<Item> data =
                 FXCollections.observableArrayList(database.getItems().getEntities());
 
@@ -109,7 +242,14 @@ public class AdminDashboardController {
         // https://stackoverflow.com/a/3819038
         stockTable
                 .getColumns()
-                .addAll(titleColumn, typeColumn, loanColumn, stockColumn, feeColumn, genreColumn);
+                .setAll(
+                        titleColumn,
+                        typeColumn,
+                        loanColumn,
+                        stockColumn,
+                        feeColumn,
+                        genreColumn,
+                        actionColumn);
     }
 
     private void initializeRentalTable() throws IOException {
@@ -130,16 +270,32 @@ public class AdminDashboardController {
         rentalTable.setItems(data);
 
         // https://stackoverflow.com/a/3819038
-        rentalTable.getColumns().addAll(idColumn, nameColumn, rentalsColumn);
+        rentalTable.getColumns().setAll(idColumn, nameColumn, rentalsColumn);
     }
 
     @FXML
     public void initialize() throws IOException {
-        PaneUtils.setPane(stackPane, accountContainer);
-
         initializeAccountTable();
         initializeStockTable();
         initializeRentalTable();
+    }
+
+    @FXML
+    protected void onAddButtonClick() {
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(VideoStoreApplication.class.getResource("addItem.fxml"));
+
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = new Stage();
+            stage.setTitle("Add new item");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML

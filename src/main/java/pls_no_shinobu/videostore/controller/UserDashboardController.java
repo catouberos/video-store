@@ -102,6 +102,8 @@ public class UserDashboardController {
 
                                                             CSVDatabase.getInstance().updateUsers();
                                                             CSVDatabase.getInstance().updateItems();
+
+                                                            initialize();
                                                         } catch (IOException e) {
                                                             Alert alert =
                                                                     new Alert(
@@ -161,7 +163,7 @@ public class UserDashboardController {
         // https://stackoverflow.com/a/3819038
         itemTable
                 .getColumns()
-                .addAll(
+                .setAll(
                         titleColumn,
                         typeColumn,
                         loanColumn,
@@ -172,7 +174,6 @@ public class UserDashboardController {
     }
 
     private void initializeRentedTable() throws IOException {
-        CSVDatabase database = CSVDatabase.getInstance();
         Session session = Session.getInstance();
 
         // setting up itemTable
@@ -223,6 +224,8 @@ public class UserDashboardController {
 
                                                             CSVDatabase.getInstance().updateUsers();
                                                             CSVDatabase.getInstance().updateItems();
+
+                                                            initialize();
                                                         } catch (IOException e) {
                                                             Alert alert =
                                                                     new Alert(
@@ -278,13 +281,11 @@ public class UserDashboardController {
         // https://stackoverflow.com/a/3819038
         rentedTable
                 .getColumns()
-                .addAll(titleColumn, typeColumn, loanColumn, feeColumn, genreColumn);
+                .setAll(titleColumn, typeColumn, loanColumn, feeColumn, genreColumn, actionColumn);
     }
 
     @FXML
     public void initialize() throws IOException {
-        PaneUtils.setPane(stackPane, itemContainer);
-
         initializeItemTable();
         initializeRentedTable();
     }
