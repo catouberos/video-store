@@ -270,4 +270,15 @@ public class Item extends Entity {
     public int getYear() {
         return Integer.parseInt(getId().split("-")[1]);
     }
+
+    /**
+     * Method for printing an Item minimal information
+     *
+     * @author Do Khoa Nguyen
+     * @return a string formatted "ID - Title"
+     */
+    @Override
+    public String toString() {
+        return String.format("%s - %s", getId(), getTitle());
+    }
 }
