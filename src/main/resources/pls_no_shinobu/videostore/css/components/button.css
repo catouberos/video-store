@@ -9,3 +9,11 @@
 .button.primary:hover {
     -fx-background-color: -fx-primary-darker;
 }
+
+.button.error {
+    -fx-background-color: #ef4444;
+}
+
+.button.error:hover {
+    -fx-background-color: #dc2626;
+}

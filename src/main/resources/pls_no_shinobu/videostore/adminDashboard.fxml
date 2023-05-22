@@ -94,12 +94,12 @@
                   <HBox alignment="CENTER" spacing="12.0">
                      <children>
                         <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.5" scaleY="1.5" />
-                        <TextField fx:id="accountSearchField" minWidth="150.0" prefHeight="32.0" promptText="Search" styleClass="input" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="accountSearchField" minWidth="150.0" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
                         </TextField>
-                        <ComboBox fx:id="accountSortBox" prefHeight="32.0" prefWidth="80.0" promptText="Sort" HBox.hgrow="ALWAYS">
+                        <ComboBox fx:id="accountSortBox" disable="true" prefHeight="32.0" prefWidth="80.0" promptText="Sort" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -107,11 +107,6 @@
                         <Button fx:id="accountSearchButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="32.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
                            <graphic>
                               <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                           </graphic>
-                        </Button>
-                        <Button fx:id="accountAddButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="32.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                           <graphic>
-                              <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                            </graphic>
                         </Button>
                      </children>
@@ -131,7 +126,7 @@
                   <HBox alignment="CENTER" spacing="12.0">
                      <children>
                         <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.5" scaleY="1.5" />
-                        <TextField fx:id="itemSearchField" minWidth="150.0" prefHeight="32.0" promptText="Search" styleClass="input" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="itemSearchField" minWidth="150.0" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
@@ -146,7 +141,7 @@
                               <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                            </graphic>
                         </Button>
-                        <Button fx:id="itemAddButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="32.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
+                        <Button fx:id="itemAddButton" graphicTextGap="6.0" mnemonicParsing="false" onAction="#onAddButtonClick" prefHeight="32.0" text="Add" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
                            <graphic>
                               <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                            </graphic>
@@ -168,7 +163,7 @@
                   <HBox alignment="CENTER" spacing="12.0">
                      <children>
                         <SVGPath content="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" scaleX="1.5" scaleY="1.5" HBox.hgrow="ALWAYS" />
-                        <TextField fx:id="cusSearchField1" minWidth="150.0" prefHeight="32.0" promptText="Search" styleClass="input" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="cusSearchField1" minWidth="150.0" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
