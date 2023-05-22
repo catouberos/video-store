@@ -378,8 +378,27 @@ public class User extends Entity {
     }
 
     /**
+     * Method to remove a user rental - in case, "return the rental", and performs any standing
+     * checks on the user
+     *
+     * @author Do Khoa Nguyen
+     * @see #checkStanding()
+     */
+    public void removeRental(Item item) throws IllegalArgumentException {
+        if (!this.rentals.contains(item)) throw new IllegalArgumentException("Item not available");
+
+        item.increaseStock();
+        increateRentalCount();
+
+        // Check on user standing every successful transaction
+        checkStanding();
+
+        this.rentals.remove(item);
+    }
+
+    /**
      * Method to remove a user rental - in case, "return the rental", which will resolve the {@link
-     * Item} and performs any standing checks on the user
+     * Transaction} and performs any standing checks on the user
      *
      * @author Do Khoa Nguyen
      * @see #checkStanding()
