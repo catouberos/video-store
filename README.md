@@ -32,7 +32,7 @@ There are some provided users/items in `data/`, (some of) their credentials are 
 | username   | password | role    | notes                           |
 |------------|----------|---------|---------------------------------|
 | admin      | catou    | Admin   |                                 |
-| minh dinh  | catou    | VIP     |                                 |
+| minhdinh   | catou    | VIP     |                                 |
 | dylanc     | catou    | Regular | this user has one borrowed item |
 | abookworm  | catou    | Guest   |                                 |
 
