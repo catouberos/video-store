@@ -4,6 +4,8 @@ module pls_no_shinobu.videostore {
 
     opens pls_no_shinobu.videostore to
             javafx.fxml;
+    opens pls_no_shinobu.videostore.model to
+            javafx.base;
 
     exports pls_no_shinobu.videostore;
     exports pls_no_shinobu.videostore.controller;
