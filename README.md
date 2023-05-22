@@ -8,17 +8,34 @@
 
 ### Contribute
 This project was made with the [Gradle Build Tool](https://gradle.org/), which you can build with the follow command:
-```sh
+```shell
 ./gradlew build
 ```
 ...or on Windows with:
-```batch
+```
 gradlew.bat build
 ```
 
 When running `build`, Gradle will also runs `spotlessCheck`, which will run a check on the codebase for formatting. Therefore, you can also apply codebase format with:
-```sh
+```shell
 ./gradlew spotlessApply
 ```
 
+Then, the project is ready to be run with:
+```shell
+./gradlew run
+```
+
+### Details
+There are some provided users/items in `data/`, (some of) their credentials are as below:
+
+| username   | password | role    | notes                           |
+|------------|----------|---------|---------------------------------|
+| admin      | catou    | Admin   |                                 |
+| minh dinh  | catou    | VIP     |                                 |
+| dylanc     | catou    | Regular | this user has one borrowed item |
+| abookworm  | catou    | Guest   |                                 |
+
+
+### Notes
 Please follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification while commit.
