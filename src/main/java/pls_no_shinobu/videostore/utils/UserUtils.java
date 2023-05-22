@@ -11,6 +11,8 @@ import pls_no_shinobu.videostore.manager.ItemManager;
 import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.User;
 
+import java.util.ArrayList;
+
 /**
  * Utilities for parsing, and serialize {@link User} object into CSV-compatible file
  *
@@ -51,11 +53,15 @@ public class UserUtils {
 
             // then parse the rentals
             if (tokens.length > 8) {
+                ArrayList<Item> items = new ArrayList<>();
+
                 for (int i = 8; i <= tokens.length - 1; i++) {
                     Item item = itemManager.getEntity(tokens[i]);
 
-                    if (item != null) user.addRental(item);
+                    if (item != null) items.add(item);
                 }
+
+                user.setRentals(items);
             }
 
             // return the user
