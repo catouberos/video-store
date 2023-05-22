@@ -70,9 +70,9 @@ public class TestFileIOUtils {
 
         ArrayList<User> users = utils.parseUser(itemManager);
 
-        assertEquals("C005", users.get(4).getId());
-        assertEquals("Dylan Case", users.get(5).getName());
-        assertEquals("I006-2013", users.get(5).getRentals().get(0).getId());
+        assertEquals("C005", users.get(5).getId());
+        assertEquals("Dylan Case", users.get(6).getName());
+        assertEquals("I006-2013", users.get(6).getRentals().get(0).getId());
 
         // TODO: apply more asserts
     }

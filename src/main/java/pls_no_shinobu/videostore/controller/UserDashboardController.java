@@ -17,11 +17,14 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
 import pls_no_shinobu.videostore.core.CSVDatabase;
 import pls_no_shinobu.videostore.core.Session;
+import pls_no_shinobu.videostore.errors.OutOfStockException;
+import pls_no_shinobu.videostore.errors.RentLimitException;
 import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.User;
 
@@ -39,13 +42,11 @@ public class UserDashboardController {
     @FXML private TextField addressField;
 
     @FXML private VBox itemContainer;
-    @FXML private VBox cartContainer;
     @FXML private GridPane profileContainer;
     @FXML private VBox rentedContainer;
 
     @FXML private TableView<Item> itemTable;
     @FXML private TableView<Item> rentedTable;
-    @FXML private TableView<Item> cartTable;
 
     private void initializeItemTable() throws IOException {
         CSVDatabase database = CSVDatabase.getInstance();
@@ -69,6 +70,89 @@ public class UserDashboardController {
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
 
+        TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
+                new Callback<>() {
+                    @Override
+                    public TableCell call(final TableColumn<Item, String> param) {
+                        final TableCell<Item, String> cell =
+                                new TableCell<Item, String>() {
+
+                                    final Button btn = new Button("Rent");
+
+                                    @Override
+                                    public void updateItem(String item, boolean empty) {
+                                        super.updateItem(item, empty);
+                                        if (empty) {
+                                            setGraphic(null);
+                                            setText(null);
+                                        } else {
+                                            btn.setOnAction(
+                                                    event -> {
+                                                        Item cItem =
+                                                                getTableView()
+                                                                        .getItems()
+                                                                        .get(getIndex());
+                                                        try {
+                                                            Session.getInstance()
+                                                                    .getCurrentUser()
+                                                                    .addRental(cItem);
+
+                                                            CSVDatabase.getInstance().updateUsers();
+                                                            CSVDatabase.getInstance().updateItems();
+                                                        } catch (IOException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Session not available."
+                                                                                    + " Details: "
+                                                                                    + e
+                                                                                            .getMessage());
+                                                            alert.showAndWait();
+                                                        } catch (OutOfStockException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Item is out of"
+                                                                                    + " stock.");
+                                                            alert.showAndWait();
+                                                        } catch (RentLimitException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Exceeded rent limit.");
+                                                            alert.showAndWait();
+                                                        } catch (Exception e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Something went wrong."
+                                                                                    + " Details: "
+                                                                                    + e
+                                                                                            .getMessage());
+                                                            alert.showAndWait();
+                                                        } finally {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType
+                                                                                    .INFORMATION,
+                                                                            "Rent successful.");
+                                                            alert.showAndWait();
+                                                        }
+                                                    });
+                                            setGraphic(btn);
+                                            setText(null);
+                                        }
+                                    }
+                                };
+                        return cell;
+                    }
+                };
+
+        actionColumn.setCellFactory(cellFactory);
+
         ObservableList<Item> data =
                 FXCollections.observableArrayList(database.getItems().getEntities());
 
@@ -77,7 +161,14 @@ public class UserDashboardController {
         // https://stackoverflow.com/a/3819038
         itemTable
                 .getColumns()
-                .addAll(titleColumn, typeColumn, loanColumn, stockColumn, feeColumn, genreColumn);
+                .addAll(
+                        titleColumn,
+                        typeColumn,
+                        loanColumn,
+                        stockColumn,
+                        feeColumn,
+                        genreColumn,
+                        actionColumn);
     }
 
     private void initializeRentedTable() throws IOException {
@@ -99,6 +190,85 @@ public class UserDashboardController {
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+
+        TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
+        actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
+
+        Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
+                new Callback<>() {
+                    @Override
+                    public TableCell call(final TableColumn<Item, String> param) {
+                        final TableCell<Item, String> cell =
+                                new TableCell<Item, String>() {
+
+                                    final Button btn = new Button("Return");
+
+                                    @Override
+                                    public void updateItem(String item, boolean empty) {
+                                        super.updateItem(item, empty);
+                                        if (empty) {
+                                            setGraphic(null);
+                                            setText(null);
+                                        } else {
+                                            btn.setOnAction(
+                                                    event -> {
+                                                        Item cItem =
+                                                                getTableView()
+                                                                        .getItems()
+                                                                        .get(getIndex());
+                                                        try {
+                                                            Session.getInstance()
+                                                                    .getCurrentUser()
+                                                                    .removeRental(cItem);
+
+                                                            CSVDatabase.getInstance().updateUsers();
+                                                            CSVDatabase.getInstance().updateItems();
+                                                        } catch (IOException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Session not available."
+                                                                                    + " Details: "
+                                                                                    + e
+                                                                                            .getMessage());
+                                                            alert.showAndWait();
+                                                        } catch (IllegalArgumentException e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Rental not found."
+                                                                                    + " Details: "
+                                                                                    + e
+                                                                                            .getMessage());
+                                                            alert.showAndWait();
+                                                        } catch (Exception e) {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType.ERROR,
+                                                                            "Something went wrong."
+                                                                                    + " Details: "
+                                                                                    + e
+                                                                                            .getMessage());
+                                                            alert.showAndWait();
+                                                        } finally {
+                                                            Alert alert =
+                                                                    new Alert(
+                                                                            Alert.AlertType
+                                                                                    .INFORMATION,
+                                                                            "Rent successful.");
+                                                            alert.showAndWait();
+                                                        }
+                                                    });
+                                            setGraphic(btn);
+                                            setText(null);
+                                        }
+                                    }
+                                };
+                        return cell;
+                    }
+                };
+
+        actionColumn.setCellFactory(cellFactory);
 
         ObservableList<Item> data =
                 FXCollections.observableArrayList(session.getCurrentUser().getRentals());
@@ -141,12 +311,6 @@ public class UserDashboardController {
 
         titleText.setText("Profile");
         PaneUtils.setPane(stackPane, profileContainer);
-    }
-
-    @FXML
-    protected void onCartButtonClick() {
-        titleText.setText("Cart");
-        PaneUtils.setPane(stackPane, cartContainer);
     }
 
     @FXML
