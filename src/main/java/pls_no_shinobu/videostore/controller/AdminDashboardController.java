@@ -263,9 +263,7 @@ public class AdminDashboardController {
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
 
-        ObservableList<User> rentals =
-                FXCollections.observableArrayList(database.getUsers().getEntities());
-        filteredRentals = new FilteredList<>(rentals);
+        filteredRentals = new FilteredList<>(FXCollections.observableArrayList(database.getUsers().getEntities()));
 
         rentalTable.setItems(filteredRentals);
 
