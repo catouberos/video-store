@@ -29,7 +29,7 @@ public class VideoStoreApplication extends Application {
 
         FXMLLoader fxmlLoader =
                 new FXMLLoader(VideoStoreApplication.class.getResource("signin.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
 
         URL stylesheet = VideoStoreApplication.class.getResource("css/main.css");
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
