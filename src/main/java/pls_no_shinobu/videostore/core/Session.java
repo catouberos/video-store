@@ -35,6 +35,8 @@ public final class Session {
         if (currentUser == null && user.checkPassword(password)) {
             currentUser = user;
             authenticated = true;
+
+            return;
         }
 
         throw new IncorrectLoginInfo("Incorrect login info");
