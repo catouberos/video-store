@@ -258,8 +258,8 @@ public class User extends Entity {
     public void setUsername(String username) throws IllegalArgumentException {
         if (username.isBlank()) throw new IllegalArgumentException("Username cannot be empty");
 
-        if (username.contains(" "))
-            throw new IllegalArgumentException("Username cannot contain spaces");
+        if (!username.matches("^[a-zA-Z0-9]*$"))
+            throw new IllegalArgumentException("Username cannot special character");
 
         this.username = username;
     }
@@ -281,7 +281,7 @@ public class User extends Entity {
      * @author Do Khoa Nguyen
      */
     public void setPassword(String password) throws IllegalArgumentException {
-        if (password.isEmpty()) throw new IllegalArgumentException("Password cannot be empty");
+        if (password.isBlank()) throw new IllegalArgumentException("Password cannot be empty");
 
         this.password = password;
     }
