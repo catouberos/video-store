@@ -34,7 +34,7 @@ public class VideoStoreApplication extends Application {
         URL stylesheet = VideoStoreApplication.class.getResource("css/main.css");
         if (stylesheet != null) scene.getStylesheets().add(stylesheet.toExternalForm());
 
-        stage.setTitle("Shinobu Video Store");
+        stage.setTitle("Shinobu Store");
         stage.setMinWidth(600);
         stage.setMinHeight(400);
         stage.setScene(scene);
