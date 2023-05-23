@@ -18,7 +18,7 @@
 
 <VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.SignUpController">
     <children>
-      <ImageView fitHeight="132.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/shinobu.png" />
          </image>
