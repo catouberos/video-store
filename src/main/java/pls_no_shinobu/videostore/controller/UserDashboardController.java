@@ -29,6 +29,7 @@ import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.User;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Optional;
 
 public class UserDashboardController {
@@ -324,9 +325,17 @@ public class UserDashboardController {
         User currentUser = session.getCurrentUser();
 
         try {
-            currentUser.setName(nameField.getText());
-            currentUser.setPhone(phoneField.getText());
-            currentUser.setAddress(addressField.getText());
+            if (!Objects.equals(session.getCurrentUser().getName(), nameField.getText())) {
+                currentUser.setName(nameField.getText());
+            }
+
+            if (!Objects.equals(session.getCurrentUser().getPhone(), phoneField.getText())) {
+                currentUser.setPhone(phoneField.getText());
+            }
+
+            if (!Objects.equals(session.getCurrentUser().getAddress(), addressField.getText())) {
+                currentUser.setAddress(addressField.getText());
+            }
 
             CSVDatabase.getInstance().updateUsers();
         } catch (IllegalArgumentException e) {

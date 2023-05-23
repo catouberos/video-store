@@ -13,6 +13,7 @@ import pls_no_shinobu.videostore.manager.TransactionManager;
 import pls_no_shinobu.videostore.utils.PasswordUtils;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Class for building a user object, that will include basic informations, auth informations and
@@ -140,7 +141,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setName(String name) throws IllegalArgumentException {
-        if (getName() != null && getName().contains(name))
+        if (getName() != null && Objects.equals(getName(), name))
             throw new IllegalArgumentException("Name is unchanged");
 
         this.name = name;
@@ -162,7 +163,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setAddress(String address) throws IllegalArgumentException {
-        if (getAddress() != null && getAddress().contains(address))
+        if (getAddress() != null && Objects.equals(getAddress(), address))
             throw new IllegalArgumentException("Address is unchanged");
 
         this.address = address;
@@ -184,7 +185,7 @@ public class User extends Entity {
      * @author Tran The Quang Minh
      */
     public void setPhone(String phone) throws IllegalArgumentException {
-        if (getPhone() != null && getPhone().contains(phone))
+        if (getPhone() != null && Objects.equals(getPhone(), phone))
             throw new IllegalArgumentException("Phone number is unchanged");
 
         this.phone = phone;
