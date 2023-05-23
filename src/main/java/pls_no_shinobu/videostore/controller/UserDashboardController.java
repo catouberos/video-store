@@ -47,6 +47,7 @@ public class UserDashboardController {
     @FXML private StackPane stackPane;
 
     @FXML private Text titleText;
+    @FXML private Text usernameText;
 
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
@@ -302,6 +303,8 @@ public class UserDashboardController {
 
     @FXML
     public void initialize() throws IOException {
+        usernameText.setText(Session.getInstance().getCurrentUser().getUsername());
+
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
 
