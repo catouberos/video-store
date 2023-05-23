@@ -8,7 +8,6 @@
 package pls_no_shinobu.videostore.controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -263,7 +262,9 @@ public class AdminDashboardController {
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
 
-        filteredRentals = new FilteredList<>(FXCollections.observableArrayList(database.getUsers().getEntities()));
+        filteredRentals =
+                new FilteredList<>(
+                        FXCollections.observableArrayList(database.getUsers().getEntities()));
 
         rentalTable.setItems(filteredRentals);
 

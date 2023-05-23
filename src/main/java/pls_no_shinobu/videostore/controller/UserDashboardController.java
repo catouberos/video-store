@@ -402,9 +402,11 @@ public class UserDashboardController {
         try {
             if (currentUser.getName() == null || !currentUser.getName().equals(nameField.getText()))
                 currentUser.setName(nameField.getText());
-            if (currentUser.getPhone() == null || !currentUser.getPhone().equals(phoneField.getText()))
+            if (currentUser.getPhone() == null
+                    || !currentUser.getPhone().equals(phoneField.getText()))
                 currentUser.setPhone(phoneField.getText());
-            if (currentUser.getAddress() == null || !currentUser.getAddress().equals(addressField.getText()))
+            if (currentUser.getAddress() == null
+                    || !currentUser.getAddress().equals(addressField.getText()))
                 currentUser.setAddress(addressField.getText());
 
             CSVDatabase.getInstance().updateUsers();
