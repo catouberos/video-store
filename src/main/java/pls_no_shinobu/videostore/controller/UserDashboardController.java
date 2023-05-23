@@ -9,7 +9,6 @@ package pls_no_shinobu.videostore.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +26,6 @@ import pls_no_shinobu.videostore.VideoStoreApplication;
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
 import pls_no_shinobu.videostore.core.CSVDatabase;
-import pls_no_shinobu.videostore.core.Database;
 import pls_no_shinobu.videostore.core.Session;
 import pls_no_shinobu.videostore.errors.OutOfStockException;
 import pls_no_shinobu.videostore.errors.RentLimitException;
@@ -167,7 +165,11 @@ public class UserDashboardController {
             int randomNumber = rand.nextInt(items.getEntities().size());
             randomItem = items.getEntities().get(randomNumber);
 
-            InputStream imageStream = VideoStoreApplication.class.getResourceAsStream(String.format("img/%s.jpg", randomItem.getRentalType().toString().toLowerCase()));
+            InputStream imageStream =
+                    VideoStoreApplication.class.getResourceAsStream(
+                            String.format(
+                                    "img/%s.jpg",
+                                    randomItem.getRentalType().toString().toLowerCase()));
 
             if (imageStream != null) randomTitleImage.setImage(new Image(imageStream));
             randomTitleText.setText(randomItem.getTitle());
@@ -325,10 +327,9 @@ public class UserDashboardController {
         usernameText.setText(String.format("%s (%s)", user.getUsername(), user.getRole()));
 
         rentalCountText.setText(
-            user.getRentals().size() != 1 ?
-            String.format("%d items", user.getRentals().size()) :
-                String.format("%d item", user.getRentals().size())
-        );
+                user.getRentals().size() != 1
+                        ? String.format("%d items", user.getRentals().size())
+                        : String.format("%d item", user.getRentals().size()));
 
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
@@ -376,9 +377,12 @@ public class UserDashboardController {
         User currentUser = session.getCurrentUser();
 
         try {
-            if (!currentUser.getName().equals(nameField.getText())) currentUser.setName(nameField.getText());
-            if (!currentUser.getPhone().equals(phoneField.getText())) currentUser.setPhone(phoneField.getText());
-            if (!currentUser.getAddress().equals(addressField.getText())) currentUser.setAddress(addressField.getText());
+            if (!currentUser.getName().equals(nameField.getText()))
+                currentUser.setName(nameField.getText());
+            if (!currentUser.getPhone().equals(phoneField.getText()))
+                currentUser.setPhone(phoneField.getText());
+            if (!currentUser.getAddress().equals(addressField.getText()))
+                currentUser.setAddress(addressField.getText());
 
             CSVDatabase.getInstance().updateUsers();
 
