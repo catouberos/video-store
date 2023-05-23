@@ -8,7 +8,6 @@
 package pls_no_shinobu.videostore.controller;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -38,8 +37,6 @@ public class UserDashboardController {
         ID
     }
 
-    private ObservableList<Item> items;
-    private ObservableList<Item> rentals;
     private FilteredList<Item> filteredItems;
     private FilteredList<Item> filteredRentals;
 
@@ -65,7 +62,88 @@ public class UserDashboardController {
     @FXML private ComboBox<SearchBy> itemSearchByBox;
     @FXML private ComboBox<SearchBy> rentalsSearchByBox;
 
+    private void rentAnItem(Item item) {
+        try {
+            Alert confirmation =
+                    new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            String.format("Rent %s?", item.getTitle()));
+
+            Optional<ButtonType> result = confirmation.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Session.getInstance().getCurrentUser().addRental(item);
+
+                CSVDatabase.getInstance().updateUsers();
+                CSVDatabase.getInstance().updateItems();
+
+                initialize();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Return rental successfully.");
+                alert.showAndWait();
+            }
+        } catch (IOException e) {
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Session not available." + " Details: " + e.getMessage());
+            alert.showAndWait();
+        } catch (OutOfStockException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Item is out of" + " stock.");
+            alert.showAndWait();
+        } catch (RentLimitException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Exceeded rent limit.");
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Something went wrong." + " Details: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    private void returnAnItem(Item item) {
+        try {
+            Alert confirmation =
+                    new Alert(
+                            Alert.AlertType.CONFIRMATION,
+                            String.format("Return %s?", item.getTitle()));
+
+            Optional<ButtonType> result = confirmation.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                Session.getInstance().getCurrentUser().removeRental(item);
+
+                CSVDatabase.getInstance().updateUsers();
+                CSVDatabase.getInstance().updateItems();
+
+                initialize();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Return rental successfully.");
+                alert.showAndWait();
+            }
+        } catch (IOException e) {
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Session not available." + " Details: " + e.getMessage());
+            alert.showAndWait();
+        } catch (IllegalArgumentException e) {
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Rental not found." + " Details: " + e.getMessage());
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert alert =
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Something went wrong." + " Details: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
     private void initializeItemTable() throws IOException {
+
         CSVDatabase database = CSVDatabase.getInstance();
 
         // setting up itemTable
@@ -93,87 +171,37 @@ public class UserDashboardController {
         Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
                 new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<Item, String> param) {
-                        final TableCell<Item, String> cell =
-                                new TableCell<Item, String>() {
+                    public TableCell<Item, String> call(final TableColumn<Item, String> param) {
+                        return new TableCell<>() {
 
-                                    final Button btn = new Button("Rent");
+                            final Button btn = new Button("Rent");
 
-                                    @Override
-                                    public void updateItem(String item, boolean empty) {
-                                        super.updateItem(item, empty);
-                                        if (empty) {
-                                            setGraphic(null);
-                                            setText(null);
-                                        } else {
-                                            btn.setOnAction(
-                                                    event -> {
-                                                        Item cItem =
-                                                                getTableView()
-                                                                        .getItems()
-                                                                        .get(getIndex());
-                                                        try {
-                                                            Session.getInstance()
-                                                                    .getCurrentUser()
-                                                                    .addRental(cItem);
-
-                                                            CSVDatabase.getInstance().updateUsers();
-                                                            CSVDatabase.getInstance().updateItems();
-
-                                                            initialize();
-                                                        } catch (IOException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Session not available."
-                                                                                    + " Details: "
-                                                                                    + e
-                                                                                            .getMessage());
-                                                            alert.showAndWait();
-                                                        } catch (OutOfStockException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Item is out of"
-                                                                                    + " stock.");
-                                                            alert.showAndWait();
-                                                        } catch (RentLimitException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Exceeded rent limit.");
-                                                            alert.showAndWait();
-                                                        } catch (Exception e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Something went wrong."
-                                                                                    + " Details: "
-                                                                                    + e
-                                                                                            .getMessage());
-                                                            alert.showAndWait();
-                                                        } finally {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType
-                                                                                    .INFORMATION,
-                                                                            "Rent successful.");
-                                                            alert.showAndWait();
-                                                        }
-                                                    });
-                                            setGraphic(btn);
-                                            setText(null);
-                                        }
-                                    }
-                                };
-                        return cell;
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(
+                                            event ->
+                                                    rentAnItem(
+                                                            getTableView()
+                                                                    .getItems()
+                                                                    .get(getIndex())));
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
                     }
                 };
 
         actionColumn.setCellFactory(cellFactory);
 
-        items = FXCollections.observableArrayList(database.getItems().getEntities());
-        filteredItems = new FilteredList<>(items);
+        filteredItems =
+                new FilteredList<>(
+                        FXCollections.observableArrayList(database.getItems().getEntities()));
 
         itemTable.setItems(filteredItems);
 
@@ -215,83 +243,37 @@ public class UserDashboardController {
         Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
                 new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<Item, String> param) {
-                        final TableCell<Item, String> cell =
-                                new TableCell<Item, String>() {
+                    public TableCell<Item, String> call(final TableColumn<Item, String> param) {
+                        return new TableCell<>() {
 
-                                    final Button btn = new Button("Return");
+                            final Button btn = new Button("Return");
 
-                                    @Override
-                                    public void updateItem(String item, boolean empty) {
-                                        super.updateItem(item, empty);
-                                        if (empty) {
-                                            setGraphic(null);
-                                            setText(null);
-                                        } else {
-                                            btn.setOnAction(
-                                                    event -> {
-                                                        Item cItem =
-                                                                getTableView()
-                                                                        .getItems()
-                                                                        .get(getIndex());
-                                                        try {
-                                                            Session.getInstance()
-                                                                    .getCurrentUser()
-                                                                    .removeRental(cItem);
-
-                                                            CSVDatabase.getInstance().updateUsers();
-                                                            CSVDatabase.getInstance().updateItems();
-
-                                                            initialize();
-                                                        } catch (IOException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Session not available."
-                                                                                    + " Details: "
-                                                                                    + e
-                                                                                            .getMessage());
-                                                            alert.showAndWait();
-                                                        } catch (IllegalArgumentException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Rental not found."
-                                                                                    + " Details: "
-                                                                                    + e
-                                                                                            .getMessage());
-                                                            alert.showAndWait();
-                                                        } catch (Exception e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            "Something went wrong."
-                                                                                    + " Details: "
-                                                                                    + e
-                                                                                            .getMessage());
-                                                            alert.showAndWait();
-                                                        } finally {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType
-                                                                                    .INFORMATION,
-                                                                            "Rent successful.");
-                                                            alert.showAndWait();
-                                                        }
-                                                    });
-                                            setGraphic(btn);
-                                            setText(null);
-                                        }
-                                    }
-                                };
-                        return cell;
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(
+                                            event ->
+                                                    returnAnItem(
+                                                            getTableView()
+                                                                    .getItems()
+                                                                    .get(getIndex())));
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
                     }
                 };
 
         actionColumn.setCellFactory(cellFactory);
 
-        rentals = FXCollections.observableArrayList(session.getCurrentUser().getRentals());
-        filteredRentals = new FilteredList<>(rentals);
+        filteredRentals =
+                new FilteredList<>(
+                        FXCollections.observableArrayList(session.getCurrentUser().getRentals()));
 
         rentedTable.setItems(filteredRentals);
 

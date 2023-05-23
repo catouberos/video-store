@@ -38,9 +38,6 @@ public class AdminDashboardController {
         ID
     }
 
-    private ObservableList<User> users;
-    private ObservableList<Item> stocks;
-    private ObservableList<User> rentals;
     private FilteredList<User> filteredUsers;
     private FilteredList<Item> filteredStocks;
     private FilteredList<User> filteredRentals;
@@ -64,6 +61,46 @@ public class AdminDashboardController {
     @FXML private TableView<User> accountTable;
     @FXML private TableView<Item> stockTable;
     @FXML private TableView<User> rentalTable;
+
+    private void editUser(User user) {
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(VideoStoreApplication.class.getResource("updateUser.fxml"));
+
+            Scene scene = new Scene(loader.load());
+
+            UpdateUserController controller = loader.getController();
+            controller.setUser(user);
+
+            Stage stage = new Stage();
+            stage.setTitle("Update " + user.getUsername());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    private void editItem(Item item) {
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(VideoStoreApplication.class.getResource("updateItem.fxml"));
+
+            Scene scene = new Scene(loader.load());
+
+            UpdateItemController controller = loader.getController();
+            controller.setItem(item);
+
+            Stage stage = new Stage();
+            stage.setTitle("Update " + item.getTitle());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+    }
 
     private void initializeAccountTable() throws IOException {
         CSVDatabase database = CSVDatabase.getInstance();
@@ -92,66 +129,37 @@ public class AdminDashboardController {
         Callback<TableColumn<User, String>, TableCell<User, String>> cellFactory =
                 new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<User, String> param) {
-                        final TableCell<User, String> cell =
-                                new TableCell<>() {
+                    public TableCell<User, String> call(final TableColumn<User, String> param) {
+                        return new TableCell<>() {
 
-                                    final Button btn = new Button("Edit");
+                            final Button btn = new Button("Edit");
 
-                                    @Override
-                                    public void updateItem(String item, boolean empty) {
-                                        super.updateItem(item, empty);
-                                        if (empty) {
-                                            setGraphic(null);
-                                            setText(null);
-                                        } else {
-                                            btn.setOnAction(
-                                                    event -> {
-                                                        User cUser =
-                                                                getTableView()
-                                                                        .getItems()
-                                                                        .get(getIndex());
-
-                                                        try {
-                                                            FXMLLoader loader =
-                                                                    new FXMLLoader(
-                                                                            VideoStoreApplication
-                                                                                    .class
-                                                                                    .getResource(
-                                                                                            "updateUser.fxml"));
-
-                                                            Scene scene = new Scene(loader.load());
-
-                                                            UpdateUserController controller =
-                                                                    loader.getController();
-                                                            controller.setUser(cUser);
-
-                                                            Stage stage = new Stage();
-                                                            stage.setTitle(
-                                                                    "Update "
-                                                                            + cUser.getUsername());
-                                                            stage.setScene(scene);
-                                                            stage.show();
-                                                        } catch (IOException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            e.getMessage());
-                                                            alert.showAndWait();
-                                                        }
-                                                    });
-                                            setGraphic(btn);
-                                            setText(null);
-                                        }
-                                    }
-                                };
-                        return cell;
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(
+                                            event ->
+                                                    editUser(
+                                                            getTableView()
+                                                                    .getItems()
+                                                                    .get(getIndex())));
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
                     }
                 };
 
         actionColumn.setCellFactory(cellFactory);
-        users = FXCollections.observableArrayList(database.getUsers().getEntities());
-        filteredUsers = new FilteredList<>(users);
+
+        filteredUsers =
+                new FilteredList<>(
+                        FXCollections.observableArrayList(database.getUsers().getEntities()));
 
         accountTable.setItems(filteredUsers);
 
@@ -196,66 +204,37 @@ public class AdminDashboardController {
         Callback<TableColumn<Item, String>, TableCell<Item, String>> cellFactory =
                 new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<Item, String> param) {
-                        final TableCell<Item, String> cell =
-                                new TableCell<Item, String>() {
+                    public TableCell<Item, String> call(final TableColumn<Item, String> param) {
+                        return new TableCell<>() {
 
-                                    final Button btn = new Button("Edit");
+                            final Button btn = new Button("Edit");
 
-                                    @Override
-                                    public void updateItem(String item, boolean empty) {
-                                        super.updateItem(item, empty);
-                                        if (empty) {
-                                            setGraphic(null);
-                                            setText(null);
-                                        } else {
-                                            btn.setOnAction(
-                                                    event -> {
-                                                        Item cItem =
-                                                                getTableView()
-                                                                        .getItems()
-                                                                        .get(getIndex());
-
-                                                        try {
-                                                            FXMLLoader loader =
-                                                                    new FXMLLoader(
-                                                                            VideoStoreApplication
-                                                                                    .class
-                                                                                    .getResource(
-                                                                                            "updateItem.fxml"));
-
-                                                            Scene scene = new Scene(loader.load());
-
-                                                            UpdateItemController controller =
-                                                                    loader.getController();
-                                                            controller.setItem(cItem);
-
-                                                            Stage stage = new Stage();
-                                                            stage.setTitle(
-                                                                    "Update " + cItem.getTitle());
-                                                            stage.setScene(scene);
-                                                            stage.show();
-                                                        } catch (IOException e) {
-                                                            Alert alert =
-                                                                    new Alert(
-                                                                            Alert.AlertType.ERROR,
-                                                                            e.getMessage());
-                                                            alert.showAndWait();
-                                                        }
-                                                    });
-                                            setGraphic(btn);
-                                            setText(null);
-                                        }
-                                    }
-                                };
-                        return cell;
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    btn.setOnAction(
+                                            event ->
+                                                    editItem(
+                                                            getTableView()
+                                                                    .getItems()
+                                                                    .get(getIndex())));
+                                    setGraphic(btn);
+                                    setText(null);
+                                }
+                            }
+                        };
                     }
                 };
 
         actionColumn.setCellFactory(cellFactory);
 
-        stocks = FXCollections.observableArrayList(database.getItems().getEntities());
-        filteredStocks = new FilteredList<>(stocks);
+        filteredStocks =
+                new FilteredList<>(
+                        FXCollections.observableArrayList(database.getItems().getEntities()));
 
         stockTable.setItems(filteredStocks);
 
@@ -284,7 +263,8 @@ public class AdminDashboardController {
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
 
-        rentals = FXCollections.observableArrayList(database.getUsers().getEntities());
+        ObservableList<User> rentals =
+                FXCollections.observableArrayList(database.getUsers().getEntities());
         filteredRentals = new FilteredList<>(rentals);
 
         rentalTable.setItems(filteredRentals);
