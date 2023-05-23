@@ -38,7 +38,15 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="AllItem" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onAllItemButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Items" textFill="#fafafa">
+            <Button fx:id="homeButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Home" textFill="#fafafa">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+               <graphic>
+                  <SVGPath content="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z" fill="#fafafa" />
+               </graphic>
+            </Button>
+            <Button fx:id="itemsButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onAllItemButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Items" textFill="#fafafa">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -46,7 +54,7 @@
                   <SVGPath content="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1z" fill="#fafafa" />
                </graphic>
             </Button>
-            <Button fx:id="RentedItem" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onRentedItemButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Rentals" textFill="#fafafa">
+            <Button fx:id="rentalsButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onRentedItemButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Rentals" textFill="#fafafa">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -54,42 +62,79 @@
                       <SVGPath content="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z" fill="#fafafa" />
                </graphic>
             </Button>
-            <Button fx:id="profile1" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Profile" textFill="#fafafa">
-               <font>
-                  <Font name="Arial Bold" size="18.0" />
-               </font>
-               <graphic>
-                  <SVGPath content="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" fill="#ceccce" />
-               </graphic>
-            </Button>
           </VBox>
-         <Button fx:id="logoutButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Log out" textFill="#fafafa" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <font>
-               <Font name="Arial Bold" size="18.0" />
-            </font>
-            <graphic>
-               <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#fafafa" />
-            </graphic>
-         </Button>
+         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+               <Button fx:id="profileButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onProfileButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Profile" textFill="#fafafa">
+                  <font>
+                     <Font name="Arial Bold" size="18.0" />
+                  </font>
+                  <graphic>
+                     <SVGPath content="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" fill="#fafafa" />
+                  </graphic>
+               </Button>
+               <Button fx:id="logoutButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" onAction="#onLogoutButtonClick" prefHeight="40.0" styleClass="sidebar--button" text="Log out" textFill="#fafafa">
+                  <font>
+                     <Font name="Arial Bold" size="18.0" />
+                  </font>
+                  <graphic>
+                     <SVGPath content="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0v-2z M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" fill="#fafafa" />
+                  </graphic>
+               </Button>
+            </children>
+         </VBox>
       </children>
    </AnchorPane>
    <AnchorPane prefHeight="100.0" styleClass="header--container" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-         <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header--title" text="All items" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0">
+         <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header--title" text="Welcome" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0">
             <font>
                <Font name="System Bold" size="24.0" />
             </font>
          </Text>
-         <HBox AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
+         <HBox alignment="CENTER_LEFT" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
             <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome, " textAlignment="RIGHT" />
-               <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" />
+               <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font></Text>
             </children>
          </HBox>
       </children>
    </AnchorPane>
    <StackPane fx:id="stackPane" minWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <children>
+         <VBox fx:id="homeContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Feeling lucky? An item you might be interested in...">
+                  <font>
+                     <Font size="16.0" />
+                  </font>
+               </Text>
+               <VBox alignment="CENTER" spacing="12.0">
+                  <children>
+                     <ImageView fx:id="randomTitleImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     <Text fx:id="randomTitleText" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" />
+                     <HBox fx:id="randomContainer" alignment="CENTER" spacing="12.0">
+                        <children>
+                           <Button mnemonicParsing="false" onAction="#onRentAction" text="Rent" />
+                           <Button fx:id="refreshRandomButton" mnemonicParsing="false" onAction="#onRefreshRandomAction" text="Another one" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+               <HBox alignment="CENTER_LEFT">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently renting " />
+                     <Text fx:id="rentalCountText" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                     </Text>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
          <VBox fx:id="rentedContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0" visible="false">
             <children>
                <HBox alignment="CENTER" spacing="12.0">
@@ -133,7 +178,7 @@
                <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSaveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             </children>
          </GridPane>
-         <VBox fx:id="itemContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0">
+         <VBox fx:id="itemContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0" visible="false">
             <children>
                <HBox alignment="CENTER" spacing="12.0">
                   <children>
