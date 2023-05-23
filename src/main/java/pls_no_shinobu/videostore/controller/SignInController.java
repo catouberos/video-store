@@ -68,10 +68,10 @@ public class SignInController {
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert =
-                new Alert(
-                    Alert.AlertType.ERROR,
-                    "Something went wrong with the application. See stacktrace for more"
-                        + " info.");
+                    new Alert(
+                            Alert.AlertType.ERROR,
+                            "Something went wrong with the application. See stacktrace for more"
+                                    + " info.");
             alert.showAndWait();
         }
     }
