@@ -12,24 +12,31 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import pls_no_shinobu.videostore.VideoStoreApplication;
 import pls_no_shinobu.videostore.controller.utils.PaneUtils;
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
 import pls_no_shinobu.videostore.core.CSVDatabase;
 import pls_no_shinobu.videostore.core.Session;
 import pls_no_shinobu.videostore.errors.OutOfStockException;
 import pls_no_shinobu.videostore.errors.RentLimitException;
+import pls_no_shinobu.videostore.manager.ItemManager;
 import pls_no_shinobu.videostore.model.Item;
 import pls_no_shinobu.videostore.model.User;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
+import java.util.Random;
 
 public class UserDashboardController {
     private enum SearchBy {
@@ -37,14 +44,19 @@ public class UserDashboardController {
         ID
     }
 
+    private Random rand = new Random();
+
     private FilteredList<Item> filteredItems;
     private FilteredList<Item> filteredRentals;
+    private Item randomItem;
 
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
 
     @FXML private Text titleText;
     @FXML private Text usernameText;
+    @FXML private Text randomTitleText;
+    @FXML private Text rentalCountText;
 
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
@@ -52,15 +64,19 @@ public class UserDashboardController {
     @FXML private TextField itemSearchField;
     @FXML private TextField rentalsSearchField;
 
+    @FXML private VBox homeContainer;
     @FXML private VBox itemContainer;
     @FXML private GridPane profileContainer;
     @FXML private VBox rentedContainer;
+    @FXML private HBox randomContainer;
 
     @FXML private TableView<Item> itemTable;
     @FXML private TableView<Item> rentedTable;
 
     @FXML private ComboBox<SearchBy> itemSearchByBox;
     @FXML private ComboBox<SearchBy> rentalsSearchByBox;
+
+    @FXML private ImageView randomTitleImage;
 
     private void rentAnItem(Item item) {
         try {
@@ -139,6 +155,28 @@ public class UserDashboardController {
                             Alert.AlertType.ERROR,
                             "Something went wrong." + " Details: " + e.getMessage());
             alert.showAndWait();
+        }
+    }
+
+    private void setRandomItem() {
+        try {
+            ItemManager items = CSVDatabase.getInstance().getItems();
+
+            int randomNumber = rand.nextInt(items.getEntities().size());
+            randomItem = items.getEntities().get(randomNumber);
+
+            InputStream imageStream =
+                    VideoStoreApplication.class.getResourceAsStream(
+                            String.format(
+                                    "img/%s.jpg",
+                                    randomItem.getRentalType().toString().toLowerCase()));
+
+            if (imageStream != null) randomTitleImage.setImage(new Image(imageStream));
+            randomTitleText.setText(randomItem.getTitle());
+        } catch (IOException e) {
+            // something went wrong, hide the container
+            randomContainer.setVisible(false);
+            e.printStackTrace();
         }
     }
 
@@ -285,13 +323,28 @@ public class UserDashboardController {
 
     @FXML
     public void initialize() throws IOException {
-        usernameText.setText(Session.getInstance().getCurrentUser().getUsername());
+        User user = Session.getInstance().getCurrentUser();
+        usernameText.setText(String.format("%s (%s)", user.getUsername(), user.getRole()));
+
+        rentalCountText.setText(
+                user.getRentals().size() != 1
+                        ? String.format("%d items", user.getRentals().size())
+                        : String.format("%d item", user.getRentals().size()));
 
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
 
         initializeItemTable();
         initializeRentedTable();
+        setRandomItem();
+    }
+
+    @FXML
+    public void onHomeButtonClick() {
+        titleText.setText("Welcome");
+        PaneUtils.setPane(stackPane, homeContainer);
+
+        setRandomItem();
     }
 
     @FXML
@@ -324,19 +377,22 @@ public class UserDashboardController {
         User currentUser = session.getCurrentUser();
 
         try {
-            currentUser.setName(nameField.getText());
-            currentUser.setPhone(phoneField.getText());
-            currentUser.setAddress(addressField.getText());
+            if (!currentUser.getName().equals(nameField.getText()))
+                currentUser.setName(nameField.getText());
+            if (!currentUser.getPhone().equals(phoneField.getText()))
+                currentUser.setPhone(phoneField.getText());
+            if (!currentUser.getAddress().equals(addressField.getText()))
+                currentUser.setAddress(addressField.getText());
 
             CSVDatabase.getInstance().updateUsers();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful.");
+            alert.showAndWait();
         } catch (IllegalArgumentException e) {
             Alert alert =
                     new Alert(
                             Alert.AlertType.ERROR,
                             "Update failed. Error details: " + e.getMessage());
-            alert.showAndWait();
-        } finally {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Update successful.");
             alert.showAndWait();
         }
     }
@@ -386,5 +442,15 @@ public class UserDashboardController {
         } else if (rentalsSearchByBox.getValue() == SearchBy.NAME) {
             filteredRentals.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
         }
+    }
+
+    @FXML
+    protected void onRentAction() {
+        rentAnItem(randomItem);
+    }
+
+    @FXML
+    protected void onRefreshRandomAction() {
+        setRandomItem();
     }
 }
