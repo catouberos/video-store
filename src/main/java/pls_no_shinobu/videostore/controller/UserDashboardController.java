@@ -9,6 +9,7 @@ package pls_no_shinobu.videostore.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -32,6 +33,16 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class UserDashboardController {
+    private enum SearchBy {
+        NAME,
+        ID
+    }
+
+    private ObservableList<Item> items;
+    private ObservableList<Item> rentals;
+    private FilteredList<Item> filteredItems;
+    private FilteredList<Item> filteredRentals;
+
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
 
@@ -40,6 +51,8 @@ public class UserDashboardController {
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
     @FXML private TextField addressField;
+    @FXML private TextField itemSearchField;
+    @FXML private TextField rentalsSearchField;
 
     @FXML private VBox itemContainer;
     @FXML private GridPane profileContainer;
@@ -47,6 +60,9 @@ public class UserDashboardController {
 
     @FXML private TableView<Item> itemTable;
     @FXML private TableView<Item> rentedTable;
+
+    @FXML private ComboBox<SearchBy> itemSearchByBox;
+    @FXML private ComboBox<SearchBy> rentalsSearchByBox;
 
     private void initializeItemTable() throws IOException {
         CSVDatabase database = CSVDatabase.getInstance();
@@ -155,10 +171,10 @@ public class UserDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        ObservableList<Item> data =
-                FXCollections.observableArrayList(database.getItems().getEntities());
+        items = FXCollections.observableArrayList(database.getItems().getEntities());
+        filteredItems = new FilteredList<>(items);
 
-        itemTable.setItems(data);
+        itemTable.setItems(filteredItems);
 
         // https://stackoverflow.com/a/3819038
         itemTable
@@ -273,10 +289,10 @@ public class UserDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        ObservableList<Item> data =
-                FXCollections.observableArrayList(session.getCurrentUser().getRentals());
+        rentals = FXCollections.observableArrayList(session.getCurrentUser().getRentals());
+        filteredRentals = new FilteredList<>(rentals);
 
-        rentedTable.setItems(data);
+        rentedTable.setItems(filteredRentals);
 
         // https://stackoverflow.com/a/3819038
         rentedTable
@@ -286,6 +302,9 @@ public class UserDashboardController {
 
     @FXML
     public void initialize() throws IOException {
+        itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+        rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+
         initializeItemTable();
         initializeRentedTable();
     }
@@ -355,6 +374,32 @@ public class UserDashboardController {
             } catch (IOException e) {
                 // catch any occurred errors
             }
+        }
+    }
+
+    @FXML
+    protected void onItemSearchAction() {
+        String input = itemSearchField.getText().toLowerCase().trim();
+
+        if (input.isEmpty()) {
+            filteredItems.setPredicate(item -> true);
+        } else if (itemSearchByBox.getValue() == SearchBy.ID) {
+            filteredItems.setPredicate(item -> item.getId().toLowerCase().contains(input));
+        } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
+            filteredItems.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+        }
+    }
+
+    @FXML
+    protected void onRentalsSearchAction() {
+        String input = rentalsSearchField.getText().toLowerCase().trim();
+
+        if (input.isEmpty()) {
+            filteredRentals.setPredicate(item -> true);
+        } else if (rentalsSearchByBox.getValue() == SearchBy.ID) {
+            filteredRentals.setPredicate(item -> item.getId().toLowerCase().contains(input));
+        } else if (rentalsSearchByBox.getValue() == SearchBy.NAME) {
+            filteredRentals.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
         }
     }
 }

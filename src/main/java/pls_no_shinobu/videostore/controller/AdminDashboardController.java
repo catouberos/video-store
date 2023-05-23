@@ -9,6 +9,7 @@ package pls_no_shinobu.videostore.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,6 +33,25 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class AdminDashboardController {
+    private enum SearchBy {
+        NAME,
+        ID
+    }
+
+    private ObservableList<User> users;
+    private ObservableList<Item> stocks;
+    private ObservableList<User> rentals;
+    private FilteredList<User> filteredUsers;
+    private FilteredList<Item> filteredStocks;
+    private FilteredList<User> filteredRentals;
+
+    @FXML private TextField accountSearchField;
+    @FXML private TextField itemSearchField;
+
+    @FXML private ComboBox<User.UserType> roleComboBox;
+    @FXML private ComboBox<SearchBy> accountSearchByBox;
+    @FXML private ComboBox<SearchBy> itemSearchByBox;
+
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
 
@@ -130,10 +150,10 @@ public class AdminDashboardController {
                 };
 
         actionColumn.setCellFactory(cellFactory);
-        ObservableList<User> data =
-                FXCollections.observableArrayList(database.getUsers().getEntities());
+        users = FXCollections.observableArrayList(database.getUsers().getEntities());
+        filteredUsers = new FilteredList<>(users);
 
-        accountTable.setItems(data);
+        accountTable.setItems(filteredUsers);
 
         // https://stackoverflow.com/a/3819038
         accountTable
@@ -234,10 +254,10 @@ public class AdminDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        ObservableList<Item> data =
-                FXCollections.observableArrayList(database.getItems().getEntities());
+        stocks = FXCollections.observableArrayList(database.getItems().getEntities());
+        filteredStocks = new FilteredList<>(stocks);
 
-        stockTable.setItems(data);
+        stockTable.setItems(filteredStocks);
 
         // https://stackoverflow.com/a/3819038
         stockTable
@@ -264,10 +284,10 @@ public class AdminDashboardController {
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
 
-        ObservableList<User> data =
-                FXCollections.observableArrayList(database.getUsers().getEntities());
+        rentals = FXCollections.observableArrayList(database.getUsers().getEntities());
+        filteredRentals = new FilteredList<>(rentals);
 
-        rentalTable.setItems(data);
+        rentalTable.setItems(filteredRentals);
 
         // https://stackoverflow.com/a/3819038
         rentalTable.getColumns().setAll(idColumn, nameColumn, rentalsColumn);
@@ -275,6 +295,15 @@ public class AdminDashboardController {
 
     @FXML
     public void initialize() throws IOException {
+        roleComboBox.setItems(
+                FXCollections.observableArrayList(
+                        User.UserType.GUEST,
+                        User.UserType.REGULAR,
+                        User.UserType.VIP,
+                        User.UserType.ADMIN));
+        accountSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+        itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+
         initializeAccountTable();
         initializeStockTable();
         initializeRentalTable();
@@ -334,6 +363,38 @@ public class AdminDashboardController {
             } catch (IOException e) {
                 // catch any occurred errors
             }
+        }
+    }
+
+    public void onAccountSearchAction() {
+        String input = accountSearchField.getText().toLowerCase().trim();
+
+        if (input.isEmpty()) {
+            filteredUsers.setPredicate(user -> true);
+        } else if (accountSearchByBox.getValue() == SearchBy.ID) {
+            filteredUsers.setPredicate(user -> user.getId().toLowerCase().contains(input));
+        } else if (accountSearchByBox.getValue() == SearchBy.NAME) {
+            filteredUsers.setPredicate(user -> user.getName().toLowerCase().contains(input));
+        }
+    }
+
+    public void onRoleComboBoxAction() {
+        if (roleComboBox.getValue() == null) {
+            filteredUsers.setPredicate(user -> true);
+        } else {
+            filteredUsers.setPredicate(user -> user.getRole() == roleComboBox.getValue());
+        }
+    }
+
+    public void onItemSearchAction() {
+        String input = itemSearchField.getText().toLowerCase().trim();
+
+        if (input.isEmpty()) {
+            filteredStocks.setPredicate(item -> true);
+        } else if (itemSearchByBox.getValue() == SearchBy.ID) {
+            filteredStocks.setPredicate(item -> item.getId().toLowerCase().contains(input));
+        } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
+            filteredStocks.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
         }
     }
 }
