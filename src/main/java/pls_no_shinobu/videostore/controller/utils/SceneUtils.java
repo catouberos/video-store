@@ -32,7 +32,7 @@ public class SceneUtils {
      */
     public static void switchScene(Stage stage, String fxmlFileName) throws IOException {
         FXMLLoader loader = new FXMLLoader(VideoStoreApplication.class.getResource(fxmlFileName));
-        Scene scene = new Scene(loader.load(), 800, 600);
+        Scene scene = new Scene(loader.load(), 800, 800);
 
         URL stylesheet = VideoStoreApplication.class.getResource("css/main.css");
 
