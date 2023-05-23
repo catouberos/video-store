@@ -52,7 +52,7 @@ public class TestUser {
                         IllegalArgumentException.class,
                         () -> user = new User("C001", "   hi h ", "password"));
 
-        String expectedMessage = "Username cannot contain spaces";
+        String expectedMessage = "Username cannot special character";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
