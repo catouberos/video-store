@@ -385,11 +385,11 @@ public class UserDashboardController {
         String input = itemSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredItems.setPredicate(items -> true);
+            filteredItems.setPredicate(item -> true);
         } else if (itemSearchByBox.getValue() == SearchBy.ID) {
-            filteredItems.setPredicate(items -> items.getId().toLowerCase().contains(input));
+            filteredItems.setPredicate(item -> item.getId().toLowerCase().contains(input));
         } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
-            filteredItems.setPredicate(items -> items.getTitle().toLowerCase().contains(input));
+            filteredItems.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
         }
     }
 
@@ -398,11 +398,11 @@ public class UserDashboardController {
         String input = rentalsSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredRentals.setPredicate(items -> true);
+            filteredRentals.setPredicate(item -> true);
         } else if (rentalsSearchByBox.getValue() == SearchBy.ID) {
-            filteredRentals.setPredicate(items -> items.getId().toLowerCase().contains(input));
+            filteredRentals.setPredicate(item -> item.getId().toLowerCase().contains(input));
         } else if (rentalsSearchByBox.getValue() == SearchBy.NAME) {
-            filteredRentals.setPredicate(items -> items.getTitle().toLowerCase().contains(input));
+            filteredRentals.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
         }
     }
 }
