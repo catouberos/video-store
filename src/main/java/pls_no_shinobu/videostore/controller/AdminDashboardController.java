@@ -10,13 +10,11 @@ package pls_no_shinobu.videostore.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -152,8 +150,7 @@ public class AdminDashboardController {
                 };
 
         actionColumn.setCellFactory(cellFactory);
-        users =
-                FXCollections.observableArrayList(database.getUsers().getEntities());
+        users = FXCollections.observableArrayList(database.getUsers().getEntities());
         filteredUsers = new FilteredList<>(users);
 
         accountTable.setItems(filteredUsers);
@@ -257,8 +254,7 @@ public class AdminDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        stocks =
-                FXCollections.observableArrayList(database.getItems().getEntities());
+        stocks = FXCollections.observableArrayList(database.getItems().getEntities());
         filteredStocks = new FilteredList<>(stocks);
 
         stockTable.setItems(filteredStocks);
@@ -288,9 +284,8 @@ public class AdminDashboardController {
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
 
-         rentals =
-                FXCollections.observableArrayList(database.getUsers().getEntities());
-         filteredRentals = new FilteredList<>(rentals);
+        rentals = FXCollections.observableArrayList(database.getUsers().getEntities());
+        filteredRentals = new FilteredList<>(rentals);
 
         rentalTable.setItems(filteredRentals);
 
@@ -300,20 +295,14 @@ public class AdminDashboardController {
 
     @FXML
     public void initialize() throws IOException {
-        roleComboBox.setItems(FXCollections.observableArrayList(
-            User.UserType.GUEST,
-            User.UserType.REGULAR,
-            User.UserType.VIP,
-            User.UserType.ADMIN
-        ));
-        accountSearchByBox.setItems(FXCollections.observableArrayList(
-            SearchBy.ID,
-            SearchBy.NAME
-        ));
-        itemSearchByBox.setItems(FXCollections.observableArrayList(
-            SearchBy.ID,
-            SearchBy.NAME
-        ));
+        roleComboBox.setItems(
+                FXCollections.observableArrayList(
+                        User.UserType.GUEST,
+                        User.UserType.REGULAR,
+                        User.UserType.VIP,
+                        User.UserType.ADMIN));
+        accountSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+        itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
 
         initializeAccountTable();
         initializeStockTable();

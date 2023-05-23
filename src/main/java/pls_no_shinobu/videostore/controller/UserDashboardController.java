@@ -10,7 +10,6 @@ package pls_no_shinobu.videostore.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -172,8 +171,7 @@ public class UserDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        items =
-                FXCollections.observableArrayList(database.getItems().getEntities());
+        items = FXCollections.observableArrayList(database.getItems().getEntities());
         filteredItems = new FilteredList<>(items);
 
         itemTable.setItems(filteredItems);
@@ -291,8 +289,7 @@ public class UserDashboardController {
 
         actionColumn.setCellFactory(cellFactory);
 
-        rentals =
-                FXCollections.observableArrayList(session.getCurrentUser().getRentals());
+        rentals = FXCollections.observableArrayList(session.getCurrentUser().getRentals());
         filteredRentals = new FilteredList<>(rentals);
 
         rentedTable.setItems(filteredRentals);
