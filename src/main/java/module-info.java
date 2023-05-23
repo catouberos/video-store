@@ -8,6 +8,7 @@ module pls_no_shinobu.videostore {
             javafx.base;
 
     exports pls_no_shinobu.videostore;
+    exports pls_no_shinobu.videostore.model;
     exports pls_no_shinobu.videostore.controller;
 
     opens pls_no_shinobu.videostore.controller to

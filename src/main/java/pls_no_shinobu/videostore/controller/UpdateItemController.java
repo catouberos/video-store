@@ -59,22 +59,38 @@ public class UpdateItemController {
     @FXML
     public void onSaveButtonClick() {
         try {
-            item.setTitle(titleField.getText());
-            item.setGenre(genreField.getText());
-            item.setStock(Integer.parseInt(stockField.getText()));
-            item.setRentalFee(Float.parseFloat(feeField.getText()));
-            item.setRentalType(typeComboBox.getValue());
-            item.setLoanType(loanTypeComboBox.getValue());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Save changes?");
 
-            CSVDatabase.getInstance().updateItems();
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (!item.getTitle().equals(titleField.getText()))
+                    item.setTitle(titleField.getText());
+                if (!item.getGenre().equals(genreField.getText()))
+                    item.setGenre(genreField.getText());
+                if ((item.getStock() != Integer.parseInt(stockField.getText())))
+                    item.setStock(Integer.parseInt(stockField.getText()));
+                if (item.getRentalFee() != Float.parseFloat(feeField.getText()))
+                    item.setRentalFee(Float.parseFloat(feeField.getText()));
+                if (item.getRentalType() != typeComboBox.getValue())
+                    item.setRentalType(typeComboBox.getValue());
+                if (item.getLoanType() != loanTypeComboBox.getValue())
+                    item.setLoanType(loanTypeComboBox.getValue());
 
-            ((Stage) saveButton.getScene().getWindow()).close();
+                CSVDatabase.getInstance().updateItems();
+
+                Alert successAlert =
+                        new Alert(Alert.AlertType.INFORMATION, "Changes successfully saved");
+                successAlert.showAndWait();
+
+                ((Stage) saveButton.getScene().getWindow()).close();
+            }
         } catch (IllegalArgumentException | NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         } catch (IOException e) {
             Alert alert =
-                    new Alert(Alert.AlertType.ERROR, "Cannot connect to database" + e.getMessage());
+                    new Alert(
+                            Alert.AlertType.ERROR, "Cannot connect to database " + e.getMessage());
             alert.showAndWait();
         }
     }
@@ -104,13 +120,19 @@ public class UpdateItemController {
             CSVDatabase.getInstance().getItems().remove(item);
             CSVDatabase.getInstance().updateItems();
 
+            Alert successAlert =
+                    new Alert(
+                            Alert.AlertType.INFORMATION, "Successfully delete " + item.getTitle());
+            successAlert.showAndWait();
+
             ((Stage) deleteButton.getScene().getWindow()).close();
         } catch (NotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         } catch (IOException e) {
             Alert alert =
-                    new Alert(Alert.AlertType.ERROR, "Cannot connect to database" + e.getMessage());
+                    new Alert(
+                            Alert.AlertType.ERROR, "Cannot connect to database " + e.getMessage());
             alert.showAndWait();
         }
     }
