@@ -63,16 +63,22 @@ public class UpdateUserController {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                if (!user.getUsername().equals(usernameField.getText())) user.setUsername(usernameField.getText());
+                if (!user.getUsername().equals(usernameField.getText()))
+                    user.setUsername(usernameField.getText());
                 if (!user.getName().equals(nameField.getText())) user.setName(nameField.getText());
-                if (!user.getAddress().equals(addressField.getText())) user.setAddress(addressField.getText());
-                if (!user.getPhone().equals(phoneField.getText())) user.setPhone(phoneField.getText());
-                if (user.getRentalCount() != Integer.parseInt(rentalCountField.getText())) user.setRentalCount(Integer.parseInt(rentalCountField.getText()));
-                if (user.getRole() != roleComboBox.getValue()) user.setRole(roleComboBox.getValue());
+                if (!user.getAddress().equals(addressField.getText()))
+                    user.setAddress(addressField.getText());
+                if (!user.getPhone().equals(phoneField.getText()))
+                    user.setPhone(phoneField.getText());
+                if (user.getRentalCount() != Integer.parseInt(rentalCountField.getText()))
+                    user.setRentalCount(Integer.parseInt(rentalCountField.getText()));
+                if (user.getRole() != roleComboBox.getValue())
+                    user.setRole(roleComboBox.getValue());
 
                 CSVDatabase.getInstance().updateUsers();
 
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Changes successfully saved");
+                Alert successAlert =
+                        new Alert(Alert.AlertType.INFORMATION, "Changes successfully saved");
                 successAlert.showAndWait();
 
                 ((Stage) saveButton.getScene().getWindow()).close();
@@ -113,7 +119,10 @@ public class UpdateUserController {
             CSVDatabase.getInstance().getUsers().remove(user);
             CSVDatabase.getInstance().updateUsers();
 
-            Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Successfully delete " + user.getUsername());
+            Alert successAlert =
+                    new Alert(
+                            Alert.AlertType.INFORMATION,
+                            "Successfully delete " + user.getUsername());
             successAlert.showAndWait();
 
             ((Stage) deleteButton.getScene().getWindow()).close();
@@ -122,7 +131,8 @@ public class UpdateUserController {
             alert.showAndWait();
         } catch (IOException e) {
             Alert alert =
-                new Alert(Alert.AlertType.ERROR, "Cannot connect to database " + e.getMessage());
+                    new Alert(
+                            Alert.AlertType.ERROR, "Cannot connect to database " + e.getMessage());
             alert.showAndWait();
         }
     }
