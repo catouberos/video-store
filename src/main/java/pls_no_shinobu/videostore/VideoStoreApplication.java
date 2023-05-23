@@ -40,7 +40,8 @@ public class VideoStoreApplication extends Application {
         stage.setScene(scene);
 
         try {
-            InputStream iconStream = VideoStoreApplication.class.getResourceAsStream("img/donut.png");
+            InputStream iconStream =
+                    VideoStoreApplication.class.getResourceAsStream("img/donut.png");
             if (iconStream != null) stage.getIcons().add(new Image(iconStream));
         } catch (NullPointerException e) {
             System.err.println("Cannot set icon, details: " + e.getMessage());
