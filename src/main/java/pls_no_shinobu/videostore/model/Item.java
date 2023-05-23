@@ -54,6 +54,7 @@ public class Item extends Entity {
         super();
         setId(id);
         this.title = title;
+        setRentalFee(0);
     }
 
     /**
