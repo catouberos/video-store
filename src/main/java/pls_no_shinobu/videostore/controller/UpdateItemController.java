@@ -63,17 +63,17 @@ public class UpdateItemController {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                if (!item.getTitle().equals(titleField.getText()))
+                if (item.getTitle() == null || !item.getTitle().equals(titleField.getText()))
                     item.setTitle(titleField.getText());
-                if (!item.getGenre().equals(genreField.getText()))
+                if (item.getGenre() == null || !item.getGenre().equals(genreField.getText()))
                     item.setGenre(genreField.getText());
                 if ((item.getStock() != Integer.parseInt(stockField.getText())))
                     item.setStock(Integer.parseInt(stockField.getText()));
                 if (item.getRentalFee() != Float.parseFloat(feeField.getText()))
                     item.setRentalFee(Float.parseFloat(feeField.getText()));
-                if (item.getRentalType() != typeComboBox.getValue())
+                if (item.getRentalType() == null || item.getRentalType() != typeComboBox.getValue())
                     item.setRentalType(typeComboBox.getValue());
-                if (item.getLoanType() != loanTypeComboBox.getValue())
+                if (item.getLoanType() == null || item.getLoanType() != loanTypeComboBox.getValue())
                     item.setLoanType(loanTypeComboBox.getValue());
 
                 CSVDatabase.getInstance().updateItems();

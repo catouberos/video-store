@@ -65,10 +65,10 @@ public class UpdateUserController {
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 if (!user.getUsername().equals(usernameField.getText()))
                     user.setUsername(usernameField.getText());
-                if (!user.getName().equals(nameField.getText())) user.setName(nameField.getText());
-                if (!user.getAddress().equals(addressField.getText()))
+                if (user.getName() == null || !user.getName().equals(nameField.getText())) user.setName(nameField.getText());
+                if (user.getAddress() == null || !user.getAddress().equals(addressField.getText()))
                     user.setAddress(addressField.getText());
-                if (!user.getPhone().equals(phoneField.getText()))
+                if (user.getPhone() == null || !user.getPhone().equals(phoneField.getText()))
                     user.setPhone(phoneField.getText());
                 if (user.getRentalCount() != Integer.parseInt(rentalCountField.getText()))
                     user.setRentalCount(Integer.parseInt(rentalCountField.getText()));
