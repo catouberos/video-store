@@ -84,7 +84,7 @@ public class User extends Entity {
     }
 
     /**
-     * Constructor for a full-blown user, normally to initiate the user when loading from persistant
+     * Constructor for a full-blown user, normally to initiate the user when loading from persistent
      * data, such as a file
      *
      * @author Do Khoa Nguyen
@@ -371,8 +371,6 @@ public class User extends Entity {
         Transaction transaction = new Transaction(this, item);
 
         rentals.add(item);
-
-        increateRentalCount();
 
         return transaction;
     }
