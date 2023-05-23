@@ -73,25 +73,19 @@
    </AnchorPane>
    <StackPane fx:id="stackPane" minWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <children>
-         <VBox fx:id="rentedContainer" prefHeight="200.0" prefWidth="100.0" visible="false">
+         <VBox fx:id="rentedContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0" visible="false">
             <children>
                <HBox alignment="CENTER" spacing="12.0">
                   <children>
-                     <SVGPath content="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" scaleX="1.5" scaleY="1.5" HBox.hgrow="ALWAYS" />
-                     <TextField fx:id="rentedSearchField" minWidth="100.0" prefHeight="32.0" prefWidth="100.0" promptText="Search" HBox.hgrow="ALWAYS">
+                     <TextField fx:id="rentalsSearchField" minWidth="100.0" onKeyTyped="#onRentalsSearchAction" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
                         <HBox.margin>
                            <Insets left="5.0" />
                         </HBox.margin>
                      </TextField>
-                     <ComboBox fx:id="rentedTypeBox" prefHeight="32.0" prefWidth="80.0" promptText="Type" HBox.hgrow="ALWAYS" />
-                     <Button fx:id="rentedSearchButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="32.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                        <graphic>
-                           <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </graphic>
-                     </Button>
+                     <ComboBox fx:id="rentalsSearchByBox" prefHeight="32.0" promptText="Search by" HBox.hgrow="ALWAYS" />
                   </children>
                   <VBox.margin>
-                     <Insets bottom="12.0" />
+                     <Insets />
                   </VBox.margin>
                </HBox>
                <TableView fx:id="rentedTable">
@@ -122,25 +116,19 @@
                <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSaveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             </children>
          </GridPane>
-         <VBox fx:id="itemContainer" prefHeight="200.0" prefWidth="100.0">
+         <VBox fx:id="itemContainer" prefHeight="200.0" prefWidth="100.0" spacing="12.0">
             <children>
                <HBox alignment="CENTER" spacing="12.0">
                   <children>
-                     <SVGPath content="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" scaleX="1.5" scaleY="1.5" HBox.hgrow="ALWAYS" />
-                     <TextField fx:id="itemSearchField" minWidth="150.0" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
+                     <TextField fx:id="itemSearchField" minWidth="150.0" onKeyTyped="#onItemSearchAction" prefHeight="32.0" promptText="Search" HBox.hgrow="ALWAYS">
                         <HBox.margin>
                            <Insets left="5.0" />
                         </HBox.margin>
                      </TextField>
-                     <ComboBox fx:id="itemTypeBox" prefHeight="32.0" prefWidth="80.0" promptText="Type" HBox.hgrow="ALWAYS" />
-                     <Button fx:id="itemSearchButton" graphicTextGap="6.0" mnemonicParsing="false" prefHeight="32.0" text="Search" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS">
-                        <graphic>
-                           <SVGPath content="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                        </graphic>
-                     </Button>
+                     <ComboBox fx:id="itemSearchByBox" prefHeight="32.0" promptText="Search by" HBox.hgrow="ALWAYS" />
                   </children>
                   <VBox.margin>
-                     <Insets bottom="12.0" />
+                     <Insets />
                   </VBox.margin>
                </HBox>
                <TableView fx:id="itemTable" VBox.vgrow="ALWAYS">
