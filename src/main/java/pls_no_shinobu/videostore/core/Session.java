@@ -31,21 +31,18 @@ public final class Session {
         return INSTANCE;
     }
 
-    public boolean login(User user, String password) throws IncorrectLoginInfo {
+    public void login(User user, String password) throws IncorrectLoginInfo {
         if (currentUser == null && user.checkPassword(password)) {
             currentUser = user;
             authenticated = true;
-            return true;
         }
 
         throw new IncorrectLoginInfo("Incorrect login info");
     }
 
-    public boolean logout() {
+    public void logout() {
         currentUser = null;
         authenticated = false;
-
-        return true;
     }
 
     public User getCurrentUser() {
