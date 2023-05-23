@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.core.CSVDatabase;
+import pls_no_shinobu.videostore.errors.NotFoundException;
 import pls_no_shinobu.videostore.model.User;
 
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class UpdateUserController {
 
     @FXML private Button saveButton;
     @FXML private Button cancelButton;
+    @FXML private Button deleteButton;
 
     public void setUser(User user) {
         this.user = user;
@@ -57,16 +59,24 @@ public class UpdateUserController {
     @FXML
     public void onSaveButtonClick() {
         try {
-            user.setUsername(usernameField.getText());
-            user.setName(nameField.getText());
-            user.setAddress(addressField.getText());
-            user.setPhone(phoneField.getText());
-            user.setRentalCount(Integer.parseInt(rentalCountField.getText()));
-            user.setRole(roleComboBox.getValue());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Save changes?");
 
-            CSVDatabase.getInstance().updateUsers();
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (!user.getUsername().equals(usernameField.getText())) user.setUsername(usernameField.getText());
+                if (!user.getName().equals(nameField.getText())) user.setName(nameField.getText());
+                if (!user.getAddress().equals(addressField.getText())) user.setAddress(addressField.getText());
+                if (!user.getPhone().equals(phoneField.getText())) user.setPhone(phoneField.getText());
+                if (user.getRentalCount() != Integer.parseInt(rentalCountField.getText())) user.setRentalCount(Integer.parseInt(rentalCountField.getText()));
+                if (user.getRole() != roleComboBox.getValue()) user.setRole(roleComboBox.getValue());
 
-            ((Stage) saveButton.getScene().getWindow()).close();
+                CSVDatabase.getInstance().updateUsers();
+
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Changes successfully saved");
+                successAlert.showAndWait();
+
+                ((Stage) saveButton.getScene().getWindow()).close();
+            }
         } catch (IllegalArgumentException | NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
@@ -95,6 +105,25 @@ public class UpdateUserController {
                 ((Stage) cancelButton.getScene().getWindow()).close();
         } else {
             ((Stage) cancelButton.getScene().getWindow()).close();
+        }
+    }
+
+    public void onDeleteButtonClick() {
+        try {
+            CSVDatabase.getInstance().getUsers().remove(user);
+            CSVDatabase.getInstance().updateUsers();
+
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION, "Successfully delete " + user.getUsername());
+            successAlert.showAndWait();
+
+            ((Stage) deleteButton.getScene().getWindow()).close();
+        } catch (NotFoundException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        } catch (IOException e) {
+            Alert alert =
+                new Alert(Alert.AlertType.ERROR, "Cannot connect to database " + e.getMessage());
+            alert.showAndWait();
         }
     }
 }

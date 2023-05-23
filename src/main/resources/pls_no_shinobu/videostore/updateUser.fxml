@@ -8,11 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UpdateUserController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UpdateUserController">
    <children>
       <GridPane vgap="12.0">
          <columnConstraints>
@@ -88,7 +89,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="6.0">
+               <children>
+                  <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#onDeleteButtonClick" text="Delete" />
+               </children>
+            </HBox>
             <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#onSaveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
          </children>
          <padding>
