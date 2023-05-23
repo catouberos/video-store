@@ -45,7 +45,7 @@ public class SignInController {
                 SceneUtils.switchScene(
                         (Stage) usernameField.getScene().getWindow(), "adminDashboard.fxml");
         } catch (IncorrectLoginInfo e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect login information.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         } catch (NotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "User not found.");
@@ -66,7 +66,13 @@ public class SignInController {
         try {
             SceneUtils.switchScene((Stage) signUpButton.getScene().getWindow(), "signup.fxml");
         } catch (IOException e) {
-            // TODO: error handling
+            e.printStackTrace();
+            Alert alert =
+                new Alert(
+                    Alert.AlertType.ERROR,
+                    "Something went wrong with the application. See stacktrace for more"
+                        + " info.");
+            alert.showAndWait();
         }
     }
 }

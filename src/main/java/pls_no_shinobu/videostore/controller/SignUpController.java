@@ -28,6 +28,9 @@ import java.io.IOException;
 public class SignUpController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
+    @FXML private TextField phoneField;
+    @FXML private TextField addressField;
+
     @FXML private Button signInButton;
 
     @FXML
@@ -40,8 +43,11 @@ public class SignUpController {
             User user =
                     new User(
                             database.getUsers().getUnusedID(),
-                            usernameField.getText(),
+                            usernameField.getText().trim(),
                             p.hash(passwordField.getText()));
+
+            if (!phoneField.getText().isBlank()) user.setPhone(phoneField.getText().trim());
+            if (!addressField.getText().isBlank()) user.setAddress(addressField.getText().trim());
 
             database.getUsers().add(user);
             database.updateUsers();
@@ -54,11 +60,8 @@ public class SignUpController {
             else
                 SceneUtils.switchScene(
                         (Stage) usernameField.getScene().getWindow(), "adminDashboard.fxml");
-        } catch (DuplicateException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "This user already exists.");
-            alert.showAndWait();
-        } catch (ManagerLimitException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot create user, database limit.");
+        } catch (DuplicateException | ManagerLimitException | IllegalArgumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         } catch (IncorrectLoginInfo e) {
             Alert alert =
