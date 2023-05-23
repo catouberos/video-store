@@ -14,7 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -57,6 +56,9 @@ public class UserDashboardController {
     @FXML private Text usernameText;
     @FXML private Text randomTitleText;
     @FXML private Text rentalCountText;
+    @FXML private Text currentRoleText;
+    @FXML private Text nextRoleText;
+    @FXML private Text roleDetailsText;
 
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
@@ -66,7 +68,7 @@ public class UserDashboardController {
 
     @FXML private VBox homeContainer;
     @FXML private VBox itemContainer;
-    @FXML private GridPane profileContainer;
+    @FXML private VBox profileContainer;
     @FXML private VBox rentedContainer;
     @FXML private HBox randomContainer;
 
@@ -77,6 +79,8 @@ public class UserDashboardController {
     @FXML private ComboBox<SearchBy> rentalsSearchByBox;
 
     @FXML private ImageView randomTitleImage;
+
+    @FXML private ProgressBar roleProgress;
 
     private void rentAnItem(Item item) {
         try {
@@ -94,7 +98,7 @@ public class UserDashboardController {
 
                 initialize();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Return rental successfully.");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Rent successfully.");
                 alert.showAndWait();
             }
         } catch (IOException e) {
@@ -366,6 +370,25 @@ public class UserDashboardController {
         nameField.setText(currentUser.getName());
         phoneField.setText(currentUser.getPhone());
         addressField.setText(currentUser.getAddress());
+
+        currentRoleText.setText(currentUser.getRole().toString());
+
+        if (currentUser.getRole() == User.UserType.GUEST) {
+            nextRoleText.setText("REGULAR");
+            roleDetailsText.setText(
+                    String.format("%d rentals left", 3 - currentUser.getRentalCount()));
+            roleProgress.setProgress(((double) currentUser.getRentalCount() / 3));
+        } else if (currentUser.getRole() == User.UserType.REGULAR) {
+            nextRoleText.setText("VIP");
+            roleDetailsText.setText(
+                    String.format("%d rentals left", 5 - currentUser.getRentalCount()));
+            roleProgress.setProgress(((double) currentUser.getRentalCount() / 5));
+        } else {
+            nextRoleText.setText("");
+            roleDetailsText.setText(
+                    String.format("Currently have %d points", currentUser.getPoint()));
+            roleProgress.setProgress(1.00);
+        }
 
         titleText.setText("Profile");
         PaneUtils.setPane(stackPane, profileContainer);
