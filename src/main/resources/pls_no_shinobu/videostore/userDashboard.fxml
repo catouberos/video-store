@@ -4,7 +4,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UserDashboardController">
+<AnchorPane minHeight="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.UserDashboardController">
    <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
           <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="sidebar--container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -93,14 +96,35 @@
                <Font name="System Bold" size="24.0" />
             </font>
          </Text>
-         <HBox alignment="CENTER_LEFT" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
+         <VBox alignment="CENTER_RIGHT" spacing="12.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0">
             <children>
-               <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
-                  <font>
-                     <Font name="System Bold" size="13.0" />
-                  </font></Text>
+               <HBox alignment="CENTER">
+                  <children>
+                     <SVGPath content="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                     <Text fx:id="usernameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+                        <font>
+                           <Font name="System Bold" size="13.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                     </Text>
+                  </children>
+               </HBox>
+               <HBox alignment="CENTER">
+                  <children>
+                     <Button fx:id="helpButton" mnemonicParsing="false" onAction="#onHelpButtonClick" opacity="0.65" style="-fx-background-color: TRANSPARENT;" text="Help">
+                        <graphic>
+                           <SVGPath content="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z" />
+                        </graphic>
+                        <padding>
+                           <Insets bottom="6.0" left="12.0" right="12.0" top="6.0" />
+                        </padding>
+                     </Button>
+                  </children>
+               </HBox>
             </children>
-         </HBox>
+         </VBox>
       </children>
    </AnchorPane>
    <StackPane fx:id="stackPane" minWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
@@ -227,9 +251,51 @@
                <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSaveButtonClick" text="Save" />
             </children>
          </VBox>
+            <TabPane fx:id="helpContainer" prefHeight="335.0" prefWidth="534.0" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <Tab text="FAQs">
+                  <content>
+                     <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextArea editable="false" text="Q: How does Shinobu work? &#10;A: Shinobu is an app that allows you to rent movies/games. Simply download the app, browse the product library, select the item you want to rent, and click the ‘rent’ button.&#10;&#10;Q: How long can I rent a movie/game on Shinobu? &#10;A: The rental duration varies depending on the product. Please check each product rental’s duration before renting.&#10;&#10;Q: How do I check my current membership level?&#10;A: You can check your membership level by going to ‘Your Profile’, your current membership should be displayed on top of the page&#10;&#10;Q: How much does it cost to rent movies on Shinobu? &#10;A: The rental prices on Shinobu vary depending on the product. Prices are typically competitive and affordable.&#10;&#10;Q: What devices are compatible with Shinobu? &#10;A: Shinobu is available for download on both iOS and Android devices.&#10;&#10;Q: How do I return an item? &#10;A: Go to ‘Rentals’ tab, select/search for the product you want to return, click ‘Return’&#10;&#10;Q: What happens if I experience technical issues while using the app? &#10;A: In the rare event of technical issues, Shinobu provides customer support to assist you. You can reach out to our support team via the app, and we will promptly address any concerns you may have.&#10;&#10;Q: Does Shinobu offer any special promotions or discounts? &#10;A: Yes, Shinobu periodically offers special promotions, discounts, and exclusive deals for its users depends on their current membership.&#10;&#10;Q: How do I change my information? &#10;A: You can change your information by going into ‘Your Profile’" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <font>
+                                 <Font name="Arial" size="14.0" />
+                              </font>
+                           </TextArea>
+                        </children>
+                     </AnchorPane>
+                  </content></Tab>
+                    <Tab text="Membership info">
+                        <content>
+                            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                        <children>
+                           <TextArea editable="false" text="- A Guest Account only allows the customer to rent maximum 2 items at a time.&#10;&#10;- A Regular account or a VIP account can borrow any number of items in the store.&#10;&#10;- A Guest customer that borrowed and successfully returned more than 3 items can be promoted to a Regular customer.&#10;&#10;- A Regular customer that borrowed and successfully returned more than 5 items can be promoted to a VIP customer.&#10;&#10;- A VIP account can accumulate reward points. When a VIP account has equal or more than 100 reward points, the customer can rent 1 item for free. Every rental a VIP customer makes, he will be rewarded 10 points.&#10;&#10;- Only regular customers and VIP customers can borrow 2-day items.&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <font>
+                                 <Font name="Arial" size="14.0" />
+                              </font>
+                           </TextArea>
+                        </children></AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab text="Store's Info">
+                        <content>
+                            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+                                <children>
+                                    <TextArea editable="false" text="The year is 2023, in a small town called RMIT, five ambitious students came together with a shared passion for movies and technology. They envisioned a convenient way for movie/games lovers to access their favorite product without leaving the comfort of their homes. With their combined skills in programming, design, and entrepreneurship, they embarked on an exciting journey to create a  renting app that would change the way people enjoyed video/games.&#10;&#10;The journey began in a cramped class room, where the five friends spent countless late nights brainstorming and coding. They faced numerous challenges along the way, from technical glitches to limited resources, but their unwavering determination kept them going. They knew that their idea had the potential to revolutionize the entertainment rental industry.&#10;&#10;After months of hard work and perseverance, their vision materialized into a functioning renting app called &quot;Shinobu&quot;, offered a vast library of movies spanning different genres, from timeless classics to the latest blockbusters. Users could browse and rent movies/games/dvds with just a few taps on their smartphones or computers.&#10;&#10;Shinobu quickly gained popularity among the college community. Students were thrilled to have access to a wide range of movies and games at their fingertips. The app's user-friendly interface and seamless payment system made it a go-to platform for movie/game enthusiasts in the town.&#10;&#10;As word spread about Shinobu convenience and extensive movie/game collection, the app caught the attention of local media and investors. The five college students found themselves thrust into the limelight, juggling their studies and the demands of scaling their app. With the support of their professors and mentors, they navigated the challenges of scaling up their infrastructure and expanding their team to meet the growing user base.&#10;&#10;Shinobu's success was not limited to their town. The app gradually expanded its reach to neighboring cities and towns, captivating movie lovers everywhere. The team's dedication and innovative approach earned them accolades and recognition in the tech industry, inspiring other aspiring entrepreneurs.&#10;&#10;Today, Shinobu continues to thrive as a testament to the ambition and creativity of its founders.&#10;" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <font>
+                                 <Font name="Arial" size="14.0" />
+                              </font>
+                           </TextArea>
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
       </children>
       <padding>
          <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
       </padding>
+
    </StackPane>
 </AnchorPane>
