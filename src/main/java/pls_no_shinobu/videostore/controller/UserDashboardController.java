@@ -71,7 +71,7 @@ public class UserDashboardController {
     @FXML private VBox profileContainer;
     @FXML private VBox rentedContainer;
     @FXML private HBox randomContainer;
-    @FXML private ScrollPane helpContainer;
+    @FXML private TabPane helpContainer;
 
     @FXML private TableView<Item> itemTable;
     @FXML private TableView<Item> rentedTable;
