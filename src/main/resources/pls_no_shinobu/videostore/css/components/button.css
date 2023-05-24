@@ -10,6 +10,14 @@
     -fx-background-color: -fx-primary-darker;
 }
 
+.button.secondary {
+    -fx-background-color: -fx-neutral-700;
+}
+
+.button.secondary:hover {
+    -fx-background-color: -fx-neutral-600;
+}
+
 .button.error {
     -fx-background-color: #ef4444;
 }
