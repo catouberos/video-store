@@ -56,6 +56,11 @@ public class SignInController {
     }
 
     @FXML
+    protected void onPlainPasswordFieldChanged() {
+        passwordField.setText(plainPasswordField.getText());
+    }
+
+    @FXML
     protected void onSignInButtonClick() {
         try {
             CSVDatabase database = CSVDatabase.getInstance();

@@ -60,6 +60,11 @@ public class SignUpController {
     }
 
     @FXML
+    protected void onPlainPasswordFieldChanged() {
+        passwordField.setText(plainPasswordField.getText());
+    }
+
+    @FXML
     protected void onSignUpButtonClick() {
         try {
             CSVDatabase database = CSVDatabase.getInstance();
