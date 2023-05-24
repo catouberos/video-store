@@ -2,6 +2,8 @@
 ![Test](https://github.com/catouberos/video-store/actions/workflows/test.yml/badge.svg)
 ![Build](https://github.com/catouberos/video-store/actions/workflows/build.yml/badge.svg)
 
+<img alt="Shinobu Store - User dashboard screenshot" src="doc/img/userdashboard.png">
+
 ## Getting started
 ### Prerequisite
 - Java >= 17
