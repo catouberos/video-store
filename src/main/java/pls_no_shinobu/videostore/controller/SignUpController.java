@@ -12,7 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
@@ -27,17 +27,16 @@ import pls_no_shinobu.videostore.utils.PasswordUtils;
 import java.io.IOException;
 
 public class SignUpController {
-    @FXML private VBox signUpContainer;
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private TextField phoneField;
     @FXML private TextField addressField;
     @FXML private Button signInButton;
+    @FXML private Text hint_1;
+    @FXML private Text hint_2;
+    @FXML private Text hint_3;
+    @FXML private Text hint_4;
 
-    @FXML
-    protected void onSignUpContainerClick() {
-        signUpContainer.requestFocus();
-    }
 
     @FXML
     protected void onSignUpButtonClick() {
@@ -100,4 +99,56 @@ public class SignUpController {
             alert.showAndWait();
         }
     }
+
+
+
+    @FXML
+    protected void initialize(){
+        hint_1.setVisible(false);
+        hint_2.setVisible(false);
+        hint_3.setVisible(false);
+        hint_4.setVisible(false);
+        usernameField.setOnMouseClicked(event -> hintOnUsernameClick());
+        usernameField.setOnMouseExited(event -> hintOnUsernameLeave());
+        passwordField.setOnMouseClicked(event -> hintOnPasswordClick());
+        passwordField.setOnMouseExited(event -> hintOnPasswordLeave());
+        addressField.setOnMouseClicked(event -> hintOnAddressClick());
+        addressField.setOnMouseExited(event -> hintOnAddressLeave());
+        phoneField.setOnMouseClicked(event -> hintOnPhoneClick());
+        phoneField.setOnMouseExited(event -> hintOnPhoneLeave());
+    }
+    @FXML
+    protected void hintOnUsernameClick(){
+        hint_1.setVisible(true);
+    }
+    @FXML
+    protected void hintOnPasswordClick(){
+        hint_2.setVisible(true);
+    }
+    @FXML
+    protected void hintOnPhoneClick(){
+        hint_3.setVisible(true);
+    }
+    @FXML
+    protected void hintOnAddressClick(){
+        hint_4.setVisible(true);
+    }
+    @FXML
+    protected void hintOnUsernameLeave(){
+        hint_1.setVisible(false);
+    }
+    @FXML
+    protected void hintOnPasswordLeave(){
+        hint_2.setVisible(false);
+    }
+    @FXML
+    protected void hintOnPhoneLeave(){
+        hint_3.setVisible(false);
+    }
+    @FXML
+    protected void hintOnAddressLeave(){
+        hint_4.setVisible(false);
+    }
 }
+
+
