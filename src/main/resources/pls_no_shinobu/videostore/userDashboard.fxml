@@ -175,7 +175,7 @@
                      <Insets />
                   </VBox.margin>
                </HBox>
-               <TableView fx:id="rentedTable">
+               <TableView fx:id="rentedTable" VBox.vgrow="ALWAYS">
                   <columnResizePolicy>
                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                   </columnResizePolicy>
@@ -251,7 +251,7 @@
                <Button alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onSaveButtonClick" text="Save" />
             </children>
          </VBox>
-            <TabPane fx:id="helpContainer" prefHeight="335.0" prefWidth="534.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="helpContainer" prefHeight="335.0" prefWidth="534.0" tabClosingPolicy="UNAVAILABLE" visible="false">
                 <tabs>
                     <Tab text="FAQs">
                   <content>
