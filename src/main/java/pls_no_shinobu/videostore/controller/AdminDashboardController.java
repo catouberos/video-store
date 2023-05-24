@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -133,6 +134,10 @@ public class AdminDashboardController {
 
                             final Button btn = new Button("Edit");
 
+                            {
+                                setAlignment(Pos.CENTER);
+                            }
+
                             @Override
                             public void updateItem(String item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -140,6 +145,8 @@ public class AdminDashboardController {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
+                                    btn.setMaxWidth(Double.MAX_VALUE);
+                                    btn.setMaxHeight(Double.MAX_VALUE);
                                     btn.setOnAction(
                                             event ->
                                                     editUser(
@@ -208,6 +215,10 @@ public class AdminDashboardController {
 
                             final Button btn = new Button("Edit");
 
+                            {
+                                setAlignment(Pos.CENTER);
+                            }
+
                             @Override
                             public void updateItem(String item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -215,6 +226,8 @@ public class AdminDashboardController {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
+                                    btn.setMaxWidth(Double.MAX_VALUE);
+                                    btn.setMaxHeight(Double.MAX_VALUE);
                                     btn.setOnAction(
                                             event ->
                                                     editItem(

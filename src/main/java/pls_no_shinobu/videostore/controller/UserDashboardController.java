@@ -10,6 +10,7 @@ package pls_no_shinobu.videostore.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -218,6 +219,10 @@ public class UserDashboardController {
 
                             final Button btn = new Button("Rent");
 
+                            {
+                                setAlignment(Pos.CENTER);
+                            }
+
                             @Override
                             public void updateItem(String item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -225,6 +230,8 @@ public class UserDashboardController {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
+                                    btn.setMaxWidth(Double.MAX_VALUE);
+                                    btn.setMaxHeight(Double.MAX_VALUE);
                                     btn.setOnAction(
                                             event ->
                                                     rentAnItem(
@@ -290,6 +297,10 @@ public class UserDashboardController {
 
                             final Button btn = new Button("Return");
 
+                            {
+                                setAlignment(Pos.CENTER);
+                            }
+
                             @Override
                             public void updateItem(String item, boolean empty) {
                                 super.updateItem(item, empty);
@@ -297,6 +308,8 @@ public class UserDashboardController {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
+                                    btn.setMaxWidth(Double.MAX_VALUE);
+                                    btn.setMaxHeight(Double.MAX_VALUE);
                                     btn.setOnAction(
                                             event ->
                                                     returnAnItem(

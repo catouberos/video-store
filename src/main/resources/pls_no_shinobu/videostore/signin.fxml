@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -12,11 +13,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.SignInController">
+<VBox fx:id="signInContainer" alignment="CENTER" onMouseClicked="#onSignInContainerClick" spacing="24.0" style="-fx-background-color: #262626;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pls_no_shinobu.videostore.controller.SignInController">
     <children>
       <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -63,7 +65,12 @@
             <SVGPath content="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" fill="#fafafa" />
          </graphic>
         </Button>
-        <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#onSignUpButtonClick" style="-fx-background-color: TRANSPARENT;" text="Don't have an account? Sign up" textFill="#fafafa" />
+        <HBox alignment="CENTER" prefHeight="25.0">
+            <children>
+                <Label text="Don't have an account?" textFill="#fafafa" />
+                <Button fx:id="signUpButton" mnemonicParsing="false" onAction="#onSignUpButtonClick" style="-fx-background-color: TRANSPARENT;" styleClass="hyperlink" text="Sign up" textFill="#fafafa" />
+            </children>
+        </HBox>
         <Label prefHeight="20.0" text="&quot;A movie a day, keeps the boredom away&quot; - Tsun Zu, Art of war" textFill="#a3a3a3">
             <font>
                 <Font size="14.0" />
