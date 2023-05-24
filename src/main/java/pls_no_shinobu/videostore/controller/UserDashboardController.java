@@ -218,6 +218,7 @@ public class UserDashboardController {
                         return new TableCell<>() {
 
                             final Button btn = new Button("Rent");
+
                             {
                                 setAlignment(Pos.CENTER);
                             }
@@ -295,6 +296,7 @@ public class UserDashboardController {
                         return new TableCell<>() {
 
                             final Button btn = new Button("Return");
+
                             {
                                 setAlignment(Pos.CENTER);
                             }

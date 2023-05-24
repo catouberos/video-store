@@ -133,6 +133,7 @@ public class AdminDashboardController {
                         return new TableCell<>() {
 
                             final Button btn = new Button("Edit");
+
                             {
                                 setAlignment(Pos.CENTER);
                             }
@@ -213,6 +214,7 @@ public class AdminDashboardController {
                         return new TableCell<>() {
 
                             final Button btn = new Button("Edit");
+
                             {
                                 setAlignment(Pos.CENTER);
                             }
