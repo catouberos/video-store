@@ -71,6 +71,7 @@ public class UserDashboardController {
     @FXML private VBox profileContainer;
     @FXML private VBox rentedContainer;
     @FXML private HBox randomContainer;
+    @FXML private ScrollPane helpContainer;
 
     @FXML private TableView<Item> itemTable;
     @FXML private TableView<Item> rentedTable;
@@ -341,6 +342,12 @@ public class UserDashboardController {
         initializeItemTable();
         initializeRentedTable();
         setRandomItem();
+    }
+
+    @FXML
+    public void onHelpButtonClick() {
+        titleText.setText("Info and FAQs");
+        PaneUtils.setPane(stackPane, helpContainer);
     }
 
     @FXML
