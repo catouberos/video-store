@@ -37,7 +37,6 @@ public class SignUpController {
     @FXML private Text hint_3;
     @FXML private Text hint_4;
 
-
     @FXML
     protected void onSignUpButtonClick() {
         try {
@@ -100,10 +99,8 @@ public class SignUpController {
         }
     }
 
-
-
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         hint_1.setVisible(false);
         hint_2.setVisible(false);
         hint_3.setVisible(false);
@@ -117,38 +114,44 @@ public class SignUpController {
         phoneField.setOnMouseClicked(event -> hintOnPhoneClick());
         phoneField.setOnMouseExited(event -> hintOnPhoneLeave());
     }
+
     @FXML
-    protected void hintOnUsernameClick(){
+    protected void hintOnUsernameClick() {
         hint_1.setVisible(true);
     }
+
     @FXML
-    protected void hintOnPasswordClick(){
+    protected void hintOnPasswordClick() {
         hint_2.setVisible(true);
     }
+
     @FXML
-    protected void hintOnPhoneClick(){
+    protected void hintOnPhoneClick() {
         hint_3.setVisible(true);
     }
+
     @FXML
-    protected void hintOnAddressClick(){
+    protected void hintOnAddressClick() {
         hint_4.setVisible(true);
     }
+
     @FXML
-    protected void hintOnUsernameLeave(){
+    protected void hintOnUsernameLeave() {
         hint_1.setVisible(false);
     }
+
     @FXML
-    protected void hintOnPasswordLeave(){
+    protected void hintOnPasswordLeave() {
         hint_2.setVisible(false);
     }
+
     @FXML
-    protected void hintOnPhoneLeave(){
+    protected void hintOnPhoneLeave() {
         hint_3.setVisible(false);
     }
+
     @FXML
-    protected void hintOnAddressLeave(){
+    protected void hintOnAddressLeave() {
         hint_4.setVisible(false);
     }
 }
-
-
