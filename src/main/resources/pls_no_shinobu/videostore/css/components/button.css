@@ -17,3 +17,12 @@
 .button.error:hover {
     -fx-background-color: #dc2626;
 }
+
+.button.hyperlink {
+    -fx-border-width: 0;
+    -fx-border-color: none;
+}
+
+.button.hyperlink:hover {
+    -fx-underline: true;
+}

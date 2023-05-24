@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
@@ -24,9 +25,15 @@ import pls_no_shinobu.videostore.model.User;
 import java.io.IOException;
 
 public class SignInController {
+    @FXML private VBox signInContainer;
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private Button signUpButton;
+
+    @FXML
+    protected void onSignInContainerClick() {
+        signInContainer.requestFocus();
+    }
 
     @FXML
     protected void onSignInButtonClick() {
