@@ -27,12 +27,37 @@ import java.io.IOException;
 public class SignInController {
     @FXML private VBox signInContainer;
     @FXML private TextField usernameField;
+    @FXML private TextField plainPasswordField;
     @FXML private PasswordField passwordField;
+    @FXML private Button eyeToggleButton;
+    @FXML private Button eyeToggleButtonClosed;
     @FXML private Button signUpButton;
 
     @FXML
     protected void onSignInContainerClick() {
         signInContainer.requestFocus();
+    }
+
+    @FXML
+    protected void togglePasswordVisibility() {
+        if (passwordField.isVisible()) {
+            plainPasswordField.setText(passwordField.getText());
+            plainPasswordField.setVisible(true);
+            passwordField.setVisible(false);
+            eyeToggleButton.setVisible(false);
+            eyeToggleButtonClosed.setVisible(true);
+        } else {
+            passwordField.setText(plainPasswordField.getText());
+            passwordField.setVisible(true);
+            plainPasswordField.setVisible(false);
+            eyeToggleButton.setVisible(true);
+            eyeToggleButtonClosed.setVisible(false);
+        }
+    }
+
+    @FXML
+    protected void onPlainPasswordFieldChanged() {
+        passwordField.setText(plainPasswordField.getText());
     }
 
     @FXML
