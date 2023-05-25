@@ -65,7 +65,7 @@
                   <Font size="8.0" />
                </font>
             </Text>
-            <Text fx:id="hint_2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint: Password should contain at least special character such as @, &amp;, $, ..." textAlignment="CENTER" wrappingWidth="83.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Text fx:id="hint_2" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Hint: Password should contain at least one special character such as @, &amp;, $, ..." textAlignment="CENTER" wrappingWidth="83.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="8.0" />
                </font>
