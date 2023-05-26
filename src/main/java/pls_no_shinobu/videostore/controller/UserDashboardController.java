@@ -581,23 +581,12 @@ public class UserDashboardController {
 
     @FXML
     public void onItemTypeComboBoxAction() {
-        if (itemTypeComboBox.getValue() == null || itemTypeComboBox.getValue() == RentalType.ALL) {
-            filteredItems.setPredicate(item -> true);
-        } else {
-            filteredItems.setPredicate(
-                    item -> item.getRentalType() == itemTypeComboBox.getValue().getType());
-        }
+        onItemSearchAction();
     }
 
     @FXML
     public void onRentalsTypeComboBoxAction() {
-        if (rentalsTypeComboBox.getValue() == null
-                || rentalsTypeComboBox.getValue() == RentalType.ALL) {
-            filteredRentals.setPredicate(item -> true);
-        } else {
-            filteredRentals.setPredicate(
-                    item -> item.getRentalType() == rentalsTypeComboBox.getValue().getType());
-        }
+        onRentalsSearchAction();
     }
 
     @FXML

@@ -480,21 +480,7 @@ public class AdminDashboardController {
 
     @FXML
     public void onRoleComboBoxAction() {
-        if (roleComboBox.getValue() == null || roleComboBox.getValue() == Role.ALL) {
-            filteredUsers.setPredicate(user -> true);
-        } else {
-            filteredUsers.setPredicate(user -> user.getRole() == roleComboBox.getValue().getRole());
-        }
-    }
-
-    @FXML
-    public void onItemTypeComboBoxAction() {
-        if (itemTypeComboBox.getValue() == null || itemTypeComboBox.getValue() == RentalType.ALL) {
-            filteredStocks.setPredicate(item -> true);
-        } else {
-            filteredStocks.setPredicate(
-                    item -> item.getRentalType() == itemTypeComboBox.getValue().getType());
-        }
+        onAccountSearchAction();
     }
 
     @FXML
@@ -525,5 +511,10 @@ public class AdminDashboardController {
                                             || item.getRentalType()
                                                     == itemTypeComboBox.getValue().getType()));
         }
+    }
+
+    @FXML
+    public void onItemTypeComboBoxAction() {
+        onItemSearchAction();
     }
 }
