@@ -8,11 +8,9 @@
 package pls_no_shinobu.videostore.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import pls_no_shinobu.videostore.controller.utils.SceneUtils;
@@ -36,6 +34,16 @@ public class SignUpController {
     @FXML private TextField phoneField;
     @FXML private TextField addressField;
     @FXML private Button signInButton;
+
+    @FXML private Label helperLabel;
+
+    protected void validatePassword(String password) {
+        if (password.matches("^[a-zA-Z0-9]*$")) {
+            helperLabel.setTextFill(Color.web("#fafafa"));
+            helperLabel.setText("HELP: Password should have some special characters");
+            helperLabel.setVisible(true);
+        } else helperLabel.setVisible(false);
+    }
 
     @FXML
     protected void onSignUpContainerClick() {
@@ -62,6 +70,12 @@ public class SignUpController {
     @FXML
     protected void onPlainPasswordFieldChanged() {
         passwordField.setText(plainPasswordField.getText());
+        validatePassword(plainPasswordField.getText());
+    }
+
+    @FXML
+    protected void onPasswordFieldChanged() {
+        validatePassword(passwordField.getText());
     }
 
     @FXML
@@ -124,5 +138,23 @@ public class SignUpController {
                                     + " info.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    protected void onUsernameKeyTyped() {
+        if (!usernameField.getText().matches("^[a-zA-Z0-9]*$")) {
+            helperLabel.setTextFill(Color.RED);
+            helperLabel.setText("ERROR: Username cannot contains special characters");
+            helperLabel.setVisible(true);
+        } else helperLabel.setVisible(false);
+    }
+
+    @FXML
+    protected void onPhoneKeyTyped() {
+        if (!phoneField.getText().matches("^\\d*$")) {
+            helperLabel.setTextFill(Color.RED);
+            helperLabel.setText("ERROR: Phone number cannot contains other than number");
+            helperLabel.setVisible(true);
+        } else helperLabel.setVisible(false);
     }
 }
