@@ -170,6 +170,7 @@
                         </HBox.margin>
                      </TextField>
                      <ComboBox fx:id="rentalsSearchByBox" prefHeight="32.0" promptText="Search by" HBox.hgrow="ALWAYS" />
+                     <ComboBox fx:id="rentalsTypeComboBox" onAction="#onRentalsTypeComboBoxAction" prefHeight="32.0" promptText="Type" HBox.hgrow="ALWAYS" />
                   </children>
                   <VBox.margin>
                      <Insets />
@@ -192,6 +193,7 @@
                         </HBox.margin>
                      </TextField>
                      <ComboBox fx:id="itemSearchByBox" prefHeight="32.0" promptText="Search by" HBox.hgrow="ALWAYS" />
+                     <ComboBox fx:id="itemTypeComboBox" onAction="#onItemTypeComboBoxAction" prefHeight="32.0" promptText="Type" HBox.hgrow="ALWAYS" />
                   </children>
                   <VBox.margin>
                      <Insets />

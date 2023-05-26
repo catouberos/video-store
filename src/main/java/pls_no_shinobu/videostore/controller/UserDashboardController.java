@@ -44,6 +44,23 @@ public class UserDashboardController {
         ID
     }
 
+    private enum RentalType {
+        ALL(null),
+        RECORD(Item.RentalType.RECORD),
+        DVD(Item.RentalType.DVD),
+        GAME(Item.RentalType.GAME);
+
+        final Item.RentalType type;
+
+        RentalType(Item.RentalType type) {
+            this.type = type;
+        }
+
+        public Item.RentalType getType() {
+            return type;
+        }
+    }
+
     private Random rand = new Random();
 
     private FilteredList<Item> filteredItems;
@@ -79,6 +96,8 @@ public class UserDashboardController {
 
     @FXML private ComboBox<SearchBy> itemSearchByBox;
     @FXML private ComboBox<SearchBy> rentalsSearchByBox;
+    @FXML private ComboBox<RentalType> itemTypeComboBox;
+    @FXML private ComboBox<RentalType> rentalsTypeComboBox;
 
     @FXML private ImageView randomTitleImage;
 
@@ -351,6 +370,12 @@ public class UserDashboardController {
 
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+        itemTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
+        rentalsTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
 
         initializeItemTable();
         initializeRentedTable();
@@ -468,11 +493,28 @@ public class UserDashboardController {
         String input = itemSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredItems.setPredicate(item -> true);
+            filteredItems.setPredicate(
+                    item ->
+                            itemTypeComboBox.getValue() == null
+                                    || itemTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == itemTypeComboBox.getValue().getType());
         } else if (itemSearchByBox.getValue() == SearchBy.ID) {
-            filteredItems.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredItems.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
-            filteredItems.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredItems.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         }
     }
 
@@ -481,11 +523,49 @@ public class UserDashboardController {
         String input = rentalsSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredRentals.setPredicate(item -> true);
+            filteredRentals.setPredicate(
+                    item ->
+                            rentalsTypeComboBox.getValue() == null
+                                    || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == rentalsTypeComboBox.getValue().getType());
         } else if (rentalsSearchByBox.getValue() == SearchBy.ID) {
-            filteredRentals.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredRentals.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (rentalsTypeComboBox.getValue() == null
+                                            || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == rentalsTypeComboBox.getValue().getType()));
         } else if (rentalsSearchByBox.getValue() == SearchBy.NAME) {
-            filteredRentals.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredRentals.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (rentalsTypeComboBox.getValue() == null
+                                            || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == rentalsTypeComboBox.getValue().getType()));
+        }
+    }
+
+    @FXML
+    public void onItemTypeComboBoxAction() {
+        if (itemTypeComboBox.getValue() == null || itemTypeComboBox.getValue() == RentalType.ALL) {
+            filteredItems.setPredicate(item -> true);
+        } else {
+            filteredItems.setPredicate(
+                    item -> item.getRentalType() == itemTypeComboBox.getValue().getType());
+        }
+    }
+
+    @FXML
+    public void onRentalsTypeComboBoxAction() {
+        if (rentalsTypeComboBox.getValue() == null
+                || rentalsTypeComboBox.getValue() == RentalType.ALL) {
+            filteredRentals.setPredicate(item -> true);
+        } else {
+            filteredRentals.setPredicate(
+                    item -> item.getRentalType() == rentalsTypeComboBox.getValue().getType());
         }
     }
 

@@ -38,6 +38,23 @@ public class AdminDashboardController {
         ID
     }
 
+    private enum RentalType {
+        ALL(null),
+        RECORD(Item.RentalType.RECORD),
+        DVD(Item.RentalType.DVD),
+        GAME(Item.RentalType.GAME);
+
+        final Item.RentalType type;
+
+        RentalType(Item.RentalType type) {
+            this.type = type;
+        }
+
+        public Item.RentalType getType() {
+            return type;
+        }
+    }
+
     private FilteredList<User> filteredUsers;
     private FilteredList<Item> filteredStocks;
     private FilteredList<User> filteredRentals;
@@ -48,6 +65,7 @@ public class AdminDashboardController {
     @FXML private ComboBox<User.UserType> roleComboBox;
     @FXML private ComboBox<SearchBy> accountSearchByBox;
     @FXML private ComboBox<SearchBy> itemSearchByBox;
+    @FXML private ComboBox<RentalType> itemTypeComboBox;
 
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
@@ -293,6 +311,9 @@ public class AdminDashboardController {
                         User.UserType.REGULAR,
                         User.UserType.VIP,
                         User.UserType.ADMIN));
+        itemTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
         accountSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
 
@@ -358,6 +379,7 @@ public class AdminDashboardController {
         }
     }
 
+    @FXML
     public void onAccountSearchAction() {
         String input = accountSearchField.getText().toLowerCase().trim();
 
@@ -370,6 +392,7 @@ public class AdminDashboardController {
         }
     }
 
+    @FXML
     public void onRoleComboBoxAction() {
         if (roleComboBox.getValue() == null) {
             filteredUsers.setPredicate(user -> true);
@@ -378,15 +401,43 @@ public class AdminDashboardController {
         }
     }
 
+    @FXML
+    public void onItemTypeComboBoxAction() {
+        if (itemTypeComboBox.getValue() == null || itemTypeComboBox.getValue() == RentalType.ALL) {
+            filteredStocks.setPredicate(item -> true);
+        } else {
+            filteredStocks.setPredicate(
+                    item -> item.getRentalType() == itemTypeComboBox.getValue().getType());
+        }
+    }
+
+    @FXML
     public void onItemSearchAction() {
         String input = itemSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredStocks.setPredicate(item -> true);
+            filteredStocks.setPredicate(
+                    item ->
+                            itemTypeComboBox.getValue() == null
+                                    || itemTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == itemTypeComboBox.getValue().getType());
         } else if (itemSearchByBox.getValue() == SearchBy.ID) {
-            filteredStocks.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredStocks.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
-            filteredStocks.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredStocks.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         }
     }
 }
