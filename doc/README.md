@@ -5,11 +5,11 @@ https://github.com/catouberos/video-store
 ## Contribution
 | student_id | name                | contribution% |
 |------------|---------------------|---------------|
-| S3978796   | Do Khoa Nguyen      | 35%           |
+| S3978796   | Do Khoa Nguyen      | 30%           |
 | S3979562   | Tran The Quang Minh | 25%           |
 | S3979348   | Nguyen Son Tung     | 20%           |
 | S3979513   | Bui Anh Minh        | 15%           |
-| S3980823   | Nguyen Minh Khoa    | 5%            |
+| S3980823   | Nguyen Minh Khoa    | 10%            |
 
 ### Details
 #### Do Khoa Nguyen - S3978796
@@ -26,4 +26,4 @@ Did some of the GUI and the UML diagram of the finished system, later on error t
 Did some of the GUI, design the welcome scene and co-ordinate the project state.
 
 #### Nguyen Minh Khoa - S3980823
-Did fix some bugs, later on tested and improve UX of the application.
+Did fix some bugs, later on tested and improve the UX of the application with many helpful quality of life changes.
