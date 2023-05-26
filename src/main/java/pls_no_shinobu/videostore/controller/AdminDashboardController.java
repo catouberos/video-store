@@ -57,6 +57,7 @@ public class AdminDashboardController {
 
     private enum Role {
         ALL(null),
+        GUEST(User.UserType.GUEST),
         REGULAR(User.UserType.REGULAR),
         VIP(User.UserType.VIP),
         ADMIN(User.UserType.ADMIN);
@@ -378,7 +379,8 @@ public class AdminDashboardController {
     @FXML
     public void initialize() throws IOException {
         roleComboBox.setItems(
-                FXCollections.observableArrayList(Role.ALL, Role.REGULAR, Role.VIP, Role.ADMIN));
+                FXCollections.observableArrayList(
+                        Role.ALL, Role.GUEST, Role.REGULAR, Role.VIP, Role.ADMIN));
         itemTypeComboBox.setItems(
                 FXCollections.observableArrayList(
                         RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
