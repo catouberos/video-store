@@ -205,6 +205,26 @@ public class UserDashboardController {
         }
     }
 
+    private <T> void setCenterLeftCellFactory(TableColumn<Item, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<Item, T> cell =
+                            new TableCell<Item, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
     private void initializeItemTable() throws IOException {
 
         CSVDatabase database = CSVDatabase.getInstance();
@@ -212,21 +232,27 @@ public class UserDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftCellFactory(loanColumn);
 
         TableColumn<Item, String> stockColumn = new TableColumn<>("Stock");
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        setCenterLeftCellFactory(stockColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -293,18 +319,23 @@ public class UserDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftCellFactory(loanColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));

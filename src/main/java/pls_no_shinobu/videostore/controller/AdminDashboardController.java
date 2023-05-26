@@ -137,26 +137,72 @@ public class AdminDashboardController {
         }
     }
 
+    private <T> void setCenterLeftUserCellFactory(TableColumn<User, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<User, T> cell =
+                            new TableCell<User, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
+    private <T> void setCenterLeftItemCellFactory(TableColumn<Item, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<Item, T> cell =
+                            new TableCell<Item, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
     private void initializeAccountTable() throws IOException {
         CSVDatabase database = CSVDatabase.getInstance();
 
         TableColumn<User, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        setCenterLeftUserCellFactory(idColumn);
 
         TableColumn<User, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        setCenterLeftUserCellFactory(usernameColumn);
 
         TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        setCenterLeftUserCellFactory(nameColumn);
 
         TableColumn<User, String> roleColumn = new TableColumn<>("Role");
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        setCenterLeftUserCellFactory(roleColumn);
 
         TableColumn<User, String> addressColumn = new TableColumn<>("Address");
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        setCenterLeftUserCellFactory(addressColumn);
 
         TableColumn<User, String> phoneColumn = new TableColumn<>("Phone");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        setCenterLeftUserCellFactory(phoneColumn);
 
         TableColumn<User, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -223,21 +269,27 @@ public class AdminDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftItemCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftItemCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftItemCellFactory(loanColumn);
 
         TableColumn<Item, String> stockColumn = new TableColumn<>("Stock");
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        setCenterLeftItemCellFactory(stockColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftItemCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftItemCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -303,12 +355,15 @@ public class AdminDashboardController {
 
         TableColumn<User, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        setCenterLeftUserCellFactory(idColumn);
 
         TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        setCenterLeftUserCellFactory(nameColumn);
 
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
+        setCenterLeftUserCellFactory(rentalsColumn);
 
         filteredRentals =
                 new FilteredList<>(
