@@ -55,6 +55,23 @@ public class AdminDashboardController {
         }
     }
 
+    private enum Role {
+        ALL(null),
+        REGULAR(User.UserType.REGULAR),
+        VIP(User.UserType.VIP),
+        ADMIN(User.UserType.ADMIN);
+
+        final User.UserType role;
+
+        Role(User.UserType role) {
+            this.role = role;
+        }
+
+        public User.UserType getRole() {
+            return role;
+        }
+    }
+
     private FilteredList<User> filteredUsers;
     private FilteredList<Item> filteredStocks;
     private FilteredList<User> filteredRentals;
@@ -62,7 +79,7 @@ public class AdminDashboardController {
     @FXML private TextField accountSearchField;
     @FXML private TextField itemSearchField;
 
-    @FXML private ComboBox<User.UserType> roleComboBox;
+    @FXML private ComboBox<Role> roleComboBox;
     @FXML private ComboBox<SearchBy> accountSearchByBox;
     @FXML private ComboBox<SearchBy> itemSearchByBox;
     @FXML private ComboBox<RentalType> itemTypeComboBox;
@@ -306,11 +323,7 @@ public class AdminDashboardController {
     @FXML
     public void initialize() throws IOException {
         roleComboBox.setItems(
-                FXCollections.observableArrayList(
-                        User.UserType.GUEST,
-                        User.UserType.REGULAR,
-                        User.UserType.VIP,
-                        User.UserType.ADMIN));
+                FXCollections.observableArrayList(Role.ALL, Role.REGULAR, Role.VIP, Role.ADMIN));
         itemTypeComboBox.setItems(
                 FXCollections.observableArrayList(
                         RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
@@ -384,20 +397,36 @@ public class AdminDashboardController {
         String input = accountSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredUsers.setPredicate(user -> true);
+            filteredUsers.setPredicate(
+                    user ->
+                            roleComboBox.getValue() == null
+                                    || roleComboBox.getValue() == Role.ALL
+                                    || user.getRole() == roleComboBox.getValue().getRole());
         } else if (accountSearchByBox.getValue() == SearchBy.ID) {
-            filteredUsers.setPredicate(user -> user.getId().toLowerCase().contains(input));
+            filteredUsers.setPredicate(
+                    user ->
+                            user.getId().toLowerCase().contains(input)
+                                    && (roleComboBox.getValue() == null
+                                            || roleComboBox.getValue() == Role.ALL
+                                            || user.getRole()
+                                                    == roleComboBox.getValue().getRole()));
         } else if (accountSearchByBox.getValue() == SearchBy.NAME) {
-            filteredUsers.setPredicate(user -> user.getName().toLowerCase().contains(input));
+            filteredUsers.setPredicate(
+                    user ->
+                            user.getName().toLowerCase().contains(input)
+                                    && (roleComboBox.getValue() == null
+                                            || roleComboBox.getValue() == Role.ALL
+                                            || user.getRole()
+                                                    == roleComboBox.getValue().getRole()));
         }
     }
 
     @FXML
     public void onRoleComboBoxAction() {
-        if (roleComboBox.getValue() == null) {
+        if (roleComboBox.getValue() == null || roleComboBox.getValue() == Role.ALL) {
             filteredUsers.setPredicate(user -> true);
         } else {
-            filteredUsers.setPredicate(user -> user.getRole() == roleComboBox.getValue());
+            filteredUsers.setPredicate(user -> user.getRole() == roleComboBox.getValue().getRole());
         }
     }
 
