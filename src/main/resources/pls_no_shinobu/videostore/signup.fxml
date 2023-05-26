@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -10,10 +11,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -36,6 +37,11 @@
             <Insets top="-40.0" />
          </VBox.margin>
         </Text>
+      <Label fx:id="helperLabel" text="Label" textFill="#fafafa" visible="false">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
         <GridPane maxWidth="200.0" prefWidth="200.0">
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="30.0" />
@@ -54,13 +60,13 @@
                <GridPane.margin>
                   <Insets />
                </GridPane.margin></SVGPath>
-                <TextField fx:id="usernameField" promptText="Username" styleClass="input" GridPane.columnIndex="1">
+                <TextField fx:id="usernameField" onKeyTyped="#onUsernameKeyTyped" promptText="Username" styleClass="input" GridPane.columnIndex="1">
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
                 </TextField>
                 <StackPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <PasswordField fx:id="passwordField" promptText="Password" styleClass="input" />
+                    <PasswordField fx:id="passwordField" onKeyTyped="#onPasswordFieldChanged" promptText="Password" styleClass="input" />
                     <TextField fx:id="plainPasswordField" onKeyTyped="#onPlainPasswordFieldChanged" promptText="Password" styleClass="input" visible="false" />
                     <Button fx:id="eyeToggleButton" onMouseClicked="#togglePasswordVisibility" style="-fx-background-color: transparent; -fx-padding: 0;">
                         <StackPane.margin>
@@ -87,7 +93,7 @@
                 </StackPane>
             <SVGPath content="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" fill="WHITE" GridPane.rowIndex="3" />
             <SVGPath content="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" fill="WHITE" GridPane.rowIndex="4" />
-            <TextField fx:id="phoneField" promptText="Phone number" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="phoneField" onKeyTyped="#onPhoneKeyTyped" promptText="Phone number" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="addressField" promptText="Address" styleClass="input" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
