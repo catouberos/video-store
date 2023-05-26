@@ -38,6 +38,41 @@ public class AdminDashboardController {
         ID
     }
 
+    private enum RentalType {
+        ALL(null),
+        RECORD(Item.RentalType.RECORD),
+        DVD(Item.RentalType.DVD),
+        GAME(Item.RentalType.GAME);
+
+        final Item.RentalType type;
+
+        RentalType(Item.RentalType type) {
+            this.type = type;
+        }
+
+        public Item.RentalType getType() {
+            return type;
+        }
+    }
+
+    private enum Role {
+        ALL(null),
+        GUEST(User.UserType.GUEST),
+        REGULAR(User.UserType.REGULAR),
+        VIP(User.UserType.VIP),
+        ADMIN(User.UserType.ADMIN);
+
+        final User.UserType role;
+
+        Role(User.UserType role) {
+            this.role = role;
+        }
+
+        public User.UserType getRole() {
+            return role;
+        }
+    }
+
     private FilteredList<User> filteredUsers;
     private FilteredList<Item> filteredStocks;
     private FilteredList<User> filteredRentals;
@@ -45,9 +80,10 @@ public class AdminDashboardController {
     @FXML private TextField accountSearchField;
     @FXML private TextField itemSearchField;
 
-    @FXML private ComboBox<User.UserType> roleComboBox;
+    @FXML private ComboBox<Role> roleComboBox;
     @FXML private ComboBox<SearchBy> accountSearchByBox;
     @FXML private ComboBox<SearchBy> itemSearchByBox;
+    @FXML private ComboBox<RentalType> itemTypeComboBox;
 
     @FXML private Button logoutButton;
     @FXML private StackPane stackPane;
@@ -102,26 +138,72 @@ public class AdminDashboardController {
         }
     }
 
+    private <T> void setCenterLeftUserCellFactory(TableColumn<User, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<User, T> cell =
+                            new TableCell<User, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
+    private <T> void setCenterLeftItemCellFactory(TableColumn<Item, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<Item, T> cell =
+                            new TableCell<Item, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
     private void initializeAccountTable() throws IOException {
         CSVDatabase database = CSVDatabase.getInstance();
 
         TableColumn<User, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        setCenterLeftUserCellFactory(idColumn);
 
         TableColumn<User, String> usernameColumn = new TableColumn<>("Username");
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        setCenterLeftUserCellFactory(usernameColumn);
 
         TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        setCenterLeftUserCellFactory(nameColumn);
 
         TableColumn<User, String> roleColumn = new TableColumn<>("Role");
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
+        setCenterLeftUserCellFactory(roleColumn);
 
         TableColumn<User, String> addressColumn = new TableColumn<>("Address");
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        setCenterLeftUserCellFactory(addressColumn);
 
         TableColumn<User, String> phoneColumn = new TableColumn<>("Phone");
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        setCenterLeftUserCellFactory(phoneColumn);
 
         TableColumn<User, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -188,21 +270,27 @@ public class AdminDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftItemCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftItemCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftItemCellFactory(loanColumn);
 
         TableColumn<Item, String> stockColumn = new TableColumn<>("Stock");
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        setCenterLeftItemCellFactory(stockColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftItemCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftItemCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -268,12 +356,15 @@ public class AdminDashboardController {
 
         TableColumn<User, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        setCenterLeftUserCellFactory(idColumn);
 
         TableColumn<User, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        setCenterLeftUserCellFactory(nameColumn);
 
         TableColumn<User, String> rentalsColumn = new TableColumn<>("Rentals");
         rentalsColumn.setCellValueFactory(new PropertyValueFactory<>("rentals"));
+        setCenterLeftUserCellFactory(rentalsColumn);
 
         filteredRentals =
                 new FilteredList<>(
@@ -289,10 +380,10 @@ public class AdminDashboardController {
     public void initialize() throws IOException {
         roleComboBox.setItems(
                 FXCollections.observableArrayList(
-                        User.UserType.GUEST,
-                        User.UserType.REGULAR,
-                        User.UserType.VIP,
-                        User.UserType.ADMIN));
+                        Role.ALL, Role.GUEST, Role.REGULAR, Role.VIP, Role.ADMIN));
+        itemTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
         accountSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
 
@@ -358,35 +449,72 @@ public class AdminDashboardController {
         }
     }
 
+    @FXML
     public void onAccountSearchAction() {
         String input = accountSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredUsers.setPredicate(user -> true);
+            filteredUsers.setPredicate(
+                    user ->
+                            roleComboBox.getValue() == null
+                                    || roleComboBox.getValue() == Role.ALL
+                                    || user.getRole() == roleComboBox.getValue().getRole());
         } else if (accountSearchByBox.getValue() == SearchBy.ID) {
-            filteredUsers.setPredicate(user -> user.getId().toLowerCase().contains(input));
+            filteredUsers.setPredicate(
+                    user ->
+                            user.getId().toLowerCase().contains(input)
+                                    && (roleComboBox.getValue() == null
+                                            || roleComboBox.getValue() == Role.ALL
+                                            || user.getRole()
+                                                    == roleComboBox.getValue().getRole()));
         } else if (accountSearchByBox.getValue() == SearchBy.NAME) {
-            filteredUsers.setPredicate(user -> user.getName().toLowerCase().contains(input));
+            filteredUsers.setPredicate(
+                    user ->
+                            user.getName().toLowerCase().contains(input)
+                                    && (roleComboBox.getValue() == null
+                                            || roleComboBox.getValue() == Role.ALL
+                                            || user.getRole()
+                                                    == roleComboBox.getValue().getRole()));
         }
     }
 
+    @FXML
     public void onRoleComboBoxAction() {
-        if (roleComboBox.getValue() == null) {
-            filteredUsers.setPredicate(user -> true);
-        } else {
-            filteredUsers.setPredicate(user -> user.getRole() == roleComboBox.getValue());
-        }
+        onAccountSearchAction();
     }
 
+    @FXML
     public void onItemSearchAction() {
         String input = itemSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredStocks.setPredicate(item -> true);
+            filteredStocks.setPredicate(
+                    item ->
+                            itemTypeComboBox.getValue() == null
+                                    || itemTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == itemTypeComboBox.getValue().getType());
         } else if (itemSearchByBox.getValue() == SearchBy.ID) {
-            filteredStocks.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredStocks.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
-            filteredStocks.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredStocks.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         }
+    }
+
+    @FXML
+    public void onItemTypeComboBoxAction() {
+        onItemSearchAction();
     }
 }

@@ -44,6 +44,23 @@ public class UserDashboardController {
         ID
     }
 
+    private enum RentalType {
+        ALL(null),
+        RECORD(Item.RentalType.RECORD),
+        DVD(Item.RentalType.DVD),
+        GAME(Item.RentalType.GAME);
+
+        final Item.RentalType type;
+
+        RentalType(Item.RentalType type) {
+            this.type = type;
+        }
+
+        public Item.RentalType getType() {
+            return type;
+        }
+    }
+
     private Random rand = new Random();
 
     private FilteredList<Item> filteredItems;
@@ -79,6 +96,8 @@ public class UserDashboardController {
 
     @FXML private ComboBox<SearchBy> itemSearchByBox;
     @FXML private ComboBox<SearchBy> rentalsSearchByBox;
+    @FXML private ComboBox<RentalType> itemTypeComboBox;
+    @FXML private ComboBox<RentalType> rentalsTypeComboBox;
 
     @FXML private ImageView randomTitleImage;
 
@@ -186,6 +205,26 @@ public class UserDashboardController {
         }
     }
 
+    private <T> void setCenterLeftCellFactory(TableColumn<Item, T> column) {
+        column.setCellFactory(
+                col -> {
+                    TableCell<Item, T> cell =
+                            new TableCell<Item, T>() {
+                                @Override
+                                protected void updateItem(T item, boolean empty) {
+                                    super.updateItem(item, empty);
+                                    if (item == null || empty) {
+                                        setText(null);
+                                    } else {
+                                        setText(item.toString());
+                                    }
+                                }
+                            };
+                    cell.setAlignment(Pos.CENTER_LEFT);
+                    return cell;
+                });
+    }
+
     private void initializeItemTable() throws IOException {
 
         CSVDatabase database = CSVDatabase.getInstance();
@@ -193,21 +232,27 @@ public class UserDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftCellFactory(loanColumn);
 
         TableColumn<Item, String> stockColumn = new TableColumn<>("Stock");
         stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        setCenterLeftCellFactory(stockColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -274,18 +319,23 @@ public class UserDashboardController {
         // setting up itemTable
         TableColumn<Item, String> titleColumn = new TableColumn<>("Title");
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        setCenterLeftCellFactory(titleColumn);
 
         TableColumn<Item, String> typeColumn = new TableColumn<>("Type");
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalType"));
+        setCenterLeftCellFactory(typeColumn);
 
         TableColumn<Item, String> loanColumn = new TableColumn<>("Loan");
         loanColumn.setCellValueFactory(new PropertyValueFactory<>("loanType"));
+        setCenterLeftCellFactory(loanColumn);
 
         TableColumn<Item, String> feeColumn = new TableColumn<>("Fee");
         feeColumn.setCellValueFactory(new PropertyValueFactory<>("rentalFee"));
+        setCenterLeftCellFactory(feeColumn);
 
         TableColumn<Item, String> genreColumn = new TableColumn<>("Genre");
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        setCenterLeftCellFactory(genreColumn);
 
         TableColumn<Item, String> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellValueFactory(new PropertyValueFactory<>(""));
@@ -351,6 +401,12 @@ public class UserDashboardController {
 
         itemSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
         rentalsSearchByBox.setItems(FXCollections.observableArrayList(SearchBy.ID, SearchBy.NAME));
+        itemTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
+        rentalsTypeComboBox.setItems(
+                FXCollections.observableArrayList(
+                        RentalType.ALL, RentalType.RECORD, RentalType.DVD, RentalType.GAME));
 
         initializeItemTable();
         initializeRentedTable();
@@ -468,11 +524,28 @@ public class UserDashboardController {
         String input = itemSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredItems.setPredicate(item -> true);
+            filteredItems.setPredicate(
+                    item ->
+                            itemTypeComboBox.getValue() == null
+                                    || itemTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == itemTypeComboBox.getValue().getType());
         } else if (itemSearchByBox.getValue() == SearchBy.ID) {
-            filteredItems.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredItems.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         } else if (itemSearchByBox.getValue() == SearchBy.NAME) {
-            filteredItems.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredItems.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (itemTypeComboBox.getValue() == null
+                                            || itemTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == itemTypeComboBox.getValue().getType()));
         }
     }
 
@@ -481,12 +554,39 @@ public class UserDashboardController {
         String input = rentalsSearchField.getText().toLowerCase().trim();
 
         if (input.isEmpty()) {
-            filteredRentals.setPredicate(item -> true);
+            filteredRentals.setPredicate(
+                    item ->
+                            rentalsTypeComboBox.getValue() == null
+                                    || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                    || item.getRentalType()
+                                            == rentalsTypeComboBox.getValue().getType());
         } else if (rentalsSearchByBox.getValue() == SearchBy.ID) {
-            filteredRentals.setPredicate(item -> item.getId().toLowerCase().contains(input));
+            filteredRentals.setPredicate(
+                    item ->
+                            item.getId().toLowerCase().contains(input)
+                                    && (rentalsTypeComboBox.getValue() == null
+                                            || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == rentalsTypeComboBox.getValue().getType()));
         } else if (rentalsSearchByBox.getValue() == SearchBy.NAME) {
-            filteredRentals.setPredicate(item -> item.getTitle().toLowerCase().contains(input));
+            filteredRentals.setPredicate(
+                    item ->
+                            item.getTitle().toLowerCase().contains(input)
+                                    && (rentalsTypeComboBox.getValue() == null
+                                            || rentalsTypeComboBox.getValue() == RentalType.ALL
+                                            || item.getRentalType()
+                                                    == rentalsTypeComboBox.getValue().getType()));
         }
+    }
+
+    @FXML
+    public void onItemTypeComboBoxAction() {
+        onItemSearchAction();
+    }
+
+    @FXML
+    public void onRentalsTypeComboBoxAction() {
+        onRentalsSearchAction();
     }
 
     @FXML
