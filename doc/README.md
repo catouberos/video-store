@@ -26,4 +26,4 @@ Did some of the GUI and the UML diagram of the finished system, later on error t
 Did some of the GUI, design the welcome scene and co-ordinate the project state.
 
 #### Nguyen Minh Khoa - S3980823
-Did fix some bugs, later on tested and improve the UX of the application with many helpful quality of life changes, work on presentation slides.
+Did fix some bugs, later on tested and improve the UX of the application with many helpful quality of life changes, work on most presentation slides.
