@@ -17,7 +17,7 @@ Did most of the backend and designed the system, initiate the project, wrote tes
 set up a workflow using GitHub Actions for the ease of developing (and contributing) later on.
 
 #### Tran The Quang Minh - S3979562
-Did most of the GUI and bootstrap some methods of `model`, wrote some handles on `controller` and error testing.
+Did most of the GUI and bootstrap some methods of `model`, wrote some handles on `controller`, error testing and work on some presentation slides.
 
 #### Nguyen Son Tung - S3979348
 Did some of the GUI and the UML diagram of the finished system, later on error test the system and provide UX feedback.
@@ -26,4 +26,4 @@ Did some of the GUI and the UML diagram of the finished system, later on error t
 Did some of the GUI, design the welcome scene and co-ordinate the project state.
 
 #### Nguyen Minh Khoa - S3980823
-Did fix some bugs, later on tested and improve the UX of the application with many helpful quality of life changes.
+Did fix some bugs, later on tested and improve the UX of the application with many helpful quality of life changes, work on most presentation slides.
