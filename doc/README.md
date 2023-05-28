@@ -5,11 +5,11 @@ https://github.com/catouberos/video-store
 ## Contribution
 | student_id | name                | contribution% |
 |------------|---------------------|---------------|
-| S3978796   | Do Khoa Nguyen      | 30%           |
+| S3978796   | Do Khoa Nguyen      | 35%           |
 | S3979562   | Tran The Quang Minh | 25%           |
-| S3979348   | Nguyen Son Tung     | 20%           |
+| S3979348   | Nguyen Son Tung     | 15%           |
 | S3979513   | Bui Anh Minh        | 15%           |
-| S3980823   | Nguyen Minh Khoa    | 10%            |
+| S3980823   | Nguyen Minh Khoa    | 10%           |
 
 ### Details
 #### Do Khoa Nguyen - S3978796
