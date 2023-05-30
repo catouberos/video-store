@@ -262,6 +262,7 @@ public class AdminDashboardController {
                         addressColumn,
                         phoneColumn,
                         actionColumn);
+        accountTable.refresh();
     }
 
     private void initializeStockTable() throws IOException {
@@ -349,6 +350,7 @@ public class AdminDashboardController {
                         feeColumn,
                         genreColumn,
                         actionColumn);
+        stockTable.refresh();
     }
 
     private void initializeRentalTable() throws IOException {
